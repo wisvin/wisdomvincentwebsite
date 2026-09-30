@@ -4,8 +4,8 @@
   "description": "AI tools, workflow automation, lead follow-up systems and AI-powered websites that save hours and stop leads going cold.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F7F1E9",
-  "theme_color": "#F7F1E9",
+  "background_color": "#EEF1FF",
+  "theme_color": "#EEF1FF",
   "icons": [
     {
       "src": "/favicon-192.png",

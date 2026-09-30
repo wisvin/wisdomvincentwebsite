@@ -8,23 +8,24 @@
 
 /* ── Design Tokens ───────────────────────────────────────── */
 :root {
-  --bg:          #F7F1E9;   /* warm cream page background */
-  --card:        #EEE8DF;   /* flat card / alt section surface */
-  --surface:     #FFFDF9;   /* raised white surface (forms, pills) */
-  --border:      #DDD6CB;   /* hairlines and dividers */
-  --border-strong: #20221A;
-  --text:        #20221A;   /* near-black olive */
-  --text-soft:   #3A3D30;   /* primary button hover */
-  --muted:       #66675F;   /* secondary text */
-  --accent:      #2563EB;   /* electric blue — links, labels, small accents */
-  --primary:     #2563EB;   /* primary buttons */
-  --primary-hover: #1D4ED8;
-  --tint-sky:    #E8F0FF;   /* tinted section backgrounds */
-  --tint-mint:   #E3F6EC;
-  --tint-peach:  #FFEBDD;
-  --tint-lilac:  #EFEAFF;
+  --bg:          #EEF1FF;   /* soft blue-lavender page background */
+  --bg-2:        #F4EFFF;   /* lavender end of the background wash */
+  --card:        #E4E7FB;   /* flat card / alt section surface */
+  --surface:     #FFFFFF;   /* raised white surface (forms, pills) */
+  --border:      #D6DAF2;   /* hairlines and dividers */
+  --border-strong: #1E1B4B;
+  --text:        #1E1B4B;   /* deep indigo — headings and body */
+  --text-soft:   #312E81;   /* hover for deep panels */
+  --muted:       #5B5F82;   /* secondary text */
+  --accent:      #5B3FD1;   /* indigo-violet — labels, links, small accents */
+  --primary:     #4338CA;   /* indigo — key numbers, active states */
+  --primary-hover: #3730A3;
+  --deep-1:      #1E1B4B;   /* deep panel gradient: indigo → violet */
+  --deep-2:      #312E81;
+  --deep-3:      #5B21B6;
+  --tint-soft:   rgba(79, 70, 229, 0.06);   /* gentle alternate sections */
   --glow-sun:    rgba(253, 208, 46, 0.30);
-  --glow-blue:   rgba(37, 99, 235, 0.10);
+  --glow-blue:   rgba(91, 33, 182, 0.14);
   --accent-dim:  #FFE7A6;   /* butter panels */
   --sun:         #FDD02E;   /* bright hero yellow, matched to the profile photo */
   --accent-glow: #F3E3B8;
@@ -36,7 +37,7 @@
   --pink:        #A24E6A;
   --star:        #B98A00;
   --white:       #FFFFFF;
-  --grid-dot:    #DCD3C4;   /* hero dot-grid */
+  --grid-dot:    #D3D7F2;   /* hero dot-grid */
   --terminal:      #17180F; /* agent log terminal */
   --terminal-text: #EDE8DC;
   --terminal-dim:  #7D7F72;
@@ -140,7 +141,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-height) + 16px); }
 body {
-  background: var(--bg);
+  background: linear-gradient(170deg, var(--bg) 0%, var(--bg-2) 45%, var(--bg) 100%);
+  background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -222,10 +224,10 @@ section { padding: var(--section) 0; }
   white-space: nowrap; cursor: pointer;
   border: 1.5px solid transparent;
 }
-.btn-primary, .btn-gradient { background: var(--primary); color: var(--white); border-color: var(--primary); }
-.btn-primary:hover, .btn-gradient:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn-primary, .btn-gradient { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--white); border-color: transparent; }
+.btn-primary:hover, .btn-gradient:hover { background: linear-gradient(135deg, var(--deep-1), var(--deep-2)); border-color: transparent; }
 .btn-outline { background: transparent; color: var(--text); border-color: var(--text); }
-.btn-outline:hover { background: var(--text); color: var(--bg); }
+.btn-outline:hover { background: var(--text); color: var(--white); }
 .btn-ghost { background: transparent; color: var(--text); padding-left: 4px; padding-right: 4px; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
 .btn-ghost:hover { color: var(--accent); }
 .btn-arrow {
@@ -455,7 +457,7 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 }
 
 /* ── Problems band (slow marquee) ─────────────────────────── */
-.marquee-section { background: var(--primary); color: var(--white); overflow: hidden; }
+.marquee-section { background: linear-gradient(90deg, var(--deep-1), var(--deep-2) 50%, var(--deep-3)); color: var(--white); overflow: hidden; }
 .marquee-wrap { display: flex; align-items: center; gap: 24px; padding: 18px 0; }
 .marquee-title {
   flex: 0 0 auto; margin-left: var(--gutter);
@@ -1276,7 +1278,7 @@ html.pl-out #preloader { opacity: 0; }
   position: relative; display: flex; flex-direction: column; gap: 10px;
   background: var(--card); border-radius: var(--radius-lg); padding: 28px;
 }
-.price-featured { background: var(--primary); color: var(--white); box-shadow: 0 24px 48px -24px var(--primary); }
+.price-featured { background: linear-gradient(160deg, var(--deep-1), var(--deep-3)); color: var(--white); box-shadow: 0 24px 48px -24px var(--deep-3); }
 .price-featured p, .price-featured li, .price-featured .price-time { color: var(--white); }
 .price-tag {
   position: absolute; top: 18px; right: 18px;
@@ -1321,8 +1323,9 @@ html.pl-out #preloader { opacity: 0; }
 .cs-crumbs span { color: var(--muted); }
 
 /* ============================================================
-   COLOUR — "Sunlit Blue": cream + sun yellow + electric blue,
-   with soft tinted sections so the page doesn't read as all beige.
+   COLOUR — light blue-lavender wash, deep indigo→violet for
+   headings, primary buttons and a few key panels, sun yellow
+   for highlights (matches the profile photo).
    ============================================================ */
 .hero {
   background-image:
@@ -1331,24 +1334,22 @@ html.pl-out #preloader { opacity: 0; }
     radial-gradient(var(--grid-dot) 1.2px, transparent 1.2px);
   background-size: auto, auto, 22px 22px;
 }
-.section-tint-sky   { background: var(--tint-sky); }
-.section-tint-mint  { background: var(--tint-mint); }
-.section-tint-peach { background: var(--tint-peach); }
-.section-tint-lilac { background: var(--tint-lilac); }
-.section-tint-sky .step, .section-tint-mint .ba-item,
-.section-tint-lilac .faq-item { background: transparent; }
-.section-tint-mint .ba-item { background: var(--surface); }
-.section-tint-sky .card, .section-tint-sky .step { background: var(--surface); }
-.lead-magnet-card { background: var(--tint-sky); }
-.hero-stat-value { color: var(--primary); }
-.hero-stat-value span { color: var(--star); }
-.result-number { color: var(--primary); }
-.project-result { border-left-color: var(--primary); }
-.pillar:hover { background: var(--tint-sky); }
-.filter-btn.active { background: var(--primary); border-color: var(--primary); color: var(--white); }
-.creds-mark { background: var(--primary); color: var(--white); }
-.cs-steps li::before { background: var(--primary); color: var(--white); }
-.footer-card { background: var(--tint-sky); }
+.section-tint-sky, .section-tint-mint, .section-tint-peach, .section-tint-lilac { background: var(--tint-soft); }
+.section-tint-sky .step, .section-tint-sky .card, .section-tint-mint .ba-item { background: var(--surface); }
+.hero-stat-value, .result-number { color: var(--primary); }
+.hero-stat-value span, .result-number span { color: var(--star); }
+.project-result { border-left-color: var(--sun); }
+.pillar:hover { background: var(--tint-soft); }
+.filter-btn.active { background: var(--text); border-color: var(--text); color: var(--white); }
+.creds-mark { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--sun); }
+.cs-steps li::before { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--white); }
+.calendly-cta { background: linear-gradient(135deg, var(--deep-1), var(--deep-3)); }
+.calendly-cta:hover { background: linear-gradient(135deg, var(--deep-1), var(--deep-2)); }
+.ba-state-after { background: linear-gradient(160deg, var(--deep-1), var(--deep-3)); }
+.cs-next-card { background: linear-gradient(135deg, var(--deep-1), var(--deep-2) 55%, var(--deep-3)); }
+.footer-card { background: var(--card); }
+.lead-magnet-card { background: var(--accent-dim); }
+h1, h2, h3 { color: var(--text); }
 
 /* Tool tags wear their platform colour */
 .tag-n8n      { background: #FFE4EC; border-color: #FFC7D7; color: #B4234E; }
