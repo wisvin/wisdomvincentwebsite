@@ -6,6 +6,19 @@
   var KIND_LABEL = { client: 'Client project', build: 'Demo build' };
   var CALENDLY = 'https://calendly.com/wvemofficial/30min';
 
+  /* Tool tags wear their platform colour (see .tag-* in style.css) */
+  function tagClass(t) {
+    var k = t.toLowerCase();
+    if (k.indexOf('n8n') > -1) return ' tag-n8n';
+    if (k.indexOf('make') > -1) return ' tag-make';
+    if (k.indexOf('zapier') > -1) return ' tag-zapier';
+    if (k.indexOf('gohighlevel') > -1 || k === 'ghl') return ' tag-ghl';
+    if (k.indexOf('claude') > -1) return ' tag-claude';
+    if (k.indexOf('openai') > -1 || k.indexOf('ai') === 0) return ' tag-ai';
+    return '';
+  }
+  function tagHtml(t) { return '<span class="tag' + tagClass(t) + '">' + t + '</span>'; }
+
   function caseUrl(p) { return 'case-study-' + p.slug + '.html'; }
 
   function flowDiagram(flow) {
@@ -29,7 +42,7 @@
 
   function projectCard(p, opts) {
     opts = opts || {};
-    var tags = (p.stack || []).slice(0, 3).map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('');
+    var tags = (p.stack || []).slice(0, 3).map(tagHtml).join('');
     var kind = p.kind ? '<span class="kind-badge kind-' + p.kind + '">' + KIND_LABEL[p.kind] + '</span>' : '';
     return '<a class="project-card" href="' + caseUrl(p) + '" data-category="' + (p.cat || '') + '">' +
       projectThumb(p, opts.autoplay) + kind +
@@ -57,7 +70,7 @@
     var cs = p.caseStudy || {};
     var idx = list.indexOf(p);
     var next = list[(idx + 1) % list.length];
-    var tags = (p.stack || []).map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('');
+    var tags = (p.stack || []).map(tagHtml).join('');
     var visual = p.video
       ? '<video class="cs-video" src="' + p.video + '#t=20" poster="' + p.poster + '" controls preload="none" playsinline></video>'
       : p.projectFile
