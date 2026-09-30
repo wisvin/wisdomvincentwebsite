@@ -8,36 +8,36 @@
 
 /* ── Design Tokens ───────────────────────────────────────── */
 :root {
-  --bg:          #EEF1FF;   /* soft blue-lavender page background */
-  --bg-2:        #F4EFFF;   /* lavender end of the background wash */
-  --card:        #E4E7FB;   /* flat card / alt section surface */
-  --surface:     #FFFFFF;   /* raised white surface (forms, pills) */
-  --border:      #D6DAF2;   /* hairlines and dividers */
-  --border-strong: #1E1B4B;
-  --text:        #1E1B4B;   /* deep indigo — headings and body */
-  --text-soft:   #312E81;   /* hover for deep panels */
-  --muted:       #5B5F82;   /* secondary text */
-  --accent:      #5B3FD1;   /* indigo-violet — labels, links, small accents */
-  --primary:     #4338CA;   /* indigo — key numbers, active states */
-  --primary-hover: #3730A3;
-  --deep-1:      #1E1B4B;   /* deep panel gradient: indigo → violet */
-  --deep-2:      #312E81;
-  --deep-3:      #5B21B6;
-  --tint-soft:   rgba(79, 70, 229, 0.06);   /* gentle alternate sections */
-  --glow-sun:    rgba(253, 208, 46, 0.30);
-  --glow-blue:   rgba(91, 33, 182, 0.14);
-  --accent-dim:  #FFE7A6;   /* butter panels */
-  --sun:         #FDD02E;   /* bright hero yellow, matched to the profile photo */
-  --accent-glow: #F3E3B8;
+  --bg:          #F8F8F8;   /* awwwards-style light grey page */
+  --bg-2:        #F8F8F8;
+  --card:        #EFEFEF;   /* flat grey cards / pills */
+  --surface:     #FFFFFF;   /* white raised surfaces */
+  --border:      #E4E4E4;   /* hairlines */
+  --border-strong: #111111;
+  --text:        #222222;   /* charcoal */
+  --text-soft:   #3A3A3A;
+  --muted:       #6B6B6B;
+  --accent:      #6D28D9;   /* the single accent: purple (labels, links, highlights) */
+  --primary:     #111111;   /* black buttons and key numbers */
+  --primary-hover: #333333;
+  --deep-1:      #111111;   /* black contrast blocks */
+  --deep-2:      #111111;
+  --deep-3:      #111111;
+  --tint-soft:   #F1F1F1;   /* gentle alternate sections */
+  --glow-sun:    transparent;
+  --glow-blue:   transparent;
+  --accent-dim:  #EFE9FF;   /* very light purple panels */
+  --sun:         #DDD0FF;   /* soft purple: headline highlight, badges */
+  --accent-glow: #E4DAFF;
   --green:       #2F7A4B;
   --green-dim:   #DEEFE3;
   --teal:        #3D6062;
   --blue:        #3C5A8A;
   --purple:      #6B4E8A;
   --pink:        #A24E6A;
-  --star:        #B98A00;
+  --star:        #111111;
   --white:       #FFFFFF;
-  --grid-dot:    #D3D7F2;   /* hero dot-grid */
+  --grid-dot:    #E6E6E6;   /* hero dot-grid */
   --terminal:      #17180F; /* agent log terminal */
   --terminal-text: #EDE8DC;
   --terminal-dim:  #7D7F72;
@@ -59,6 +59,7 @@
   --pf-ink: #1F2328;
   --pf-ink-soft: #6B7280;
   --pf-sun: #FDD02E;
+  --photo-bg: #FDD02E;       /* matches the profile photo background */
   --pf-mac-red: #FF5F57;
   --pf-mac-yellow: #FEBC2E;
   --pf-mac-green: #28C840;
@@ -141,8 +142,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-height) + 16px); }
 body {
-  background: linear-gradient(170deg, var(--bg) 0%, var(--bg-2) 45%, var(--bg) 100%);
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -224,8 +224,8 @@ section { padding: var(--section) 0; }
   white-space: nowrap; cursor: pointer;
   border: 1.5px solid transparent;
 }
-.btn-primary, .btn-gradient { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--white); border-color: transparent; }
-.btn-primary:hover, .btn-gradient:hover { background: linear-gradient(135deg, var(--deep-1), var(--deep-2)); border-color: transparent; }
+.btn-primary, .btn-gradient { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.btn-primary:hover, .btn-gradient:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
 .btn-outline { background: transparent; color: var(--text); border-color: var(--text); }
 .btn-outline:hover { background: var(--text); color: var(--white); }
 .btn-ghost { background: transparent; color: var(--text); padding-left: 4px; padding-right: 4px; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
@@ -436,7 +436,7 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 }
 .hero-circle {
   position: relative; width: 86%; aspect-ratio: 1 / 1; border-radius: 50%; overflow: hidden;
-  background: var(--sun);
+  background: var(--photo-bg);
 }
 .hero-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .hero-chip {
@@ -457,7 +457,7 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 }
 
 /* ── Problems band (slow marquee) ─────────────────────────── */
-.marquee-section { background: linear-gradient(90deg, var(--deep-1), var(--deep-2) 50%, var(--deep-3)); color: var(--white); overflow: hidden; }
+.marquee-section { background: var(--deep-1); color: var(--white); overflow: hidden; }
 .marquee-wrap { display: flex; align-items: center; gap: 24px; padding: 18px 0; }
 .marquee-title {
   flex: 0 0 auto; margin-left: var(--gutter);
@@ -744,7 +744,7 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 
 /* ── About ───────────────────────────────────────────────── */
 .about-grid { align-items: start; gap: 40px; }
-.about-photo { width: 100%; max-width: 440px; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 10px var(--sun); margin: 10px 0 34px 10px; }
+.about-photo { width: 100%; max-width: 440px; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%; border-radius: 50%; background: var(--photo-bg); box-shadow: 0 0 0 10px var(--card); margin: 10px 0 34px 10px; }
 .about-socials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .about-content h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 28px; }
 .about-content p { font-size: 1.0625rem; margin-bottom: 18px; line-height: 1.6; }
@@ -1278,7 +1278,7 @@ html.pl-out #preloader { opacity: 0; }
   position: relative; display: flex; flex-direction: column; gap: 10px;
   background: var(--card); border-radius: var(--radius-lg); padding: 28px;
 }
-.price-featured { background: linear-gradient(160deg, var(--deep-1), var(--deep-3)); color: var(--white); box-shadow: 0 24px 48px -24px var(--deep-3); }
+.price-featured { background: var(--deep-1); color: var(--white); box-shadow: 0 24px 48px -24px var(--deep-3); }
 .price-featured p, .price-featured li, .price-featured .price-time { color: var(--white); }
 .price-tag {
   position: absolute; top: 18px; right: 18px;
@@ -1341,12 +1341,12 @@ html.pl-out #preloader { opacity: 0; }
 .project-result { border-left-color: var(--sun); }
 .pillar:hover { background: var(--tint-soft); }
 .filter-btn.active { background: var(--text); border-color: var(--text); color: var(--white); }
-.creds-mark { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--sun); }
-.cs-steps li::before { background: linear-gradient(135deg, var(--deep-2), var(--deep-3)); color: var(--white); }
-.calendly-cta { background: linear-gradient(135deg, var(--deep-1), var(--deep-3)); }
-.calendly-cta:hover { background: linear-gradient(135deg, var(--deep-1), var(--deep-2)); }
-.ba-state-after { background: linear-gradient(160deg, var(--deep-1), var(--deep-3)); }
-.cs-next-card { background: linear-gradient(135deg, var(--deep-1), var(--deep-2) 55%, var(--deep-3)); }
+.creds-mark { background: var(--deep-1); color: var(--white); }
+.cs-steps li::before { background: var(--deep-1); color: var(--white); }
+.calendly-cta { background: var(--deep-1); }
+.calendly-cta:hover { background: var(--deep-1); }
+.ba-state-after { background: var(--deep-1); }
+.cs-next-card { background: var(--deep-1); }
 .footer-card { background: var(--card); }
 .lead-magnet-card { background: var(--accent-dim); }
 h1, h2, h3 { color: var(--text); }
@@ -1358,3 +1358,27 @@ h1, h2, h3 { color: var(--text); }
 .tag-ghl      { background: #E3ECFF; border-color: #C9D8FF; color: #1849C6; }
 .tag-claude   { background: #FBEAE3; border-color: #F4D0C2; color: #A8492A; }
 .tag-ai       { background: #E6F7F0; border-color: #C8EDDD; color: #137A4E; }
+
+/* ── Awwwards-style clean pass: black & white, purple as the only accent ── */
+.marquee-dot { background: var(--accent); }
+.marquee-title { color: var(--sun); }
+.cta-banner { background: var(--deep-1); }
+.cta-banner h2, .cta-banner p { color: var(--white); }
+.cta-banner .section-label { color: var(--white); border-color: var(--white); }
+.cta-banner .section-label::before { color: var(--sun); }
+.cta-banner .btn-primary { background: var(--white); color: var(--text); border-color: var(--white); }
+.cta-banner .btn-outline { color: var(--white); border-color: rgba(255, 255, 255, 0.45); background: transparent; }
+.cta-banner .btn-outline:hover { background: var(--white); color: var(--text); }
+.lead-magnet-card { background: var(--surface); border: 1px solid var(--border); }
+.connect-primary { background: var(--deep-1); color: var(--white); }
+.connect-primary .connect-desc, .connect-primary .connect-go { color: var(--white); }
+.kind-client { background: var(--text); color: var(--white); }
+.price-tag { background: var(--white); color: var(--text); }
+.price-featured .price-name, .price-featured li::before { color: var(--sun); }
+.project-result, .cs-result { border-left-color: var(--accent); }
+.cs-result { background: var(--accent-dim); }
+.cs-metric { background: var(--accent-dim); }
+.tag.accent { background: var(--accent-dim); border-color: var(--accent-dim); color: var(--accent); }
+.hero-stat-value span, .result-number span { color: var(--text); }
+.footer-cta h2 em, .hero h1 em { color: var(--accent); }
+.pl-bar i { background: var(--accent); }
