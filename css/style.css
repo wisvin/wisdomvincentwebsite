@@ -35,7 +35,7 @@
   --blue:        #3C5A8A;
   --purple:      #6B4E8A;
   --pink:        #A24E6A;
-  --star:        #111111;
+  --star:        #E5A50A;   /* golden review stars */
   --white:       #FFFFFF;
   --grid-dot:    #E6E6E6;   /* hero dot-grid */
   --terminal:      #17180F; /* agent log terminal */
@@ -1379,6 +1379,10 @@ h1, h2, h3 { color: var(--text); }
 .cs-result { background: var(--accent-dim); }
 .cs-metric { background: var(--accent-dim); }
 .tag.accent { background: var(--accent-dim); border-color: var(--accent-dim); color: var(--accent); }
-.hero-stat-value span, .result-number span { color: var(--text); }
+.hero-stat-value span, .result-number span { color: var(--star); }
 .footer-cta h2 em, .hero h1 em { color: var(--accent); }
 .pl-bar i { background: var(--accent); }
+
+/* Pricing plans read as distinct cards: white fill, crisp black outline */
+.price-card { background: var(--surface); border: 1.5px solid var(--border-strong); }
+.price-featured { background: var(--deep-1); border-color: var(--border-strong); }
