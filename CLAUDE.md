@@ -277,6 +277,8 @@ Hosted on Vercel from the GitHub repo (`main` branch, root `/`, no build step). 
 - `vercel.json` caches `/css` and `/js` for a year (immutable) — **always bump the `?v=N` query** on every page's `<link>`/`<script>` tags when CSS/JS changes, or visitors keep old files.
 - Analytics: enable **Web Analytics** and **Speed Insights** in the Vercel project. `js/analytics.js` loads them on the live site only and sends events for Book-call/WhatsApp/Email/Upwork/LinkedIn/Credly clicks, case-study opens and form submits (custom events need Vercel Pro; page views are free). Cookieless, covered in `privacy.html`.
 
+- Google Search Console is verified with `googlef98bd7c75eb94ea2.html` in the site root — **never delete or rename it**, or ownership is lost.
+
 ## Pricing
 
 The home page `#pricing` section shows starting points (Quick automation from $500, Growth system from $2,500, monthly retainer). Keep them in line with the contact form's budget options.
