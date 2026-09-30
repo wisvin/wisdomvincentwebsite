@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Instrument+Serif:ital@1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Claude Code — Checkout Bug Fix — Case Study | Wisdom</title>
+  <meta name="description" content="A production checkout was silently charging stale prices on every discounted order. Result: Cache key now includes coupon code — no more stale pricing for…" />
+  <link rel="canonical" href="https://wisdom-vincent.vercel.app/case-study-claude-code-checkout-bug-fix.html" />
+  <meta name="theme-color" content="#F7F1E9" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Wisdom" />
+  <meta property="og:url" content="https://wisdom-vincent.vercel.app/case-study-claude-code-checkout-bug-fix.html" />
+  <meta property="og:title" content="Claude Code — Checkout Bug Fix — Case Study | Wisdom" />
+  <meta property="og:description" content="A production checkout was silently charging stale prices on every discounted order. Result: Cache key now includes coupon code — no more stale pricing for…" />
+  <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og/claude-code-checkout-bug-fix.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Claude Code — Checkout Bug Fix" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Claude Code — Checkout Bug Fix — Case Study | Wisdom" />
+  <meta name="twitter:description" content="A production checkout was silently charging stale prices on every discounted order. Result: Cache key now includes coupon code — no more stale pricing for…" />
+  <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og/claude-code-checkout-bug-fix.jpg" />
+  <link rel="stylesheet" href="css/style.css?v=20" />
+  <script src="js/preloader.js?v=20"></script>
+  <script src="js/render.js?v=20" defer></script>
+  <script src="js/nav.js?v=20" defer></script>
+  <script src="js/main.js?v=20" defer></script>
+  <script src="js/analytics.js?v=20" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://wisdom-vincent.vercel.app/#wisdom",
+      "name": "Wisdom Vincent",
+      "givenName": "Wisdom",
+      "familyName": "Vincent",
+      "jobTitle": "AI Developer & Automation Engineer",
+      "description": "AI developer and automation engineer who helps businesses win back time and stop losing leads with custom AI tools, workflow automation, lead follow-up systems and AI-powered websites.",
+      "url": "https://wisdom-vincent.vercel.app/",
+      "image": "https://wisdom-vincent.vercel.app/assets/images/profile.jpg",
+      "email": "wvemofficial@gmail.com",
+      "address": { "@type": "PostalAddress", "addressCountry": "NG" },
+      "sameAs": [
+        "https://ng.linkedin.com/in/wisdom-vincent-b9aa72349",
+        "https://www.upwork.com/freelancers/~01435b77ef70754170"
+      ],
+      "knowsAbout": ["AI Automation","Claude Code","Anthropic Claude","n8n","Make.com","Zapier","GoHighLevel","OpenClaw","Lead Generation","CRM Automation","Web Development","Shopify","JavaScript","API Integration"],
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "name": "Make Academy Foundation Certificate", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Make.com" }, "url": "https://www.credly.com/go/olxRae5k9PmL07KKcV0rvA" },
+        { "@type": "EducationalOccupationalCredential", "name": "Make Academy Basics Certificate", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Make.com" }, "url": "https://www.credly.com/go/2GGM500jMc5W0Ik3Ussepw" },
+        { "@type": "EducationalOccupationalCredential", "name": "Make Academy Advanced Certificate", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Make.com" }, "url": "https://www.credly.com/go/dS7Wqrx0e5qp3Z4aXIgV7Q" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://wisdom-vincent.vercel.app/#website",
+      "url": "https://wisdom-vincent.vercel.app/",
+      "name": "Wisdom - AI Developer & Automation Engineer",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://wisdom-vincent.vercel.app/#wisdom" }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Claude Code — Checkout Bug Fix",
+      "description": "A production checkout was silently charging stale prices on every discounted order. Result: Cache key now includes coupon code — no more stale pricing for…",
+      "image": "https://wisdom-vincent.vercel.app/assets/images/og/claude-code-checkout-bug-fix.jpg",
+      "url": "https://wisdom-vincent.vercel.app/case-study-claude-code-checkout-bug-fix.html",
+      "dateModified": "2026-09-30",
+      "author": {
+        "@id": "https://wisdom-vincent.vercel.app/#wisdom"
+      },
+      "publisher": {
+        "@id": "https://wisdom-vincent.vercel.app/#wisdom"
+      },
+      "about": "AI Development",
+      "keywords": "Claude Code, TypeScript, Jest",
+      "isPartOf": {
+        "@id": "https://wisdom-vincent.vercel.app/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://wisdom-vincent.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Case Studies",
+          "item": "https://wisdom-vincent.vercel.app/projects.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Claude Code — Checkout Bug Fix",
+          "item": "https://wisdom-vincent.vercel.app/case-study-claude-code-checkout-bug-fix.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+<div class="page-hero cs-hero"><div class="container"><nav class="cs-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="projects.html">Case studies</a> / <span>Claude Code — Checkout Bug Fix</span></nav><span class="section-label">Demo build &middot; AI Development</span><h1>Claude Code — Checkout Bug Fix</h1><p>Used Claude Code to diagnose and fix a coupon cache key bug in a production checkout service. The stale-price issue was silently affecting all discounted orders. Fixed, regression-tested, and deployed.</p><div class="cs-meta"><span class="cs-result">Cache key now includes coupon code — no more stale pricing for discounted orders</span><div class="cs-tags"><span class="tag">Claude Code</span><span class="tag">TypeScript</span><span class="tag">Jest</span></div></div></div></div><section class="cs-visual"><div class="container"><div class="cs-frame"><iframe src="assets/projects/1 - 01_Claude_Code_Terminal.html" title="Claude Code — Checkout Bug Fix — live build" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe></div><a class="cs-open" href="assets/projects/1 - 01_Claude_Code_Terminal.html" target="_blank" rel="noopener">Open the live build full screen ↗</a></div></section><section class="cs-content"><div class="container cs-grid"><aside class="cs-toc"><span class="cs-toc-title">On this page</span><ol><li><a href="#brief"><span>01</span>The brief</a></li><li><a href="#plan"><span>02</span>The plan I drafted</a></li><li><a href="#process"><span>03</span>The process, step by step</a></li><li><a href="#bottleneck"><span>04</span>The bottleneck</a></li><li><a href="#fix"><span>05</span>How I fixed it</a></li><li><a href="#results"><span>06</span>The result</a></li></ol><a class="btn btn-primary" href="https://calendly.com/wvemofficial/30min" target="_blank" rel="noopener">Book a free call</a></aside><article class="cs-article"><section class="cs-sec" id="brief"><span class="cs-num">01 /</span><h2>The brief</h2><p class="cs-lead">The /checkout endpoint was returning stale prices whenever a coupon code was applied. The client wanted the bug found, fixed, and a regression test added — without breaking any existing functionality.</p></section><section class="cs-sec" id="plan"><span class="cs-num">02 /</span><h2>The plan I drafted</h2><ul class="cs-plan"><li>Reproduce the stale-price bug</li><li>Find the root cause, not just the symptom</li><li>Fix it without touching unrelated checkout flows</li><li>Lock it in with regression tests</li></ul></section><section class="cs-sec" id="process"><span class="cs-num">03 /</span><h2>The process, step by step</h2><p>Diagnosed the root cause using Claude Code's Read and Grep tools: the cache key was built from productId and currency only, omitting the coupon code. Added the coupon to the key and moved the cache read after the discount step, then wrote a Jest regression test covering three coupon scenarios.</p><ol class="cs-steps"><li><strong>Root Cause Analysis</strong><p>Read pricing.ts and grepped for all priceCache references across the codebase. Found the key was built at L28 before applyCoupon() ran at L41.</p></li><li><strong>Cache Key Fix</strong><p>Updated the cache key to include the coupon parameter: `${productId}:${currency}:${coupon || 'none'}` — ensuring each coupon variant is cached separately.</p></li><li><strong>Execution Order Fix</strong><p>Moved the cache read after applyCoupon() so discounts are always applied before the result is written to cache.</p></li><li><strong>Regression Test</strong><p>Wrote three Jest test cases covering: no coupon, valid coupon, expired coupon. All three pass. The bug cannot regress silently again.</p></li></ol></section><section class="cs-sec" id="bottleneck"><span class="cs-num">04 /</span><h2>The bottleneck</h2><div class="cs-callout cs-warn"><span class="cs-callout-tag">! bottleneck</span><strong>The bug only appeared with coupons</strong><p>Normal orders were fine; only discounted orders showed stale prices, which made it look random.</p></div></section><section class="cs-sec" id="fix"><span class="cs-num">05 /</span><h2>How I fixed it</h2><div class="cs-callout cs-ok"><span class="cs-callout-tag">&#10003; fix</span><p>Tracing the cache showed the key ignored the coupon and was read before the discount was applied. Adding the coupon to the key and reordering the steps fixed it, and three new tests keep it fixed.</p></div></section><section class="cs-sec" id="results"><span class="cs-num">06 /</span><h2>The result</h2><ul class="pcs-list cs-results"><li>Cache key now includes coupon code — no more stale pricing for discounted orders</li><li>Regression test suite extended with 3 new cases, all passing</li><li>Fix merged same day with zero impact on non-coupon checkout flows</li></ul></section></article></div></section><section class="cs-next"><div class="container"><a class="cs-next-card" href="case-study-norrland-outdoor-ecommerce-store.html"><span class="section-label">Next case study</span><h2>Norrland — Outdoor Ecommerce Store</h2><p>An outdoor brand needed a store that felt premium and made it effortless to browse and buy.</p><span class="project-link">Read it &rarr;</span></a></div></section>
+</main>
+
+</body>
+</html>

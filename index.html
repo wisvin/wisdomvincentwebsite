@@ -11,30 +11,31 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <title>Wisdom | AI Developer &amp; Automation Engineer</title>
-  <meta name="description" content="Wisdom turns slow, manual work into systems that run themselves: AI tools, automations, lead follow-up and websites that save hours and stop leads going cold. 100+ projects, 100% Job Success, 5.0 stars." />
+  <title>AI Automation Expert &amp; AI Developer for Hire | Wisdom</title>
+  <meta name="description" content="Wisdom builds AI tools, n8n, Make and Zapier automations, GoHighLevel lead follow-up and AI-powered websites that save hours and stop leads going cold." />
   <link rel="canonical" href="https://wisdom-vincent.vercel.app/" />
   <meta name="theme-color" content="#F7F1E9" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wisdom" />
   <meta property="og:url" content="https://wisdom-vincent.vercel.app/" />
-  <meta property="og:title" content="Wisdom | AI Developer &amp; Automation Engineer" />
-  <meta property="og:description" content="Wisdom turns slow, manual work into systems that run themselves: AI tools, automations, lead follow-up and websites that save hours and stop leads going cold. 100+ projects, 100% Job Success, 5.0 stars." />
+  <meta property="og:title" content="AI Automation Expert &amp; AI Developer for Hire | Wisdom" />
+  <meta property="og:description" content="Wisdom builds AI tools, n8n, Make and Zapier automations, GoHighLevel lead follow-up and AI-powered websites that save hours and stop leads going cold." />
   <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Wisdom - AI Developer, Automation Engineer and Web Specialist" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Wisdom | AI Developer &amp; Automation Engineer" />
-  <meta name="twitter:description" content="Wisdom turns slow, manual work into systems that run themselves: AI tools, automations, lead follow-up and websites that save hours and stop leads going cold. 100+ projects, 100% Job Success, 5.0 stars." />
+  <meta name="twitter:title" content="AI Automation Expert &amp; AI Developer for Hire | Wisdom" />
+  <meta name="twitter:description" content="Wisdom builds AI tools, n8n, Make and Zapier automations, GoHighLevel lead follow-up and AI-powered websites that save hours and stop leads going cold." />
   <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
-  <link rel="stylesheet" href="css/style.css?v=19" />
-  <script src="js/preloader.js?v=19"></script>
-  <script src="js/projects-data.js?v=19" defer></script>
-  <script src="js/reviews-data.js?v=19" defer></script>
-  <script src="js/nav.js?v=19" defer></script>
-  <script src="js/main.js?v=19" defer></script>
-  <script src="js/analytics.js?v=19" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20" />
+  <script src="js/preloader.js?v=20"></script>
+  <script src="js/projects-data.js?v=20" defer></script>
+  <script src="js/reviews-data.js?v=20" defer></script>
+  <script src="js/render.js?v=20" defer></script>
+  <script src="js/nav.js?v=20" defer></script>
+  <script src="js/main.js?v=20" defer></script>
+  <script src="js/analytics.js?v=20" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,6 +70,30 @@
       "name": "Wisdom - AI Developer & Automation Engineer",
       "inLanguage": "en",
       "publisher": { "@id": "https://wisdom-vincent.vercel.app/#wisdom" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://wisdom-vincent.vercel.app/#business",
+      "name": "Wisdom — AI Development & Automation",
+      "url": "https://wisdom-vincent.vercel.app/",
+      "image": "https://wisdom-vincent.vercel.app/assets/images/og-card.jpg",
+      "logo": "https://wisdom-vincent.vercel.app/favicon-512.png",
+      "description": "AI tools, workflow automation (n8n, Make.com, Zapier), GoHighLevel lead follow-up systems and AI-powered websites for businesses worldwide.",
+      "email": "wvemofficial@gmail.com",
+      "founder": { "@id": "https://wisdom-vincent.vercel.app/#wisdom" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" },
+      "areaServed": "Worldwide",
+      "priceRange": "$500+",
+      "sameAs": ["https://ng.linkedin.com/in/wisdom-vincent-b9aa72349", "https://www.upwork.com/freelancers/~01435b77ef70754170"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI & Automation Services",
+        "itemListElement": [
+          { "@type": "Offer", "name": "Quick automation", "description": "One workflow that removes a repetitive task, delivered in 3–7 days.", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 500, "priceCurrency": "USD" } },
+          { "@type": "Offer", "name": "Growth system", "description": "A connected lead, CRM and follow-up system or custom AI tool, delivered in 2–4 weeks.", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 2500, "priceCurrency": "USD" } },
+          { "@type": "Offer", "name": "Ongoing partner", "description": "Monthly retainer for monitoring, fixes and new automations." }
+        ]
+      }
     }
   ]
 }
@@ -293,7 +318,11 @@
         <h2 class="section-title">Real problems, solved.<br /><em>Watch them run.</em></h2>
         <p class="section-sub">Three client builds with demo videos. Click any card for the full story: the problem, what I built, and what changed.</p>
       </div>
-      <div class="feat-videos-grid" id="homeFeatured"></div>
+      <div class="feat-videos-grid" id="homeFeatured" data-static>
+<a class="project-card" href="case-study-lukonix-ai-product-image-generator.html" data-category="ai-development"><div class="project-thumb project-thumb-video"><video class="feat-video" data-src="assets/videos/claude-code-demo-preview.mp4" poster="assets/images/posters/claude-code-demo.jpg" preload="none" muted loop playsinline></video><span class="thumb-play" aria-hidden="true">&#9654; Watch demo</span><span class="kind-badge kind-client">Client project</span><span class="project-category">Custom AI Tool</span></div><div class="project-body"><h3>Lukonix — AI Product Image Generator</h3><p class="project-problem"><span>The problem</span>Producing on-brand product visuals for a robotic window cleaner took manual design work for every single image.</p><p class="project-result">Manual design time cut by over 80%</p><div class="project-footer"><div class="project-stack"><span class="tag">Claude Code</span><span class="tag">JavaScript</span><span class="tag">REST API</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-companycam-paintscout-account-sync.html" data-category="ai-automation"><div class="project-thumb project-thumb-video"><video class="feat-video" data-src="assets/videos/zapier-demo-preview.mp4" poster="assets/images/posters/zapier-demo.jpg" preload="none" muted loop playsinline></video><span class="thumb-play" aria-hidden="true">&#9654; Watch demo</span><span class="kind-badge kind-client">Client project</span><span class="project-category">Workflow Automation</span></div><div class="project-body"><h3>CompanyCam ↔ PaintScout Account Sync</h3><p class="project-problem"><span>The problem</span>Account data had to be typed into two platforms by hand, so records drifted out of sync and staff time went to copy-paste.</p><p class="project-result">Manual data entry between the two platforms eliminated</p><div class="project-footer"><div class="project-stack"><span class="tag">Zapier</span><span class="tag">CompanyCam</span><span class="tag">PaintScout</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-scheduled-website-scraping-pipeline.html" data-category="lead-generation"><div class="project-thumb project-thumb-video"><video class="feat-video" data-src="assets/videos/n8n-demo-preview.mp4" poster="assets/images/posters/n8n-demo.jpg" preload="none" muted loop playsinline></video><span class="thumb-play" aria-hidden="true">&#9654; Watch demo</span><span class="kind-badge kind-client">Client project</span><span class="project-category">Data & Lead Generation</span></div><div class="project-body"><h3>Scheduled Website Scraping Pipeline</h3><p class="project-problem"><span>The problem</span>Collecting data from target websites meant someone copying it out by hand, again and again.</p><p class="project-result">Fully automated data collection — zero manual effort</p><div class="project-footer"><div class="project-stack"><span class="tag">n8n</span><span class="tag">Web Scraping</span><span class="tag">Data Extraction</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+</div>
     </div>
   </section>
 
@@ -480,7 +509,14 @@
         <h2 class="section-title">Built to be used,<br />not just looked at.</h2>
         <p class="section-sub">Interactive builds you can open and click through &mdash; each one aimed at a specific business problem.</p>
       </div>
-      <div class="home-projects-grid" id="homeProjectsGrid"></div>
+      <div class="home-projects-grid" id="homeProjectsGrid" data-static>
+<a class="project-card" href="case-study-opsdesk-ai-ops-console.html" data-category="ai-development"><div class="project-thumb"><div class="thumb-preview tp-06" role="img" aria-label="Opsdesk — AI Ops Console screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">AI Development</span></div><div class="project-body"><h3>Opsdesk — AI Ops Console</h3><p class="project-problem"><span>The problem</span>An engineering team was drowning in alerts and reading raw logs before they could even understand an incident.</p><p class="project-result">Mean time to acknowledge (MTTA) reduced from 18 minutes to under 4 minutes</p><div class="project-footer"><div class="project-stack"><span class="tag">Claude Code</span><span class="tag">JavaScript</span><span class="tag">REST API</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-flowforge-maintenance-triage-ai.html" data-category="ai-automation"><div class="project-thumb"><div class="thumb-preview tp-14" role="img" aria-label="FlowForge — Maintenance Triage AI screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">AI Automation</span></div><div class="project-body"><h3>FlowForge — Maintenance Triage AI</h3><p class="project-problem"><span>The problem</span>Maintenance requests for 200+ units arrived by call, text and spreadsheet, and every one had to be sorted and dispatched by hand.</p><p class="project-result">Average time from request to contractor assignment reduced from 4 hours to 11 minutes</p><div class="project-footer"><div class="project-stack"><span class="tag">n8n</span><span class="tag">Claude Code</span><span class="tag">Make.com</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-keystone-lead-capture-funnel.html" data-category="lead-generation"><div class="project-thumb"><div class="thumb-preview tp-12" role="img" aria-label="Keystone — Lead Capture Funnel screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">Lead Generation</span></div><div class="project-body"><h3>Keystone — Lead Capture Funnel</h3><p class="project-problem"><span>The problem</span>A property manager needed a steady flow of qualified owner leads instead of cold enquiries.</p><p class="project-result">38 qualified consultations booked in the first 30 days from Google Ads traffic</p><div class="project-footer"><div class="project-stack"><span class="tag">HTML5</span><span class="tag">GoHighLevel</span><span class="tag">JavaScript</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-keystone-vacancy-syndication-console.html" data-category="lead-generation"><div class="project-thumb"><div class="thumb-preview tp-15" role="img" aria-label="Keystone — Vacancy Syndication Console screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">Lead Generation</span></div><div class="project-body"><h3>Keystone — Vacancy Syndication Console</h3><p class="project-problem"><span>The problem</span>Listing a vacancy meant re-entering the same property on a dozen portals and chasing replies in a dozen inboxes.</p><p class="project-result">Per-listing posting time reduced from 4 hours to 8 minutes</p><div class="project-footer"><div class="project-stack"><span class="tag">JavaScript</span><span class="tag">n8n</span><span class="tag">Make.com</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-claude-code-checkout-bug-fix.html" data-category="ai-development"><div class="project-thumb"><div class="thumb-preview tp-01" role="img" aria-label="Claude Code — Checkout Bug Fix screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">AI Development</span></div><div class="project-body"><h3>Claude Code — Checkout Bug Fix</h3><p class="project-problem"><span>The problem</span>A production checkout was silently charging stale prices on every discounted order.</p><p class="project-result">Cache key now includes coupon code — no more stale pricing for discounted orders</p><div class="project-footer"><div class="project-stack"><span class="tag">Claude Code</span><span class="tag">TypeScript</span><span class="tag">Jest</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+<a class="project-card" href="case-study-norrland-outdoor-ecommerce-store.html" data-category="web-development"><div class="project-thumb"><div class="thumb-preview tp-03" role="img" aria-label="Norrland — Outdoor Ecommerce Store screenshot"></div><span class="kind-badge kind-build">Demo build</span><span class="project-category">Web Development</span></div><div class="project-body"><h3>Norrland — Outdoor Ecommerce Store</h3><p class="project-problem"><span>The problem</span>An outdoor brand needed a store that felt premium and made it effortless to browse and buy.</p><p class="project-result">Complete e-commerce storefront delivered with full category browsing and product detail functionality</p><div class="project-footer"><div class="project-stack"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div><span class="project-link">Read the full case study →</span></div></div></a>
+</div>
       <div class="view-all-wrap">
         <a href="projects.html" class="btn btn-outline">See All Case Studies &rarr;</a>
       </div>
@@ -588,7 +624,18 @@
         <h2 class="section-title">What 50+ clients say</h2>
         <p class="section-sub">Real words from real clients across 10+ countries. Every engagement. Every platform.</p>
       </div>
-      <div class="home-reviews-grid" id="homeReviewsGrid"></div>
+      <div class="home-reviews-grid" id="homeReviewsGrid" data-static>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r01.jpg" alt="James T." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Wisdom built an n8n workflow that completely replaced our manual lead follow-up process. Within the first week, we booked three new clients we would have missed. Exceptional work and clear communication throughout."</p><div class="review-footer"><div class="review-name">James T.</div><div class="review-meta">United States</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r26.jpg" alt="Sophie R." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Professional, fast, and deeply knowledgeable. Wisdom set up our entire GoHighLevel CRM from scratch — pipelines, automations, the lot. Delivered ahead of schedule and exactly to brief."</p><div class="review-footer"><div class="review-name">Sophie R.</div><div class="review-meta">United Kingdom</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r02.jpg" alt="Marcus O." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"We hired Wisdom to integrate our Xero accounting with our podcast distribution system. What seemed like an impossible problem became a seamless n8n workflow. Patient and transparent throughout."</p><div class="review-footer"><div class="review-name">Marcus O.</div><div class="review-meta">Canada</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r27.jpg" alt="Amelia W." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Our Shopify store looks completely different now — and in the best way. Wisdom redesigned it with speed and conversion in mind. Sales have improved noticeably since launch. Five stars without hesitation."</p><div class="review-footer"><div class="review-name">Amelia W.</div><div class="review-meta">Australia</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r03.jpg" alt="Daniel H." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"The AI customer support bot Wisdom built has transformed how we handle tier-1 enquiries. We went from answering 60+ daily emails manually to maybe 12. The AI handles the rest brilliantly."</p><div class="review-footer"><div class="review-name">Daniel H.</div><div class="review-meta">Germany</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r28.jpg" alt="Priya M." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"I was sceptical about AI automations until I saw what Wisdom built. Our Make.com onboarding sequence now runs itself — clients get everything they need without us touching a button. Incredible value."</p><div class="review-footer"><div class="review-name">Priya M.</div><div class="review-meta">Singapore</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r04.jpg" alt="Tyler B." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Wisdom scraped and enriched a targeted lead list of 1,200 prospects in under 48 hours using OpenClaw. Clean data, verified emails, and a GHL import ready to go. Will definitely hire again."</p><div class="review-footer"><div class="review-name">Tyler B.</div><div class="review-meta">United States</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r29.jpg" alt="Charlotte F." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"The AI receptionist Wisdom built for our dental practice has been a game-changer. It books appointments around the clock and handles the most common patient questions flawlessly. Highly recommended."</p><div class="review-footer"><div class="review-name">Charlotte F.</div><div class="review-meta">United Kingdom</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r05.jpg" alt="Kwame A." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Wisdom built our entire website from scratch in 7 days. Clean, fast, and professional — it looks premium and works exactly as promised. Our bounce rate dropped 40% after the redesign."</p><div class="review-footer"><div class="review-name">Kwame A.</div><div class="review-meta">South Africa</div></div></div>
+<div class="review-card"><div class="review-avatar"><img src="assets/images/avatars/r30.jpg" alt="Isabelle D." loading="lazy" onerror="this.style.display='none'" /></div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">"Outstanding developer. Wisdom integrated our Zapier workflow with QuickBooks and it's been flawless for 4 months. Zero errors, zero manual intervention. Exactly what we hired him for."</p><div class="review-footer"><div class="review-name">Isabelle D.</div><div class="review-meta">Netherlands</div></div></div>
+</div>
       <div class="view-all-wrap">
         <a href="reviews.html" class="btn btn-outline">Read All 50 Reviews &rarr;</a>
       </div>

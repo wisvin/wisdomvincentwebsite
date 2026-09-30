@@ -79,144 +79,41 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  /* ── Project + review lists ───────────────────────────────
+     Markup comes from js/render.js. scripts/build-static.js writes
+     it straight into the HTML (for search engines); these only fill
+     a list that is still empty, e.g. if the generator wasn't re-run. */
+  var WV = window.WVRender;
+  function fill(el, html) {
+    if (!el || !WV || el.hasAttribute('data-static')) return;
+    el.innerHTML = html;
+  }
+  function cards(list, opts) {
+    return list.map(function(p) { return WV.projectCard(p, opts); }).join('');
+  }
+  if (window.PROJECTS) {
+    fill(document.getElementById('projectsGrid'), cards(window.PROJECTS));
+    fill(document.getElementById('homeFeatured'), cards(window.PROJECTS.filter(function(p) { return p.video; }), { autoplay: true }));
+    fill(document.getElementById('homeProjectsGrid'), cards(window.PROJECTS.filter(function(p) { return p.kind === 'build'; }).slice(0, 6)));
+    document.querySelectorAll('[data-service]').forEach(function(el) {
+      var key = el.dataset.service;
+      fill(el, cards(window.PROJECTS.filter(function(p) { return (p.services || []).indexOf(key) !== -1; })));
+    });
+  }
+  if (window.REVIEWS) {
+    fill(document.getElementById('reviewsGrid'), window.REVIEWS.map(WV.reviewCard).join(''));
+    fill(document.getElementById('homeReviewsGrid'), window.REVIEWS.slice(0, 10).map(WV.reviewCard).join(''));
+  }
   initFilters();
+  initLazyVideos();
 
-  /* ── Build a single project card ─────────────────────────── */
-  var KIND_LABEL = { client: 'Client project', build: 'Demo build' };
-
-  function flowDiagram(flow) {
-    return '<div class="flow" aria-hidden="true">' + flow.map(function(n, i) {
-      return (i ? '<span class="flow-link"><i></i></span>' : '') +
-        '<span class="flow-node' + (i === 1 ? ' flow-core' : '') + '">' + n + '</span>';
-    }).join('') + '</div>';
-  }
-
-  function projectThumb(p, autoplay) {
-    if (p.video) {
-      var media = autoplay
-        ? '<video class="feat-video" data-src="' + (p.preview || p.video) + '" poster=""' + p.poster + '" preload="none" muted loop playsinline></video>'
-        : '<img class="thumb-img" src="' + p.poster + '" alt="" loading="lazy" />';
-      return '<div class="project-thumb project-thumb-video">' + media +
-        '<span class="thumb-play" aria-hidden="true">&#9654; Watch demo</span>';
-    }
-    if (p.flow) return '<div class="project-thumb thumb-flow">' + flowDiagram(p.flow);
-    return '<div class="project-thumb">' + (p.previewClass ? '<div class="thumb-preview ' + p.previewClass + '"></div>' : '');
-  }
-
-  function caseUrl(p) { return 'case-study.html?p=' + encodeURIComponent(p.slug); }
-
-  function buildProjectCard(p, i, opts) {
-    opts = opts || {};
-    var tags = (p.stack || []).slice(0, 3).map(function(t) {
-      return '<span class="tag">' + t + '</span>';
-    }).join('');
-    var kind = p.kind ? '<span class="kind-badge kind-' + p.kind + '">' + KIND_LABEL[p.kind] + '</span>' : '';
-    return '<a class="project-card" href="' + caseUrl(p) + '" data-category="' + (p.cat || '') + '">' +
-      projectThumb(p, opts.autoplay) + kind +
-        '<span class="project-category">' + (p.catLabel || '') + '</span></div>' +
-      '<div class="project-body"><h3>' + p.title + '</h3>' +
-        (p.problem ? '<p class="project-problem"><span>The problem</span>' + p.problem + '</p>' : '<p>' + p.desc + '</p>') +
-        (p.result ? '<p class="project-result">' + p.result + '</p>' : '') +
-        '<div class="project-footer"><div class="project-stack">' + tags + '</div>' +
-          '<span class="project-link">Read the full case study →</span>' +
-        '</div></div></a>';
-  }
-
-  /* ── Render Projects (projects.html) ─────────────────────── */
-  function renderProjects() {
-    var grid = document.getElementById('projectsGrid');
-    if (!grid || !window.PROJECTS) return;
-    grid.innerHTML = window.PROJECTS.map(function(p, i) {
-      return buildProjectCard(p, i);
-    }).join('');
-    initFilters();
-  }
-  renderProjects();
-
-  /* ── Case study page (case-study.html?p=<slug>) ─────────── */
-  function renderCaseStudy() {
-    var root = document.getElementById('caseStudy');
-    if (!root || !window.PROJECTS) return;
+  /* Old dynamic case study links (case-study.html?p=<slug>) → static pages */
+  if (document.getElementById('caseStudy') && window.PROJECTS && WV) {
     var slug = new URLSearchParams(location.search).get('p');
-    var list = window.PROJECTS;
-    var idx = 0;
-    list.forEach(function(p, i) { if (p.slug === slug) idx = i; });
-    var p = list[idx], cs = p.caseStudy || {};
-    var next = list[(idx + 1) % list.length];
-    document.title = p.title + ' — Case Study | Wisdom';
-
-    var tags = (p.stack || []).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
-    var visual = p.video
-      ? '<video class="cs-video" src="' + p.video + '#t=20" poster="' + p.poster + '" controls preload="none" playsinline></video>'
-      : p.projectFile
-        ? '<div class="cs-frame"><iframe src="' + p.projectFile + '" title="' + p.title + ' — live build" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe></div>' +
-          '<a class="cs-open" href="' + p.projectFile + '" target="_blank" rel="noopener">Open the live build full screen ↗</a>'
-        : p.flow ? '<div class="cs-flow">' + flowDiagram(p.flow) + '</div>' : '';
-
-    var sections = [];
-    function sec(id, title, body) { if (body) sections.push({ id: id, title: title, body: body }); }
-
-    sec('brief', p.kind === 'build' ? 'The brief' : 'What the client came with', cs.clientBrief ? '<p class="cs-lead">' + cs.clientBrief + '</p>' : '');
-    sec('plan', 'The plan I drafted', (cs.plan || []).length ? '<ul class="cs-plan">' + cs.plan.map(function(x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' : '');
-    sec('process', 'The process, step by step',
-      (cs.whatWasBuilt ? '<p>' + cs.whatWasBuilt + '</p>' : '') +
-      ((cs.steps || []).length ? '<ol class="cs-steps">' + cs.steps.map(function(st) {
-        return '<li><strong>' + st.title + '</strong><p>' + st.detail + '</p></li>';
-      }).join('') + '</ol>' : ''));
-    sec('bottleneck', 'The bottleneck', cs.bottleneck ? '<div class="cs-callout cs-warn"><span class="cs-callout-tag">! bottleneck</span><strong>' + cs.bottleneck.title + '</strong><p>' + cs.bottleneck.detail + '</p></div>' : '');
-    sec('fix', 'How I fixed it', cs.fix ? '<div class="cs-callout cs-ok"><span class="cs-callout-tag">&#10003; fix</span><p>' + cs.fix + '</p></div>' : '');
-    sec('results', 'The result',
-      (p.metric ? '<div class="cs-metric"><div><span>Before</span><b class="was">' + p.metric.before + '</b></div><div class="arrow">&rarr;</div><div><span>After</span><b>' + p.metric.after + '</b></div><em>' + p.metric.label + '</em></div>' : '') +
-      ((cs.results || []).length ? '<ul class="pcs-list cs-results">' + cs.results.map(function(r) { return '<li>' + r + '</li>'; }).join('') + '</ul>' : ''));
-
-    var review = cs.feedback && window.REVIEWS ? window.REVIEWS.filter(function(r) { return r.name === cs.feedback; })[0] : null;
-    sec('feedback', 'Client feedback', review ?
-      '<figure class="cs-review"><div class="review-stars">★★★★★</div><blockquote>&ldquo;' + review.text + '&rdquo;</blockquote>' +
-      '<figcaption><img src="' + review.photo + '" alt="" loading="lazy" /><span><b>' + review.name + '</b>' + review.countryName + '</span></figcaption></figure>' : '');
-
-    var toc = sections.map(function(x, i) {
-      return '<li><a href="#' + x.id + '"><span>' + String(i + 1).padStart(2, '0') + '</span>' + x.title + '</a></li>';
-    }).join('');
-    var body = sections.map(function(x, i) {
-      return '<section class="cs-sec" id="' + x.id + '"><span class="cs-num">' + String(i + 1).padStart(2, '0') + ' /</span><h2>' + x.title + '</h2>' + x.body + '</section>';
-    }).join('');
-
-    root.innerHTML =
-      '<div class="page-hero cs-hero"><div class="container">' +
-        '<a class="cs-back" href="projects.html">&larr; All case studies</a>' +
-        '<span class="section-label">' + KIND_LABEL[p.kind] + ' &middot; ' + p.catLabel + '</span>' +
-        '<h1>' + p.title + '</h1>' +
-        '<p>' + p.desc + '</p>' +
-        '<div class="cs-meta">' + (p.result ? '<span class="cs-result">' + p.result + '</span>' : '') + '<div class="cs-tags">' + tags + '</div></div>' +
-      '</div></div>' +
-      (visual ? '<section class="cs-visual"><div class="container">' + visual + '</div></section>' : '') +
-      '<section class="cs-content"><div class="container cs-grid">' +
-        '<aside class="cs-toc"><span class="cs-toc-title">On this page</span><ol>' + toc + '</ol>' +
-          '<a class="btn btn-primary" href="https://calendly.com/wvemofficial/30min" target="_blank" rel="noopener">Book a free call</a></aside>' +
-        '<article class="cs-article">' + body + '</article>' +
-      '</div></section>' +
-      '<section class="cs-next"><div class="container">' +
-        '<a class="cs-next-card" href="' + caseUrl(next) + '"><span class="section-label">Next case study</span><h2>' + next.title + '</h2><p>' + (next.problem || next.desc) + '</p><span class="project-link">Read it &rarr;</span></a>' +
-      '</div></section>';
+    var match = window.PROJECTS.filter(function(p) { return p.slug === slug; })[0];
+    location.replace(match ? WV.caseUrl(match) : 'projects.html');
   }
-  renderCaseStudy();
-
-  /* ── Render Reviews (reviews.html) ───────────────────────── */
-  function renderReviews() {
-    var grid = document.getElementById('reviewsGrid');
-    if (!grid || !window.REVIEWS) return;
-    grid.innerHTML = window.REVIEWS.map(function(r, i) {
-      return '<div class="review-card">' +
-        '<div class="review-avatar"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy" ' +
-        'onerror="this.style.display=\'none\'" /></div>' +
-        '<div class="review-stars">★★★★★</div>' +
-        '<p class="review-text">"' + r.text + '"</p>' +
-        '<div class="review-footer"><div class="review-name">' + r.name + '</div>' +
-        '<div class="review-meta">' + r.countryName + '</div>' +
-        '</div></div>';
-    }).join('');
-  }
-  renderReviews();
 
   /* ── Contact Form ─────────────────────────────────────────── */
   function initForm(formId, successId) {
@@ -242,44 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   initForm('contactForm', 'formSuccess');
   initForm('leadMagnetForm', 'leadMagnetSuccess');
-
-  /* ── Render Homepage work sections ───────────────────────── */
-  function renderInto(el, list, opts) {
-    el.innerHTML = list.map(function(p, i) { return buildProjectCard(p, i, opts); }).join('');
-    initLazyVideos();
-  }
-  function renderHomeProjects() {
-    if (!window.PROJECTS) return;
-    var feat = document.getElementById('homeFeatured');
-    if (feat) renderInto(feat, window.PROJECTS.filter(function(p) { return p.video; }), { autoplay: true });
-    var grid = document.getElementById('homeProjectsGrid');
-    if (grid) renderInto(grid, window.PROJECTS.filter(function(p) { return p.kind === 'build'; }).slice(0, 6));
-  }
-  renderHomeProjects();
-
-  /* ── Service pages: projects tagged for this service ─────── */
-  document.querySelectorAll('[data-service]').forEach(function(el) {
-    if (!window.PROJECTS) return;
-    var key = el.dataset.service;
-    renderInto(el, window.PROJECTS.filter(function(p) { return (p.services || []).indexOf(key) !== -1; }));
-  });
-
-  /* ── Render Homepage Reviews Preview ───────────────────────── */
-  function renderHomeReviews() {
-    var grid = document.getElementById('homeReviewsGrid');
-    if (!grid || !window.REVIEWS) return;
-    grid.innerHTML = window.REVIEWS.slice(0, 10).map(function(r, i) {
-      return '<div class="review-card">' +
-        '<div class="review-avatar"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy" ' +
-        'onerror="this.style.display=\'none\'" /></div>' +
-        '<div class="review-stars">★★★★★</div>' +
-        '<p class="review-text">"' + r.text + '"</p>' +
-        '<div class="review-footer"><div class="review-name">' + r.name + '</div>' +
-        '<div class="review-meta">' + r.countryName + '</div>' +
-        '</div></div>';
-    }).join('');
-  }
-  renderHomeReviews();
 
   /* ── Background platform animations ────────────────────────
      Mini "live" app windows that look like the real tools

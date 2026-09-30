@@ -12,7 +12,9 @@ portfolio/
 ├── index.html              ← home page
 ├── about.html / reviews.html / faq.html / contact.html / 404.html / privacy.html
 ├── projects.html           ← case study grid with filter (rendered from projects-data.js)
-├── case-study.html         ← full case study page: case-study.html?p=<slug>
+├── case-study-<slug>.html  ← one static case study page per project (generated)
+├── case-study.html         ← redirects old ?p=<slug> links (noindex)
+├── scripts/                ← build-static.js + make-og-images.py (run locally, output committed)
 ├── claude-code.html, n8n.html, make.html, zapier.html,
 │   ai-website.html, openclaw.html, gohighlevel.html   ← service pages
 ├── vercel.json            ← Vercel hosting: cache + security headers
@@ -75,7 +77,7 @@ Lead with the problem and the outcome; tools are supporting detail. Headings tal
 
 ## Coding Rules
 
-1. **No frameworks, no npm.** Pure HTML, CSS, vanilla JS only.
+1. **No frameworks, no npm.** Pure HTML, CSS, vanilla JS only. The only tooling is the two scripts in `scripts/`, run locally; their output is committed, so hosting needs no build step.
 2. **Single CSS file.** All styles in `css/style.css`. Never add `<style>` tags to HTML.
 3. **Use CSS variables.** Never hardcode hex values. Always use `var(--token)`.
 4. **Use semantic HTML.** `<main>`, `<section>`, `<nav>`, `<footer>`, `<h1>`–`h4>`, etc.
@@ -138,6 +140,15 @@ Projects are data-driven. Add an object to `window.PROJECTS` in `js/projects-dat
 ```
 
 Only add real work. Keep the portfolio curated: strong case studies, no generic filler.
+
+**After editing `projects-data.js` or `reviews-data.js`, regenerate the static HTML** (this is what search engines read):
+
+```bash
+python scripts/make-og-images.py   # share image per case study (needs Pillow)
+node scripts/build-static.js       # case-study-<slug>.html pages, static lists, sitemap
+```
+
+Markup for cards, reviews and case studies lives only in `js/render.js` (used by both the browser and the generator). Lists marked `data-static` are pre-rendered; the browser only fills a list that is still empty.
 
 ---
 
