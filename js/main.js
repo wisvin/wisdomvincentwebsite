@@ -149,7 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var h = wrap && wrap.querySelector('h3');
     var p = h && h.nextElementSibling;
     if (h) h.textContent = 'Get your tailored plan: ' + PLAN_NAMES[planKey];
-    if (p) p.textContent = 'Tell me what you want to fix. You\u2019ll get a written plan and cost breakdown within 48 hours \u2014 no obligation.';
+    if (p) p.textContent = 'Tell me what you want to fix. You\u2019ll get a written plan and cost breakdown within 2 hours \u2014 no obligation.';
+    var wa = document.getElementById('planWhatsApp');
+    if (wa) {
+      wa.href = 'https://wa.me/2349136538627?text=' + encodeURIComponent('Hi Wisdom, I\u2019d like a tailored plan for: ' + PLAN_NAMES[planKey]);
+      wa.hidden = false;
+    }
     var subject = document.querySelector('#contactForm input[name="_subject"]');
     if (subject) subject.value = 'Tailored plan request: ' + PLAN_NAMES[planKey];
   }

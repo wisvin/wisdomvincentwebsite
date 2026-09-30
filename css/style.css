@@ -1393,3 +1393,12 @@ h1, h2, h3 { color: var(--text); }
 .btn-light { background: var(--white); color: var(--text); border-color: var(--white); }
 .btn-light:hover { background: var(--card); border-color: var(--card); }
 .optional { font-weight: 400; color: var(--muted); }
+
+/* "or chat on WhatsApp" — secondary option under the plan buttons */
+.price-wa { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.9rem; font-weight: 500; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.price-wa::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--brand-whatsapp); }
+.price-wa:hover { color: var(--text); }
+.price-featured .price-wa { color: rgba(255, 255, 255, 0.75); }
+.price-featured .price-wa:hover { color: var(--white); }
+#contact-form .price-wa { display: flex; justify-content: center; }
+#contact-form .price-wa[hidden] { display: none; }
