@@ -138,6 +138,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   initForm('contactForm', 'formSuccess');
+
+  /* Arriving from a "Get my tailored plan" card: note the plan and adapt the form */
+  var planKey = new URLSearchParams(location.search).get('plan');
+  var PLAN_NAMES = { 'quick-automation': 'Quick automation', 'growth-system': 'Growth system', 'ongoing-partner': 'Ongoing partner' };
+  var planField = document.getElementById('planField');
+  if (planField && PLAN_NAMES[planKey]) {
+    planField.value = PLAN_NAMES[planKey];
+    var wrap = document.getElementById('contact-form');
+    var h = wrap && wrap.querySelector('h3');
+    var p = h && h.nextElementSibling;
+    if (h) h.textContent = 'Get your tailored plan: ' + PLAN_NAMES[planKey];
+    if (p) p.textContent = 'Tell me what you want to fix. You\u2019ll get a written plan and cost breakdown within 48 hours \u2014 no obligation.';
+    var subject = document.querySelector('#contactForm input[name="_subject"]');
+    if (subject) subject.value = 'Tailored plan request: ' + PLAN_NAMES[planKey];
+  }
   initForm('leadMagnetForm', 'leadMagnetSuccess');
 
   /* ── Background platform animations ────────────────────────
