@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <rect width="600" height="380" fill="#0A0E1A"/>
+  <!-- Top bar -->
+  <rect width="600" height="48" fill="#0F1422"/>
+  <rect x="0" y="48" width="600" height="1" fill="#1E2640"/>
+  <!-- Logo -->
+  <text x="16" y="30" font-family="monospace" font-size="14" fill="#22C55E" font-weight="bold">🦞 OpenClaw</text>
+  <text x="128" y="30" font-family="sans-serif" font-size="11" fill="#3B5280">/ Lead Extractor Pro</text>
+  <!-- Status -->
+  <rect x="450" y="14" width="140" height="22" rx="4" fill="#0A1F10"/>
+  <circle cx="464" cy="25" r="4" fill="#22C55E"/>
+  <text x="474" y="29" font-family="sans-serif" font-size="10" fill="#22C55E">Extracting… 247 leads</text>
+  <!-- Search bar / filter row -->
+  <rect x="0" y="48" width="600" height="40" fill="#0D1220"/>
+  <rect x="12" y="58" width="260" height="22" rx="5" fill="#141C32" stroke="#1E2640" stroke-width="1"/>
+  <text x="26" y="73" font-family="sans-serif" font-size="10" fill="#3B5280">🔍 "SaaS companies New York &lt;50 employees"</text>
+  <rect x="282" y="58" width="80" height="22" rx="5" fill="#0D1F12"/>
+  <text x="322" y="73" font-family="sans-serif" font-size="10" fill="#22C55E" text-anchor="middle">● Live</text>
+  <rect x="370" y="58" width="80" height="22" rx="5" fill="#141C32" stroke="#1E2640" stroke-width="1"/>
+  <text x="410" y="73" font-family="sans-serif" font-size="10" fill="#3B5280" text-anchor="middle">Filter</text>
+  <rect x="504" y="58" width="84" height="22" rx="5" fill="#22C55E"/>
+  <text x="546" y="73" font-family="sans-serif" font-size="10" fill="#0A0E1A" text-anchor="middle" font-weight="700">Export CSV</text>
+  <!-- Table header -->
+  <rect x="0" y="88" width="600" height="28" fill="#111826"/>
+  <rect x="0" y="116" width="600" height="1" fill="#1E2640"/>
+  <text x="14" y="106" font-family="sans-serif" font-size="9" fill="#3B5280" font-weight="700">COMPANY</text>
+  <text x="164" y="106" font-family="sans-serif" font-size="9" fill="#3B5280" font-weight="700">CONTACT EMAIL</text>
+  <text x="310" y="106" font-family="sans-serif" font-size="9" fill="#3B5280" font-weight="700">PHONE</text>
+  <text x="408" y="106" font-family="sans-serif" font-size="9" fill="#3B5280" font-weight="700">LINKEDIN</text>
+  <text x="532" y="106" font-family="sans-serif" font-size="9" fill="#3B5280" font-weight="700">STATUS</text>
+  <!-- Row 1 -->
+  <rect x="0" y="116" width="600" height="30" fill="#0D1220"/>
+  <rect x="0" y="146" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="135" font-family="sans-serif" font-size="10" fill="#D4E0FF">Stacklane Inc.</text>
+  <text x="164" y="135" font-family="monospace" font-size="9" fill="#5A9EFF">alex@stacklane.io</text>
+  <text x="310" y="135" font-family="sans-serif" font-size="9" fill="#8899CC">+1 415 302 8841</text>
+  <text x="408" y="135" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/alexbrown</text>
+  <rect x="530" y="122" width="50" height="16" rx="8" fill="#0A1F10"/>
+  <text x="555" y="134" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">✓ Valid</text>
+  <!-- Row 2 -->
+  <rect x="0" y="146" width="600" height="30" fill="#0A0E1A"/>
+  <rect x="0" y="176" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="165" font-family="sans-serif" font-size="10" fill="#D4E0FF">NovaSpark SaaS</text>
+  <text x="164" y="165" font-family="monospace" font-size="9" fill="#5A9EFF">cto@novaspark.com</text>
+  <text x="310" y="165" font-family="sans-serif" font-size="9" fill="#8899CC">+1 332 901 5520</text>
+  <text x="408" y="165" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/novaspark</text>
+  <rect x="530" y="152" width="50" height="16" rx="8" fill="#0A1F10"/>
+  <text x="555" y="164" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">✓ Valid</text>
+  <!-- Row 3 -->
+  <rect x="0" y="176" width="600" height="30" fill="#0D1220"/>
+  <rect x="0" y="206" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="195" font-family="sans-serif" font-size="10" fill="#D4E0FF">Gridline Analytics</text>
+  <text x="164" y="195" font-family="monospace" font-size="9" fill="#5A9EFF">hello@gridline.ai</text>
+  <text x="310" y="195" font-family="sans-serif" font-size="9" fill="#8899CC">+44 207 123 9900</text>
+  <text x="408" y="195" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/gridlineai</text>
+  <rect x="530" y="182" width="50" height="16" rx="8" fill="#1A100A"/>
+  <text x="555" y="194" font-family="sans-serif" font-size="9" fill="#F59E0B" text-anchor="middle">⚠ Check</text>
+  <!-- Row 4 -->
+  <rect x="0" y="206" width="600" height="30" fill="#0A0E1A"/>
+  <rect x="0" y="236" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="225" font-family="sans-serif" font-size="10" fill="#D4E0FF">Pulse Revenue Ltd</text>
+  <text x="164" y="225" font-family="monospace" font-size="9" fill="#5A9EFF">james@pulserev.co</text>
+  <text x="310" y="225" font-family="sans-serif" font-size="9" fill="#8899CC">+1 929 008 3312</text>
+  <text x="408" y="225" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/pulsejames</text>
+  <rect x="530" y="212" width="50" height="16" rx="8" fill="#0A1F10"/>
+  <text x="555" y="224" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">✓ Valid</text>
+  <!-- Row 5 -->
+  <rect x="0" y="236" width="600" height="30" fill="#0D1220"/>
+  <rect x="0" y="266" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="255" font-family="sans-serif" font-size="10" fill="#D4E0FF">Coretek Systems</text>
+  <text x="164" y="255" font-family="monospace" font-size="9" fill="#5A9EFF">info@coretek.dev</text>
+  <text x="310" y="255" font-family="sans-serif" font-size="9" fill="#8899CC">+1 510 774 6623</text>
+  <text x="408" y="255" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/coretek</text>
+  <rect x="530" y="242" width="50" height="16" rx="8" fill="#0A1F10"/>
+  <text x="555" y="254" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">✓ Valid</text>
+  <!-- Row 6 -->
+  <rect x="0" y="266" width="600" height="30" fill="#0A0E1A"/>
+  <rect x="0" y="296" width="600" height="1" fill="#141C32"/>
+  <text x="14" y="285" font-family="sans-serif" font-size="10" fill="#D4E0FF">Beacon Growth Co.</text>
+  <text x="164" y="285" font-family="monospace" font-size="9" fill="#5A9EFF">scott@beacongrowth.com</text>
+  <text x="310" y="285" font-family="sans-serif" font-size="9" fill="#8899CC">+61 2 8093 4411</text>
+  <text x="408" y="285" font-family="sans-serif" font-size="9" fill="#5A9EFF">/in/scotthall</text>
+  <rect x="530" y="272" width="50" height="16" rx="8" fill="#0A1F10"/>
+  <text x="555" y="284" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">✓ Valid</text>
+  <!-- Progress bar row -->
+  <rect x="0" y="354" width="600" height="26" fill="#0F1422"/>
+  <rect x="0" y="354" width="600" height="1" fill="#1E2640"/>
+  <text x="14" y="371" font-family="sans-serif" font-size="10" fill="#3B5280">247 extracted · 218 verified · 29 pending</text>
+  <rect x="420" y="361" width="160" height="6" rx="3" fill="#141C32"/>
+  <rect x="420" y="361" width="113" height="6" rx="3" fill="#22C55E"/>
+  <text x="540" y="375" font-family="sans-serif" font-size="9" fill="#22C55E">88%</text>
+</svg>

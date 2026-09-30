@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norrland — Modern Outdoor Goods</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#20201d;--sand:#8a6d4a;--clay:#a6432b;--stone:#c9b79b;--bg:#f5f2ec;--mut:#5a584d;--line:#eae5db}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',-apple-system,ui-sans-serif,system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+.wrap{max-width:1220px;margin:0 auto;padding:0 40px}
+.btn{background:var(--ink);color:#fff;padding:15px 32px;border-radius:2px;font-size:13.5px;font-weight:700;letter-spacing:.04em;display:inline-block;cursor:pointer;border:none;transition:.2s;text-transform:uppercase}
+.btn.out{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.announce{background:var(--ink);color:#e8e5dd;text-align:center;font-size:12px;padding:9px;letter-spacing:.05em;font-weight:500}
+.nav{display:flex;align-items:center;padding:22px 0}
+.logo{font-weight:800;font-size:22px;letter-spacing:.16em}
+.links{display:flex;gap:30px;margin:0 auto;font-size:13.5px;color:#3a3a34;font-weight:600;letter-spacing:.01em}
+.links .sale{color:var(--clay)}
+.icons{display:flex;gap:18px;font-size:16px;color:#3a3a34;font-weight:600}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.15fr;gap:0;align-items:stretch;min-height:560px;border-top:1px solid var(--line)}
+.hcopy{padding:80px 60px 80px 0;display:flex;flex-direction:column;justify-content:center}
+.hcopy .k{color:var(--sand);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.hcopy h1{font-size:56px;line-height:1.02;letter-spacing:-.02em;font-weight:800;margin-bottom:22px}
+.hcopy p{color:var(--mut);font-size:16.5px;max-width:420px;margin-bottom:32px;line-height:1.6}
+.heroimg{background:linear-gradient(155deg,#c9b79b 0%,#9a7d54 45%,#5f4a30 100%);position:relative;overflow:hidden;border-radius:4px}
+.heroimg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 70% 20%,rgba(255,255,255,.18),transparent 60%)}
+.heroimg .tag{position:absolute;left:34px;bottom:32px;color:#fff;z-index:2}
+.heroimg .tag b{font-size:22px;letter-spacing:.02em;display:block}
+.heroimg .tag span{font-size:13px;opacity:.9;letter-spacing:.06em}
+.heroimg .peaks{position:absolute;inset:0;opacity:.5}
+/* trust strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:0}
+.strip div{display:flex;align-items:center;gap:12px;font-size:13.5px;color:#4a483f;font-weight:600}
+.strip .i{font-size:20px;color:var(--sand)}
+/* categories */
+.sechead{display:flex;align-items:baseline;justify-content:space-between;margin:70px 0 26px}
+.sechead h2{font-size:30px;letter-spacing:-.01em}
+.sechead a{font-size:13px;color:var(--sand);font-weight:700;letter-spacing:.04em}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat{height:220px;border-radius:4px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px;color:#fff}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.5))}
+.cat b{position:relative;z-index:2;font-size:19px;letter-spacing:.02em}
+.c1{background:linear-gradient(150deg,#6f7d5a,#3d4a2f)}.c2{background:linear-gradient(150deg,#a8794a,#6b4526)}.c3{background:linear-gradient(150deg,#7d8a92,#40525c)}
+/* products */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.pcard{background:#fff;border-radius:4px;overflow:hidden;border:1px solid var(--line);transition:.2s}
+.pimg{height:230px;position:relative}
+.pimg .b{position:absolute;top:12px;left:12px;font-size:10px;font-weight:800;letter-spacing:.04em;padding:4px 9px;border-radius:2px;background:var(--ink);color:#fff;text-transform:uppercase}
+.pimg .b.sale{background:var(--clay)}
+.pa{background:linear-gradient(150deg,#8a9a6b,#4f5f34)}.pb{background:linear-gradient(150deg,#c99a6a,#8a5a2a)}
+.pc{background:linear-gradient(150deg,#7d8a92,#455057)}.pd{background:linear-gradient(150deg,#b06a4a,#6f3a24)}
+.pe{background:linear-gradient(150deg,#9a8a6a,#5f5030)}.pf{background:linear-gradient(150deg,#6a8a82,#355047)}
+.pg{background:linear-gradient(150deg,#8a7d92,#4f455f)}.ph{background:linear-gradient(150deg,#a89a6a,#6f5f30)}
+.pinfo{padding:16px 16px 20px}
+.pinfo .cat{font-size:10.5px;color:#a09781;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.pinfo h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.pinfo .stars{font-size:11.5px;color:#c8925a;letter-spacing:1px;margin-bottom:8px}
+.pinfo .p{font-size:15px;font-weight:800}
+.pinfo .p .old{color:#b6b2a6;text-decoration:line-through;font-weight:500;margin-left:6px;font-size:12.5px}
+/* editorial band */
+.band{margin:80px 0;display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:4px;overflow:hidden;min-height:400px}
+.band .img{background:linear-gradient(150deg,#5f6b4a,#2f3a22);position:relative}
+.band .img::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.14),transparent 55%)}
+.band .txt{background:var(--ink);color:#e8e5dd;padding:70px 60px;display:flex;flex-direction:column;justify-content:center}
+.band .txt .k{color:var(--stone);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:18px}
+.band .txt h2{font-size:34px;line-height:1.1;color:#fff;margin-bottom:18px;letter-spacing:-.01em}
+.band .txt p{color:#c6c2b6;font-size:15.5px;line-height:1.7;margin-bottom:28px;max-width:420px}
+.band .btn.out{color:#fff;border-color:#8a857b}
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:20px 0 90px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:4px;padding:28px}
+.rev .stars{color:#c8925a;font-size:14px;letter-spacing:2px;margin-bottom:14px}
+.rev p{font-size:14.5px;color:#3a3a34;line-height:1.6;margin-bottom:16px}
+.rev b{font-size:13px}.rev span{font-size:12px;color:#a09781}
+/* newsletter */
+.news{background:var(--ink);color:#e8e5dd;border-radius:4px;padding:64px;text-align:center;margin-bottom:80px}
+.news h2{font-size:36px;color:#fff;margin-bottom:14px;letter-spacing:-.01em}
+.news p{color:#c6c2b6;font-size:16px;max-width:460px;margin:0 auto 28px}
+.news .form{display:flex;gap:10px;justify-content:center;max-width:460px;margin:0 auto}
+.news input{flex:1;padding:15px 18px;border:none;border-radius:2px;font-size:14px}
+.news .btn{background:var(--clay)}
+/* footer */
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+.fgrid p{font-size:13.5px;color:var(--mut);max-width:260px;margin-top:14px;line-height:1.6}
+.fcol h5{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#a09781;margin-bottom:14px;font-weight:800}
+.fcol a{display:block;font-size:14px;color:#4a483f;margin-bottom:10px;text-decoration:none}
+.fbar{display:flex;justify-content:space-between;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:#a09781}
+.built{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#6b665c}
+.built i{width:15px;height:15px;border-radius:5px;background:linear-gradient(135deg,#d9825e,#c15f3c);display:inline-block}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hcopy{padding:50px 0}.hcopy h1{font-size:38px}.strip,.cats,.grid,.reviews,.fgrid{grid-template-columns:1fr 1fr}.band{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="announce">Free carbon-neutral shipping over $95 · 60-day trail-tested returns</div>
+<div class="wrap">
+<nav class="nav">
+  <div class="logo">NORRLAND</div>
+  <div class="links"><span>Men</span><span>Women</span><span>Packs</span><span>Footwear</span><span class="sale">Sale</span></div>
+  <div class="icons"><span>Search</span><span>Account</span><span>Bag (2)</span></div>
+</nav>
+
+<header class="hero">
+  <div class="hcopy">
+    <div class="k">Autumn / Winter '26</div>
+    <h1>Built for the long way round.</h1>
+    <p>Weatherproof layers, packs and boots engineered in Scandinavia and field-tested from the fjords to the treeline. Made to be repaired, not replaced.</p>
+    <div><span class="btn">Shop the New Season</span></div>
+  </div>
+  <div class="heroimg">
+    <svg class="peaks" viewBox="0 0 600 560" preserveAspectRatio="none"><polygon points="0,560 160,220 300,400 430,180 600,460 600,560" fill="rgba(255,255,255,.10)"/><polygon points="0,560 220,320 380,440 520,300 600,380 600,560" fill="rgba(0,0,0,.14)"/></svg>
+    <div class="tag"><b>The Fjäll Shell</b><span>3-layer waterproof · now in three new colours</span></div>
+  </div>
+</header>
+
+<div class="strip">
+  <div><span class="i">◆</span> Weatherproof, guaranteed</div>
+  <div><span class="i">↺</span> Free repairs for life</div>
+  <div><span class="i">✦</span> Recycled & bluesign® fabric</div>
+  <div><span class="i">★</span> 12,000+ five-star reviews</div>
+</div>
+</div>
+
+<div class="wrap">
+  <div class="sechead"><h2>Shop by category</h2><a>View all →</a></div>
+  <div class="cats">
+    <div class="cat c1"><b>Insulation & Layers</b></div>
+    <div class="cat c2"><b>Trail Footwear</b></div>
+    <div class="cat c3"><b>Packs & Shelters</b></div>
+  </div>
+
+  <div class="sechead"><h2>New this season</h2><a>All new arrivals →</a></div>
+  <div class="grid">
+    <div class="pcard"><div class="pimg pa"><span class="b">New</span></div><div class="pinfo"><div class="cat">Shell Jacket</div><h3>Fjäll 3L Waterproof</h3><div class="stars">★★★★★ (412)</div><div class="p">$389</div></div></div>
+    <div class="pcard"><div class="pimg pb"><span class="b sale">−25%</span></div><div class="pinfo"><div class="cat">Footwear</div><h3>Ranger Mid GTX Boot</h3><div class="stars">★★★★★ (938)</div><div class="p">$219 <span class="old">$289</span></div></div></div>
+    <div class="pcard"><div class="pimg pc"><span class="b">New</span></div><div class="pinfo"><div class="cat">Pack</div><h3>Nord 38L Trekking Pack</h3><div class="stars">★★★★☆ (267)</div><div class="p">$179</div></div></div>
+    <div class="pcard"><div class="pimg pd"></div><div class="pinfo"><div class="cat">Insulation</div><h3>Lyng Down Hoodie</h3><div class="stars">★★★★★ (1.1k)</div><div class="p">$249</div></div></div>
+    <div class="pcard"><div class="pimg pe"><span class="b sale">−30%</span></div><div class="pinfo"><div class="cat">Mid-layer</div><h3>Vidde Grid Fleece</h3><div class="stars">★★★★★ (604)</div><div class="p">$83 <span class="old">$119</span></div></div></div>
+    <div class="pcard"><div class="pimg pf"></div><div class="pinfo"><div class="cat">Accessory</div><h3>Storm Merino Beanie</h3><div class="stars">★★★★★ (2.3k)</div><div class="p">$39</div></div></div>
+    <div class="pcard"><div class="pimg pg"><span class="b">New</span></div><div class="pinfo"><div class="cat">Shelter</div><h3>Aurora 2P Tent</h3><div class="stars">★★★★★ (188)</div><div class="p">$429</div></div></div>
+    <div class="pcard"><div class="pimg ph"></div><div class="pinfo"><div class="cat">Trousers</div><h3>Kald Softshell Pant</h3><div class="stars">★★★★☆ (356)</div><div class="p">$149</div></div></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="band">
+    <div class="img"></div>
+    <div class="txt">
+      <div class="k">The Norrland Promise</div>
+      <h2>Buy it once. Repair it forever.</h2>
+      <p>Every stitch is built to be fixed, not landfilled. Send anything back for a free repair, no matter how old — because the greenest jacket is the one you already own.</p>
+      <div><span class="btn out">Read our repair pledge</span></div>
+    </div>
+  </div>
+
+  <div class="sechead"><h2>What the trail says</h2><a>12,483 reviews →</a></div>
+  <div class="reviews">
+    <div class="rev"><div class="stars">★★★★★</div><p>"Wore the Fjäll Shell through four days of Lofoten rain. Bone dry, packs to nothing. Worth every krona."</p><b>Marit S.</b> <span>· Verified buyer</span></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"Sent my six-year-old boots in for a resole and they came back like new — free. That's why I keep buying here."</p><b>Daniel O.</b> <span>· Verified buyer</span></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"The Lyng hoodie is the warmest thing I own for its weight. Lives in my pack year round now."</p><b>Priya K.</b> <span>· Verified buyer</span></div>
+  </div>
+
+  <div class="news">
+    <h2>Join the trailhead list.</h2>
+    <p>Early access to drops, restocks and field notes from our testers. 10% off your first order.</p>
+    <div class="form"><input placeholder="you@email.com"><span class="btn">Sign up</span></div>
+  </div>
+</div>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><div class="logo" style="font-size:19px">NORRLAND</div><p>Modern outdoor goods, built in Scandinavia to be repaired and re-worn for a lifetime.</p></div>
+    <div class="fcol"><h5>Shop</h5><a>New arrivals</a><a>Jackets</a><a>Footwear</a><a>Packs</a></div>
+    <div class="fcol"><h5>Support</h5><a>Repairs</a><a>Shipping</a><a>Returns</a><a>Size guide</a></div>
+    <div class="fcol"><h5>Company</h5><a>Sustainability</a><a>Our story</a><a>Stores</a><a>Careers</a></div>
+  </div>
+  <div class="fbar"><span>© 2026 Norrland Outdoor AB</span><span class="built"><i></i>Designed & built with Claude Code</span></div>
+</div></footer>
+</body></html>

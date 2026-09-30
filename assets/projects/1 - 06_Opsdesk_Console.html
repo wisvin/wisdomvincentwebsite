@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opsdesk — The Console for Modern Operations Teams</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d12;--panel:#141821;--ink:#eef1f6;--mut:#8b93a5;--green:#3fd18b;--clay:#e0956b;--line:#212633;--card:#12161e}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Segoe UI',-apple-system,ui-sans-serif,system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+.btn{padding:11px 20px;border-radius:10px;font-size:14.5px;font-weight:700;cursor:pointer;display:inline-block;transition:.2s;border:none}
+.btn.primary{background:var(--green);color:#08130d;box-shadow:0 12px 30px -12px rgba(63,209,139,.6)}
+.btn.ghost{color:var(--ink);border:1px solid #2c3342;background:transparent}
+.btn.big{padding:15px 30px;font-size:15.5px}
+.nav{display:flex;align-items:center;padding:20px 0;position:sticky;top:0;background:rgba(11,13,18,.82);backdrop-filter:blur(10px);z-index:20;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:19px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.links{display:flex;gap:30px;margin-left:52px;font-size:14.5px;color:#9aa1b2;font-weight:500}
+.navcta{margin-left:auto;display:flex;gap:10px;align-items:center}
+/* hero */
+.hero{padding:74px 0 20px;text-align:center;background:radial-gradient(70% 100% at 50% -5%,rgba(63,209,139,.12),transparent 60%)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);color:var(--green);font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;margin-bottom:24px}
+.pill b{background:var(--green);color:#08130d;font-size:10.5px;padding:1px 7px;border-radius:999px}
+.hero h1{font-size:60px;font-weight:800;letter-spacing:-.035em;max-width:840px;margin:0 auto 20px;line-height:1.05}
+.hero h1 span{color:var(--green)}
+.hero p{color:var(--mut);font-size:19px;max-width:620px;margin:0 auto 30px;line-height:1.55}
+.hrow{display:flex;gap:13px;justify-content:center}
+.microtrust{margin-top:18px;font-size:13px;color:#6a7285;font-weight:500}
+/* console shot */
+.con{max-width:1080px;margin:52px auto 0;border-radius:16px;overflow:hidden;box-shadow:0 60px 120px -50px rgba(0,0,0,.8);border:1px solid var(--line);background:var(--panel);display:grid;grid-template-columns:200px 1fr}
+.cside{background:#0f1219;border-right:1px solid var(--line);padding:16px 0}
+.cbrand{padding:2px 18px 14px;font-weight:800;color:#fff;font-size:14px;display:flex;gap:9px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:10px}
+.cbrand i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.cnav a{display:flex;align-items:center;gap:10px;padding:8px 18px;color:#7f8798;font-size:12.5px;font-weight:500}
+.cnav a.on{background:#1b2130;color:#fff;box-shadow:inset 3px 0 0 var(--clay)}
+.cnav a .ct{margin-left:auto;background:#2a1c15;color:var(--clay);font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px}
+.cmain{padding:18px 22px;background:var(--panel)}
+.ctop{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.ctop .env{background:#2a1c15;color:var(--clay);font-size:10px;font-weight:800;padding:3px 9px;border-radius:5px;letter-spacing:.04em}
+.ctop h4{font-size:15px}.ctop .search{margin-left:auto;background:#1b2130;border:1px solid #2a3140;border-radius:8px;padding:7px 12px;color:#6a7285;font-size:11.5px;width:200px}
+.cchips{display:flex;gap:8px;margin-bottom:14px}
+.cchip{background:#1b2130;border:1px solid #2a3140;color:#aab1c0;font-size:11px;padding:5px 11px;border-radius:7px;font-weight:600}
+.cchip.on{background:#2a1c15;border-color:#4a3323;color:var(--clay)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px}
+th{text-align:left;font-size:10px;color:#6a7285;text-transform:uppercase;letter-spacing:.04em;padding:10px 14px;background:#171c27;font-weight:700}
+td{padding:11px 14px;border-top:1px solid var(--line);color:#c3c9d6}
+.s{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+.s.ok{background:rgba(63,209,139,.14);color:var(--green)}.s.warn{background:#2a1c15;color:var(--clay)}.s.hold{background:#2a2033;color:#b58ae0}
+.ai{color:var(--clay);font-weight:600}
+/* logos */
+.logos{padding:54px 0 10px;text-align:center}
+.logos .tl{font-size:12px;color:#6a7285;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.logos .row{display:flex;justify-content:center;gap:52px;color:#3c4454;font-size:18px;font-weight:800;flex-wrap:wrap}
+section{padding:90px 0}
+.shead{text-align:center;max-width:680px;margin:0 auto 50px}
+.shead .k{color:var(--green);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.shead h2{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+.shead p{color:var(--mut);font-size:17.5px;line-height:1.6}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fcard{border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:var(--card)}
+.fcard .fic{width:46px;height:46px;border-radius:12px;background:rgba(63,209,139,.12);color:var(--green);display:grid;place-items:center;font-size:20px;margin-bottom:18px}
+.fcard h3{font-size:18.5px;margin-bottom:9px}.fcard p{font-size:14.5px;color:var(--mut);line-height:1.65}
+.fcard.clay .fic{background:#2a1c15;color:var(--clay)}
+.stats{border:1px solid var(--line);background:var(--card);border-radius:24px;padding:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stats b{font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--green);display:block}
+.stats span{font-size:14px;color:var(--mut);margin-top:6px;display:block}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{border:1px solid var(--line);border-radius:16px;padding:28px;background:var(--card)}
+.quote p{font-size:15px;line-height:1.6;color:#d4d9e2;margin-bottom:20px}
+.quote .who{display:flex;align-items:center;gap:11px}
+.quote .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--green),#1f8a5a);color:#08130d;display:grid;place-items:center;font-weight:800;font-size:14px}
+.quote .who b{font-size:14px;display:block}.quote .who span{font-size:12.5px;color:var(--mut)}
+.final{text-align:center;background:radial-gradient(80% 130% at 50% 0%,rgba(63,209,139,.14),transparent);border:1px solid var(--line);border-radius:26px;padding:70px 40px}
+.final h2{font-size:44px;font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
+.final p{color:var(--mut);font-size:18px;max-width:520px;margin:0 auto 30px}
+footer{border-top:1px solid var(--line);padding:56px 0 40px;margin-top:20px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+.fgrid p{font-size:13.5px;color:var(--mut);max-width:240px;margin-top:14px;line-height:1.6}
+.fcol h5{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#6a7285;margin-bottom:14px}
+.fcol a{display:block;font-size:14px;color:#9aa1b2;margin-bottom:10px;text-decoration:none}
+.fbar{display:flex;justify-content:space-between;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:#6a7285}
+.built{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--mut)}
+.built i{width:15px;height:15px;border-radius:5px;background:linear-gradient(135deg,#d9825e,#c15f3c);display:inline-block}
+@media(max-width:900px){.hero h1{font-size:40px}.con{grid-template-columns:1fr}.cside{display:none}.feat,.quotes{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<div class="nav"><div class="wrap" style="display:flex;align-items:center;padding:0">
+  <div class="logo"><i></i>Opsdesk</div>
+  <div class="links"><span>Product</span><span>Workflows</span><span>Integrations</span><span>Pricing</span><span>Docs</span></div>
+  <div class="navcta"><span class="btn ghost">Sign in</span><span class="btn primary">Book an Ops Walkthrough</span></div>
+</div></div>
+
+<header class="hero">
+  <div class="pill"><b>AI</b> Exceptions now triaged automatically by Claude</div>
+  <h1>Run every order from <span>one console</span>.</h1>
+  <p>Opsdesk is the operations layer that sits on top of your systems — orders, fulfillment, returns and exceptions in one queue, with the messy ones triaged for you before your team even logs in.</p>
+  <div class="hrow"><span class="btn primary big">Book an Ops Walkthrough</span><span class="btn ghost big">Watch the 3-min tour →</span></div>
+  <div class="microtrust">Connects to Shopify, NetSuite, ShipBob & 40+ more · SOC 2 Type II</div>
+  <div class="con">
+    <div class="cside">
+      <div class="cbrand"><i></i>Opsdesk</div>
+      <div class="cnav"><a class="on">▣ Order queue<span class="ct">128</span></a><a>⚑ Exceptions<span class="ct">12</span></a><a>↺ Returns<span class="ct">7</span></a><a>▤ Inventory</a><a>◷ SLAs</a><a>⚙ Settings</a></div>
+    </div>
+    <div class="cmain">
+      <div class="ctop"><span class="env">PRODUCTION</span><h4>Order queue</h4><span class="search">Search orders, SKUs, customers…</span></div>
+      <div class="cchips"><span class="cchip on">Needs attention · 12</span><span class="cchip">Awaiting stock · 24</span><span class="cchip">Ready to ship · 92</span><span class="cchip">All · 128</span></div>
+      <table>
+        <tr><th>Order</th><th>Customer</th><th>Issue</th><th>Claude triage</th><th>Status</th></tr>
+        <tr><td>#48213</td><td>M. Ortega</td><td>Address mismatch</td><td class="ai">→ Route to verify queue</td><td><span class="s warn">Action</span></td></tr>
+        <tr><td>#48209</td><td>K. Bianchi</td><td>Out of stock (1 line)</td><td class="ai">→ Split & partial-ship</td><td><span class="s hold">On hold</span></td></tr>
+        <tr><td>#48201</td><td>D. Fenwick</td><td>Payment review</td><td class="ai">→ Low risk · auto-clear</td><td><span class="s ok">Cleared</span></td></tr>
+        <tr><td>#48198</td><td>A. Novak</td><td>Duplicate order</td><td class="ai">→ Flag & merge</td><td><span class="s warn">Action</span></td></tr>
+        <tr><td>#48190</td><td>R. Okonkwo</td><td>Carrier delay</td><td class="ai">→ Notify customer</td><td><span class="s ok">Handled</span></td></tr>
+      </table>
+    </div>
+  </div>
+</header>
+
+<div class="logos"><div class="tl">Operations teams run on Opsdesk</div>
+  <div class="row"><span>FREIGHTLY</span><span>MADEWELL CO</span><span>STOCKROOM</span><span>PARCELA</span><span>NORTHBOUND</span></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="k">One queue, every system</div><h2>The console your ops team lives in</h2><p>Opsdesk unifies the tools fulfillment already runs on and puts a smart layer on top — so nothing slips and no one tabs between six dashboards.</p></div>
+    <div class="feat">
+      <div class="fcard"><div class="fic">▣</div><h3>Unified order queue</h3><p>Every order from every channel in one prioritized list, with the context to act without leaving the row.</p></div>
+      <div class="fcard clay"><div class="fic">✦</div><h3>Claude-triaged exceptions</h3><p>Address mismatches, stock-outs and payment holds are read, classified and routed automatically — with a suggested action your team can approve in a click.</p></div>
+      <div class="fcard"><div class="fic">◷</div><h3>SLA guardrails</h3><p>Live SLA timers on every order and an escalation path that pages the right person before a promise is missed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap"><div class="stats">
+    <div><b>73%</b><span>Of exceptions auto-resolved</span></div>
+    <div><b>4.2 hrs</b><span>Saved per rep, per day</span></div>
+    <div><b>128</b><span>Orders / min at peak</span></div>
+    <div><b>40+</b><span>Native integrations</span></div>
+  </div></div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="shead"><div class="k">From the floor</div><h2>Fewer fires, faster shipments</h2></div>
+    <div class="quotes">
+      <div class="quote"><p>"The exception queue used to be our whole morning. Now Claude has cleared the easy 70% before we sit down and only surfaces what actually needs a human."</p><div class="who"><div class="av">LP</div><div><b>Lena Park</b><span>Ops Lead, Stockroom</span></div></div></div>
+      <div class="quote"><p>"One console replaced four browser tabs and a spreadsheet. Onboarding a new rep went from two weeks to two days."</p><div class="who"><div class="av">MJ</div><div><b>Marcus Ijeoma</b><span>Fulfillment Mgr, Parcela</span></div></div></div>
+      <div class="quote"><p>"SLA guardrails alone paid for it. We stopped missing carrier cutoffs because Opsdesk pages us before the window closes."</p><div class="who"><div class="av">CA</div><div><b>Chloe Adler</b><span>COO, Freightly</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap"><div class="final">
+    <h2>Give your ops team one screen.</h2>
+    <p>We'll connect a sandbox to your real order data and show you your own exception queue, triaged, on the call.</p>
+    <span class="btn primary big">Book an Ops Walkthrough</span>
+  </div></div>
+</section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><div class="logo"><i></i>Opsdesk</div><p>The operations console that unifies your fulfillment stack and triages the mess with AI.</p></div>
+    <div class="fcol"><h5>Product</h5><a>Order queue</a><a>Exceptions</a><a>Returns</a><a>SLAs</a></div>
+    <div class="fcol"><h5>Company</h5><a>Customers</a><a>Pricing</a><a>Security</a><a>Careers</a></div>
+    <div class="fcol"><h5>Developers</h5><a>Docs</a><a>API</a><a>Integrations</a><a>Status</a></div>
+  </div>
+  <div class="fbar"><span>© 2026 Opsdesk, Inc.</span><span class="built"><i></i>Designed & built with Claude Code</span></div>
+</div></footer>
+</body></html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keystone — Free Rental Owner Assessment</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0f2740;--navy2:#173a5e;--gold:#e0a340;--emer:#1f9d74;--ink:#1a2430;--mut:#5b6b7a;--line:#e2e8ef;--bg:#f4f7fa}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Segoe UI',-apple-system,ui-sans-serif,system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+.btn{padding:15px 30px;border-radius:12px;font-size:15.5px;font-weight:700;cursor:pointer;display:inline-block;transition:.2s;border:none}
+.btn.gold{background:linear-gradient(135deg,var(--gold),#c9862a);color:#3a2708;box-shadow:0 14px 30px -12px rgba(224,163,64,.6)}
+.btn.ghost{background:none;border:1.5px solid #cdd6df;color:var(--ink)}
+/* topbar */
+.topbar{background:var(--navy);color:#dbe6f0}
+.topbar .wrap{display:flex;align-items:center;padding:16px 40px}
+.logo{font-weight:800;font-size:19px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em;color:#fff}
+.logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--gold),#c9862a);display:grid;place-items:center;color:#3a2708;font-weight:900;font-size:15px}
+.topbar .ph{margin-left:auto;font-size:14px;font-weight:600;color:#a9c0d4}
+.topbar .ph b{color:#fff}
+/* hero */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#1e4a72 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 88% 10%,rgba(224,163,64,.18),transparent 55%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;padding:64px 40px 70px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#ffd89a;font-size:12.5px;font-weight:700;padding:7px 15px;border-radius:999px;margin-bottom:22px}
+.hero h1{font-size:50px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px}
+.hero h1 span{color:var(--gold)}
+.hero .sub{font-size:18px;color:#c7d6e4;max-width:460px;line-height:1.55;margin-bottom:26px}
+.hero ul{list-style:none;margin-bottom:8px}
+.hero li{padding:9px 0 9px 32px;position:relative;font-size:15px;color:#dbe6f0}
+.hero li::before{content:"✓";position:absolute;left:0;color:var(--emer);font-weight:800;background:rgba(31,157,116,.18);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;top:7px}
+/* form card */
+.formcard{background:#fff;border-radius:20px;padding:34px;color:var(--ink);box-shadow:0 40px 90px -30px rgba(6,25,45,.6)}
+.formcard .fh{text-align:center;margin-bottom:22px}
+.formcard .fh b{font-size:20px;display:block;letter-spacing:-.01em}
+.formcard .fh span{font-size:13.5px;color:var(--mut)}
+.steps{display:flex;gap:6px;margin-bottom:24px}
+.steps i{flex:1;height:6px;border-radius:3px;background:#e6ecf2}
+.steps i.on{background:var(--gold)}
+.fstep{display:none}.fstep.on{display:block}
+.fstep>b{font-size:16px;display:block;margin-bottom:4px}
+.fstep>.h{font-size:13px;color:var(--mut);margin-bottom:16px}
+.opts{display:grid;gap:10px}
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:12px;transition:.15s;background:#fbfcfe}
+.opt:hover{border-color:var(--gold)}
+.opt.sel{border-color:var(--gold);background:#fff8ec}
+.opt .r{width:20px;height:20px;border-radius:50%;border:2px solid #cdd6df;flex:none}
+.opt.sel .r{border-color:var(--gold);background:var(--gold);box-shadow:inset 0 0 0 3px #fff}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px;color:var(--navy2)}
+input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px;background:#fbfcfe}
+input:focus,.opt:focus-visible{outline:3px solid rgba(224,163,64,.35);outline-offset:1px}
+.fnav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.fnav .btn{flex:1;text-align:center}
+.trust-mini{text-align:center;font-size:12px;color:var(--mut);margin-top:16px}
+/* logos */
+.logos{padding:34px 0;background:#fff;border-bottom:1px solid var(--line)}
+.logos .wrap{display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap}
+.logos .tl{font-size:12px;color:#9aa8b5;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.logos span{color:#b3c0cc;font-size:17px;font-weight:800}
+section{padding:80px 0}
+.shead{text-align:center;max-width:620px;margin:0 auto 46px}
+.shead .k{color:var(--emer);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.shead h2{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:12px}
+.shead p{color:var(--mut);font-size:17px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.hc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center}
+.hc .n{width:44px;height:44px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;margin:0 auto 16px}
+.hc h3{font-size:18px;margin-bottom:8px}.hc p{color:var(--mut);font-size:14px;line-height:1.6}
+.stats{background:var(--navy);color:#fff;border-radius:22px;padding:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
+.stats b{font-size:42px;font-weight:800;letter-spacing:-.03em;color:var(--gold);display:block}
+.stats span{font-size:13.5px;color:#a9c0d4;margin-top:6px;display:block}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+.quote .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:12px}
+.quote p{font-size:14.5px;line-height:1.6;color:#233240;margin-bottom:16px}
+.quote .who b{font-size:13.5px}.quote .who span{font-size:12px;color:#9aa8b5}
+.final{background:linear-gradient(160deg,var(--navy),#1e4a72);color:#fff;border-radius:24px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.final::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 50% 0%,rgba(224,163,64,.2),transparent 60%)}
+.final .rel{position:relative;z-index:2}
+.final h2{font-size:40px;font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
+.final p{color:#c7d6e4;font-size:17px;max-width:480px;margin:0 auto 26px}
+footer{padding:40px 0;background:var(--navy);color:#8ba3b8}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:13px}
+.built{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#a9c0d4}
+.built i{width:15px;height:15px;border-radius:5px;background:linear-gradient(135deg,#d9825e,#c15f3c);display:inline-block}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero h1{font-size:36px}.how,.quotes{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style></head>
+<body>
+<div class="topbar"><div class="wrap">
+  <div class="logo"><i>K</i>Keystone Property Management</div>
+  <div class="ph">Owner hotline · <b>(555) 210-8834</b></div>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="badge">◆ For owners of 1–50 units</div>
+    <h1>Is your rental <span>quietly costing you money</span>?</h1>
+    <div class="sub">Answer 4 quick questions and get a free, no-obligation assessment: your market rent, your vacancy risk, and exactly what full-service management would net you.</div>
+    <ul>
+      <li>Know your true market rent in 60 seconds</li>
+      <li>See where you're losing money to vacancy &amp; turnover</li>
+      <li>No spam, no pressure — just your numbers</li>
+    </ul>
+  </div>
+  <form class="formcard" onsubmit="return false" aria-label="Owner assessment">
+    <div class="fh"><b>Get Pre-Qualified in 60 Seconds</b><span>Step <span id="cur">1</span> of 4 · Free assessment</span></div>
+    <div class="steps"><i class="on" id="p1"></i><i id="p2"></i><i id="p3"></i><i id="p4"></i></div>
+
+    <div class="fstep on" data-step="1">
+      <b>How many units do you own?</b><div class="h">This tailors your assessment to your portfolio.</div>
+      <div class="opts">
+        <div class="opt" tabindex="0" onclick="pick(this,2)"><span class="r"></span>Just 1 property</div>
+        <div class="opt" tabindex="0" onclick="pick(this,2)"><span class="r"></span>2–5 units</div>
+        <div class="opt" tabindex="0" onclick="pick(this,2)"><span class="r"></span>6–20 units</div>
+        <div class="opt" tabindex="0" onclick="pick(this,2)"><span class="r"></span>20+ units</div>
+      </div>
+    </div>
+
+    <div class="fstep" data-step="2">
+      <b>What's your biggest headache right now?</b><div class="h">We'll focus your assessment here.</div>
+      <div class="opts">
+        <div class="opt" tabindex="0" onclick="pick(this,3)"><span class="r"></span>Finding &amp; screening tenants</div>
+        <div class="opt" tabindex="0" onclick="pick(this,3)"><span class="r"></span>Late-night maintenance calls</div>
+        <div class="opt" tabindex="0" onclick="pick(this,3)"><span class="r"></span>Vacancy sitting too long</div>
+        <div class="opt" tabindex="0" onclick="pick(this,3)"><span class="r"></span>I just want it off my plate</div>
+      </div>
+    </div>
+
+    <div class="fstep" data-step="3">
+      <b>Where is your property?</b><div class="h">So we can pull accurate local rent comps.</div>
+      <label for="zip">Property ZIP code</label>
+      <input id="zip" placeholder="e.g. 78704" inputmode="numeric">
+      <label for="rent">Current monthly rent (optional)</label>
+      <input id="rent" placeholder="$ —">
+      <div class="fnav"><button class="btn ghost" type="button" onclick="go(2)">Back</button><button class="btn gold" type="button" onclick="go(4)">Continue</button></div>
+    </div>
+
+    <div class="fstep" data-step="4">
+      <b>Where should we send your assessment?</b><div class="h">You'll get it by text and email within minutes.</div>
+      <label for="nm">Full name</label><input id="nm" placeholder="Jordan Rivera">
+      <label for="ph2">Mobile number</label><input id="ph2" placeholder="(555) 010-2266">
+      <label for="em">Email</label><input id="em" placeholder="you@email.com">
+      <div class="fnav"><button class="btn ghost" type="button" onclick="go(3)">Back</button><button class="btn gold" type="submit">Get My Free Assessment</button></div>
+      <div class="trust-mini">🔒 Your info is private. We never sell owner data.</div>
+    </div>
+  </form>
+</div></header>
+
+<div class="logos"><div class="wrap">
+  <span class="tl">As trusted by owners across</span><span>AUSTIN</span><span>DALLAS</span><span>SAN ANTONIO</span><span>HOUSTON</span><span>PHOENIX</span>
+</div></div>
+
+<section><div class="wrap">
+  <div class="shead"><div class="k">How it works</div><h2>From question to real numbers in minutes</h2></div>
+  <div class="how">
+    <div class="hc"><div class="n">1</div><h3>Answer 4 questions</h3><p>Units, headaches, location. Sixty seconds, no account, no obligation.</p></div>
+    <div class="hc"><div class="n">2</div><h3>We run the analysis</h3><p>Our system pulls live rent comps and vacancy data for your exact area and unit type.</p></div>
+    <div class="hc"><div class="n">3</div><h3>Get your assessment</h3><p>A clear breakdown of your market rent, income gaps, and what we'd net you — texted to you.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="stats">
+  <div><b>60 sec</b><span>To complete</span></div>
+  <div><b>$312</b><span>Avg monthly rent uplift found</span></div>
+  <div><b>9 days</b><span>Avg time to fill a vacancy</span></div>
+  <div><b>2,400+</b><span>Owners assessed</span></div>
+</div></div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="shead"><div class="k">Owner results</div><h2>What owners found out</h2></div>
+  <div class="quotes">
+    <div class="quote"><div class="stars">★★★★★</div><p>"The assessment showed I was renting $280 under market. Signed up, they re-listed, and my unit rents for more with less hassle."</p><div class="who"><b>Marcus D.</b> <span>· 3 units, Austin</span></div></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>"I filled it out at 11pm expecting a sales pitch. Instead I got real comps for my block. That honesty is why I hired them."</p><div class="who"><b>Lena P.</b> <span>· Duplex owner, Dallas</span></div></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>"Sixty seconds and I finally understood my vacancy costs. Best five minutes I've spent on my rental in years."</p><div class="who"><b>Ade O.</b> <span>· 12 units, Houston</span></div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="final"><div class="rel">
+  <h2>Your numbers are waiting.</h2>
+  <p>Find out what your rental should really be earning — free, private, and yours in under a minute.</p>
+  <a class="btn gold" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Get Pre-Qualified in 60 Seconds</a>
+</div></div></div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 Keystone Property Management · TREC Broker #90218</span>
+  <span class="built"><i></i>Lead system & automation built with Claude Code</span>
+</div></footer>
+
+<script>
+function pick(el,next){
+  el.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  setTimeout(()=>go(next),180);
+}
+function go(n){
+  document.querySelectorAll('.fstep').forEach(s=>s.classList.toggle('on',s.dataset.step==n));
+  for(var i=1;i<=4;i++){document.getElementById('p'+i).classList.toggle('on',i<=n);}
+  document.getElementById('cur').textContent=n;
+}
+</script>
+</body></html>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <rect width="600" height="380" fill="#0F1117"/>
+  <!-- Top nav -->
+  <rect width="600" height="52" fill="#191D2B"/>
+  <rect x="0" y="52" width="600" height="1" fill="#2A3050"/>
+  <!-- GHL logo -->
+  <rect x="14" y="16" width="22" height="22" rx="4" fill="#F59E0B"/>
+  <text x="25" y="32" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="900">G</text>
+  <text x="46" y="31" font-family="sans-serif" font-size="12" fill="white" font-weight="700">GoHighLevel</text>
+  <!-- Nav tabs -->
+  <text x="160" y="31" font-family="sans-serif" font-size="11" fill="#6B7799">Dashboard</text>
+  <text x="230" y="31" font-family="sans-serif" font-size="11" fill="white" font-weight="600">Pipelines</text>
+  <rect x="226" y="48" width="52" height="3" rx="1" fill="#F59E0B"/>
+  <text x="300" y="31" font-family="sans-serif" font-size="11" fill="#6B7799">Contacts</text>
+  <text x="365" y="31" font-family="sans-serif" font-size="11" fill="#6B7799">Automation</text>
+  <!-- Add deal btn -->
+  <rect x="508" y="16" width="80" height="24" rx="5" fill="#F59E0B"/>
+  <text x="548" y="32" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">+ Add Deal</text>
+  <!-- Pipeline header -->
+  <rect x="0" y="52" width="600" height="36" fill="#141720"/>
+  <text x="16" y="76" font-family="sans-serif" font-size="13" fill="white" font-weight="700">E-Commerce Lead Pipeline</text>
+  <text x="220" y="76" font-family="sans-serif" font-size="11" fill="#6B7799">14 contacts · $48,200 value</text>
+  <!-- Kanban columns -->
+  <!-- Column 1: New Lead -->
+  <rect x="10" y="96" width="132" height="276" rx="8" fill="#191D2B"/>
+  <rect x="10" y="96" width="132" height="36" rx="8" fill="#1E2336"/>
+  <rect x="10" y="120" width="132" height="12" fill="#1E2336"/>
+  <text x="76" y="119" font-family="sans-serif" font-size="10" fill="#9AA3BF" text-anchor="middle" font-weight="700">NEW LEAD</text>
+  <rect x="16" y="138" width="120" height="58" rx="6" fill="#252B40"/>
+  <text x="26" y="155" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Sarah Mitchell</text>
+  <text x="26" y="169" font-family="sans-serif" font-size="9" fill="#6B7799">sarah@gmail.com</text>
+  <text x="26" y="183" font-family="sans-serif" font-size="9" fill="#F59E0B">$4,200</text>
+  <rect x="16" y="202" width="120" height="58" rx="6" fill="#252B40"/>
+  <text x="26" y="219" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Tom Clarke</text>
+  <text x="26" y="233" font-family="sans-serif" font-size="9" fill="#6B7799">tom@shopify.io</text>
+  <text x="26" y="247" font-family="sans-serif" font-size="9" fill="#F59E0B">$2,800</text>
+  <!-- Column 2: Contacted -->
+  <rect x="152" y="96" width="132" height="276" rx="8" fill="#191D2B"/>
+  <rect x="152" y="96" width="132" height="36" rx="8" fill="#1E2336"/>
+  <rect x="152" y="120" width="132" height="12" fill="#1E2336"/>
+  <text x="218" y="119" font-family="sans-serif" font-size="10" fill="#3B97D3" text-anchor="middle" font-weight="700">CONTACTED</text>
+  <rect x="158" y="138" width="120" height="58" rx="6" fill="#252B40"/>
+  <text x="168" y="155" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Olivia Reeves</text>
+  <text x="168" y="169" font-family="sans-serif" font-size="9" fill="#6B7799">olivia@agency.com</text>
+  <text x="168" y="183" font-family="sans-serif" font-size="9" fill="#F59E0B">$9,500</text>
+  <!-- Column 3: Proposal -->
+  <rect x="294" y="96" width="132" height="276" rx="8" fill="#191D2B"/>
+  <rect x="294" y="96" width="132" height="36" rx="8" fill="#1E2336"/>
+  <rect x="294" y="120" width="132" height="12" fill="#1E2336"/>
+  <text x="360" y="119" font-family="sans-serif" font-size="10" fill="#9880FF" text-anchor="middle" font-weight="700">PROPOSAL SENT</text>
+  <rect x="300" y="138" width="120" height="58" rx="6" fill="#252B40"/>
+  <text x="310" y="155" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Daniel Ford</text>
+  <text x="310" y="169" font-family="sans-serif" font-size="9" fill="#6B7799">dan@saasbiz.co</text>
+  <text x="310" y="183" font-family="sans-serif" font-size="9" fill="#F59E0B">$12,000</text>
+  <rect x="300" y="202" width="120" height="58" rx="6" fill="#252B40"/>
+  <text x="310" y="219" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Priya Nair</text>
+  <text x="310" y="233" font-family="sans-serif" font-size="9" fill="#6B7799">priya@brand.in</text>
+  <text x="310" y="247" font-family="sans-serif" font-size="9" fill="#F59E0B">$6,700</text>
+  <!-- Column 4: Won -->
+  <rect x="436" y="96" width="152" height="276" rx="8" fill="#0D1F14"/>
+  <rect x="436" y="96" width="152" height="36" rx="8" fill="#112019"/>
+  <rect x="436" y="120" width="152" height="12" fill="#112019"/>
+  <text x="512" y="119" font-family="sans-serif" font-size="10" fill="#22C55E" text-anchor="middle" font-weight="700">✓ CLOSED WON</text>
+  <rect x="442" y="138" width="140" height="58" rx="6" fill="#142418"/>
+  <text x="452" y="155" font-family="sans-serif" font-size="10" fill="white" font-weight="600">Marcus Williams</text>
+  <text x="452" y="169" font-family="sans-serif" font-size="9" fill="#6B7799">m.w@enterprise.com</text>
+  <text x="452" y="183" font-family="sans-serif" font-size="9" fill="#22C55E" font-weight="700">$22,000 ✓</text>
+</svg>

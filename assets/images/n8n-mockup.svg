@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <rect width="600" height="380" fill="#1A1723"/>
+  <rect width="600" height="44" fill="#211E2E"/>
+  <rect x="0" y="44" width="600" height="1" fill="#3D3558"/>
+  <text x="64" y="27" font-family="monospace" font-size="14" fill="#EA4B71" font-weight="bold">n8n</text>
+  <text x="96" y="27" font-family="sans-serif" font-size="11" fill="#7E6CC0">/ Lead Nurture Automation</text>
+  <rect x="494" y="12" width="92" height="22" rx="4" fill="#EA4B71"/>
+  <text x="540" y="26" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="600">▶ Execute</text>
+  <defs>
+    <pattern id="n8ngrid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#24203A" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="44" width="600" height="336" fill="url(#n8ngrid)"/>
+  <!-- connection lines -->
+  <line x1="152" y1="162" x2="228" y2="162" stroke="#9880FF" stroke-width="2"/>
+  <polygon points="225,157 237,162 225,167" fill="#9880FF"/>
+  <line x1="355" y1="162" x2="426" y2="162" stroke="#9880FF" stroke-width="2"/>
+  <polygon points="423,157 435,162 423,167" fill="#9880FF"/>
+  <line x1="350" y1="194" x2="350" y2="254" stroke="#EA4B71" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="345,252 350,264 355,252" fill="#EA4B71"/>
+  <!-- NODE 1 Webhook -->
+  <rect x="58" y="140" width="94" height="44" rx="8" fill="#2A2540" stroke="#EA4B71" stroke-width="1.5"/>
+  <rect x="58" y="140" width="7" height="44" rx="3" fill="#EA4B71"/>
+  <text x="110" y="159" font-family="sans-serif" font-size="9" fill="#EA4B71" text-anchor="middle" font-weight="700">TRIGGER</text>
+  <text x="110" y="173" font-family="sans-serif" font-size="9" fill="#C0B0FF" text-anchor="middle">🔗 Webhook</text>
+  <!-- NODE 2 IF -->
+  <rect x="240" y="140" width="110" height="44" rx="8" fill="#2A2540" stroke="#9880FF" stroke-width="1.5"/>
+  <rect x="240" y="140" width="7" height="44" rx="3" fill="#9880FF"/>
+  <text x="295" y="159" font-family="sans-serif" font-size="9" fill="#9880FF" text-anchor="middle" font-weight="700">CONDITION</text>
+  <text x="295" y="173" font-family="sans-serif" font-size="9" fill="#C0B0FF" text-anchor="middle">IF score &gt; 70</text>
+  <!-- NODE 3 Gmail -->
+  <rect x="437" y="140" width="110" height="44" rx="8" fill="#2A2540" stroke="#22C55E" stroke-width="1.5"/>
+  <rect x="437" y="140" width="7" height="44" rx="3" fill="#22C55E"/>
+  <text x="492" y="159" font-family="sans-serif" font-size="9" fill="#22C55E" text-anchor="middle" font-weight="700">ACTION</text>
+  <text x="492" y="173" font-family="sans-serif" font-size="9" fill="#C0B0FF" text-anchor="middle">✉ Gmail: Send</text>
+  <!-- NODE 4 Slack -->
+  <rect x="293" y="266" width="110" height="44" rx="8" fill="#2A2540" stroke="#F59E0B" stroke-width="1.5"/>
+  <rect x="293" y="266" width="7" height="44" rx="3" fill="#F59E0B"/>
+  <text x="348" y="285" font-family="sans-serif" font-size="9" fill="#F59E0B" text-anchor="middle" font-weight="700">ACTION</text>
+  <text x="348" y="299" font-family="sans-serif" font-size="9" fill="#C0B0FF" text-anchor="middle">💬 Slack Notify</text>
+  <!-- sidebar -->
+  <rect width="46" height="380" fill="#16131F"/>
+  <text x="23" y="70" font-family="sans-serif" font-size="18" text-anchor="middle" fill="#3D3558">☰</text>
+  <text x="23" y="108" font-family="sans-serif" font-size="15" text-anchor="middle" fill="#9880FF">⊞</text>
+  <text x="23" y="144" font-family="sans-serif" font-size="15" text-anchor="middle" fill="#3D3558">⏱</text>
+  <!-- status bar -->
+  <rect x="0" y="354" width="600" height="26" fill="#16131F"/>
+  <rect x="0" y="354" width="600" height="1" fill="#3D3558"/>
+  <circle cx="58" cy="367" r="5" fill="#22C55E"/>
+  <text x="70" y="371" font-family="sans-serif" font-size="10" fill="#22C55E">Active</text>
+  <text x="106" y="371" font-family="sans-serif" font-size="10" fill="#5C5480">· Last run: 2m ago · 0 errors</text>
+</svg>

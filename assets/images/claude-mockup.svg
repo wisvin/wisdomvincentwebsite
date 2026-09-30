@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <rect width="600" height="380" fill="#0D0F14"/>
+  <!-- Top bar -->
+  <rect width="600" height="48" fill="#13161E"/>
+  <rect x="0" y="48" width="600" height="1" fill="#222639"/>
+  <!-- Sidebar -->
+  <rect width="200" height="380" fill="#10121A"/>
+  <rect x="200" y="0" width="1" height="380" fill="#222639"/>
+  <!-- Sidebar header -->
+  <rect x="0" y="0" width="200" height="48" fill="#13161E"/>
+  <text x="16" y="30" font-family="sans-serif" font-size="13" fill="white" font-weight="700">⬡ Claude</text>
+  <!-- Sidebar chats -->
+  <rect x="8" y="56" width="184" height="34" rx="6" fill="#1E2130"/>
+  <text x="20" y="79" font-family="sans-serif" font-size="11" fill="white">Document Extractor</text>
+  <rect x="8" y="96" width="184" height="34" rx="6" fill="transparent"/>
+  <text x="20" y="119" font-family="sans-serif" font-size="11" fill="#6B7294">Lead Qualifier Bot</text>
+  <rect x="8" y="136" width="184" height="34" rx="6" fill="transparent"/>
+  <text x="20" y="159" font-family="sans-serif" font-size="11" fill="#6B7294">Product Desc Generator</text>
+  <rect x="8" y="176" width="184" height="34" rx="6" fill="transparent"/>
+  <text x="20" y="199" font-family="sans-serif" font-size="11" fill="#6B7294">Support Response AI</text>
+  <!-- New chat button -->
+  <rect x="8" y="326" width="184" height="36" rx="6" fill="#CC785C" opacity="0.9"/>
+  <text x="100" y="349" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="600">+ New conversation</text>
+  <!-- Main chat area -->
+  <!-- Model indicator -->
+  <text x="360" y="30" font-family="sans-serif" font-size="11" fill="#6B7294" text-anchor="middle">claude-3-5-sonnet-20241022</text>
+  <!-- User message bubble -->
+  <rect x="312" y="68" width="264" height="52" rx="10" fill="#1E2130"/>
+  <text x="444" y="89" font-family="sans-serif" font-size="10" fill="#9AA3BF" text-anchor="middle">User</text>
+  <text x="324" y="104" font-family="sans-serif" font-size="10" fill="#D4D8F0">Extract all contact fields from</text>
+  <text x="324" y="117" font-family="sans-serif" font-size="10" fill="#D4D8F0">this uploaded PDF contract.</text>
+  <!-- AI response -->
+  <text x="213" y="146" font-family="sans-serif" font-size="10" fill="#CC785C" font-weight="700">⬡ Claude</text>
+  <rect x="212" y="155" width="350" height="140" rx="10" fill="#13161E" stroke="#222639" stroke-width="1"/>
+  <text x="226" y="175" font-family="sans-serif" font-size="10" fill="#D4D8F0">Here are the extracted contact fields:</text>
+  <!-- Code block -->
+  <rect x="220" y="183" width="330" height="100" rx="6" fill="#0A0C12"/>
+  <text x="232" y="200" font-family="monospace" font-size="9" fill="#9880FF">json</text>
+  <text x="232" y="216" font-family="monospace" font-size="9" fill="#F8F8F2">{</text>
+  <text x="240" y="230" font-family="monospace" font-size="9" fill="#A6E22E">  "party_name"</text>
+  <text x="330" y="230" font-family="monospace" font-size="9" fill="#F8F8F2">: </text>
+  <text x="340" y="230" font-family="monospace" font-size="9" fill="#E6DB74">"Acme Corp Ltd"</text>
+  <text x="240" y="244" font-family="monospace" font-size="9" fill="#A6E22E">  "contact_email"</text>
+  <text x="337" y="244" font-family="monospace" font-size="9" fill="#F8F8F2">: </text>
+  <text x="347" y="244" font-family="monospace" font-size="9" fill="#E6DB74">"james@acme.com"</text>
+  <text x="240" y="258" font-family="monospace" font-size="9" fill="#A6E22E">  "signed_date"</text>
+  <text x="321" y="258" font-family="monospace" font-size="9" fill="#F8F8F2">: </text>
+  <text x="331" y="258" font-family="monospace" font-size="9" fill="#E6DB74">"2024-11-03"</text>
+  <text x="232" y="272" font-family="monospace" font-size="9" fill="#F8F8F2">}</text>
+  <!-- Input bar -->
+  <rect x="210" y="314" width="370" height="44" rx="10" fill="#1E2130" stroke="#333850" stroke-width="1"/>
+  <text x="228" y="341" font-family="sans-serif" font-size="11" fill="#4A5070">Message Claude…</text>
+  <rect x="550" y="323" width="22" height="26" rx="5" fill="#CC785C"/>
+  <text x="561" y="340" font-family="sans-serif" font-size="13" fill="white" text-anchor="middle">↑</text>
+</svg>

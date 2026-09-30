@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Maintenance Triage — AI Workflow Canvas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0c0e14;--panel:#12151f;--panel2:#171b28;--line:#232838;--ink:#e9ecf4;--mut:#8b91a6;--clay:#d98b5f;--clay2:#c46b3d;--teal:#5fb3ac;--green:#4fc27a;--amber:#e0a340;--red:#e0605f;--purp:#9a7de0}
+html,body{height:100%}
+body{width:1600px;height:940px;background:var(--bg);font-family:'Inter','Segoe UI',ui-sans-serif,system-ui,sans-serif;color:var(--ink);overflow:hidden;position:relative;-webkit-font-smoothing:antialiased}
+/* top toolbar */
+.toolbar{height:56px;background:linear-gradient(180deg,#141826,#10131d);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 20px;gap:16px;position:relative;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14.5px}
+.brand .mk{width:26px;height:26px;border-radius:8px;background:linear-gradient(140deg,var(--clay),var(--clay2));display:grid;place-items:center;color:#2a1509;font-weight:900;font-size:14px;box-shadow:0 3px 10px rgba(217,139,95,.4)}
+.wfname{display:flex;align-items:center;gap:9px;font-size:13.5px;color:#c3c8d8;padding-left:16px;border-left:1px solid var(--line)}
+.wfname .ed{color:var(--mut);font-size:12px}
+.tstat{margin-left:8px;display:inline-flex;align-items:center;gap:7px;background:rgba(79,194,122,.13);color:var(--green);font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px}
+.tstat .d{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tbtn{background:var(--panel2);border:1px solid var(--line);color:#c3c8d8;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:9px;display:flex;align-items:center;gap:7px}
+.tbtn.run{background:linear-gradient(135deg,var(--clay),var(--clay2));color:#2a1509;border:none;font-weight:700}
+.tbtn .k{color:var(--mut);font-weight:500;font-size:11px}
+/* layout */
+.stage{position:absolute;top:56px;left:0;right:340px;bottom:0}
+/* dotted grid canvas */
+.canvas{position:absolute;inset:0;background-image:radial-gradient(circle,#20263a 1.3px,transparent 1.3px);background-size:26px 26px;background-position:-2px -2px}
+.canvas::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 30% 20%,rgba(217,139,95,.06),transparent 60%),radial-gradient(50% 60% at 85% 80%,rgba(95,179,172,.06),transparent 60%)}
+.minimap{position:absolute;right:16px;bottom:16px;width:150px;height:96px;background:rgba(12,14,20,.85);border:1px solid var(--line);border-radius:9px;z-index:4;overflow:hidden}
+.minimap .mm{position:absolute;background:#2a3145;border-radius:2px}
+.zoom{position:absolute;left:16px;bottom:16px;background:rgba(18,21,31,.9);border:1px solid var(--line);border-radius:9px;display:flex;align-items:center;z-index:4;font-size:12px;color:var(--mut)}
+.zoom span{padding:8px 10px}.zoom b{padding:8px 12px;color:#c3c8d8;border-left:1px solid var(--line);border-right:1px solid var(--line);font-weight:600}
+/* svg connectors */
+.wires{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+/* nodes */
+.node{position:absolute;z-index:2;width:212px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -18px rgba(0,0,0,.7);overflow:hidden}
+.node .nh{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.node .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;flex:none}
+.node .tt{font-size:13px;font-weight:700;line-height:1.2}
+.node .ty{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.node .nb{padding:0 14px 12px;font-size:11.5px;color:#a7adc0;line-height:1.5}
+.node .tagrow{display:flex;gap:6px;padding:0 14px 12px;flex-wrap:wrap}
+.chip{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px}
+.port{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--panel);border:2px solid #3a4256;top:50%;transform:translateY(-50%);z-index:3}
+.port.in{left:-7px}.port.out{right:-7px}
+.node.trig{border-color:#3a3040}.trig .ic{background:rgba(217,139,95,.16);color:var(--clay)}.trig .port.out{border-color:var(--clay)}
+.node.claude{width:236px;border:1.5px solid var(--clay);box-shadow:0 0 0 4px rgba(217,139,95,.1),0 22px 50px -18px rgba(217,139,95,.35)}
+.claude .ic{background:linear-gradient(140deg,var(--clay),var(--clay2));color:#2a1509}
+.claude .glow{position:absolute;inset:0;border-radius:14px;pointer-events:none;box-shadow:inset 0 0 30px rgba(217,139,95,.12)}
+.claude .port{border-color:var(--clay)}
+.node.branch .ic{background:rgba(154,125,224,.16);color:var(--purp)}.branch .port.out{border-color:var(--purp)}
+.node.act .ic{background:rgba(95,179,172,.14);color:var(--teal)}.act .port.in{border-color:var(--teal)}
+.node.merge .ic{background:rgba(79,194,122,.14);color:var(--green)}
+.badge-out{position:absolute;top:-9px;right:12px;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:.03em}
+/* inspector */
+.insp{position:absolute;top:56px;right:0;bottom:0;width:340px;background:linear-gradient(180deg,#12151f,#0e111a);border-left:1px solid var(--line);z-index:5;display:flex;flex-direction:column}
+.insp .ih{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px}
+.insp .ih .ic{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,var(--clay),var(--clay2));display:grid;place-items:center;color:#2a1509;font-size:16px}
+.insp .ih b{font-size:14px}.insp .ih span{font-size:11px;color:var(--mut);display:block;margin-top:1px}
+.isec{padding:14px 18px;border-bottom:1px solid var(--line)}
+.isec .lab{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:10px}
+.field{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12px;color:#c8cddb;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.field .v{color:#fff;font-weight:600}
+.model{display:flex;align-items:center;gap:9px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12px}
+.model .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green)}
+/* json output */
+.jbox{background:#0a0c12;border:1px solid var(--line);border-radius:10px;padding:13px 14px;font-family:'SF Mono','JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.7}
+.jk{color:#82aaff}.js{color:#c3e88d}.jn{color:#f78c6c}.jp{color:#5f6b85}.jb{color:var(--clay)}
+.out-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(224,96,95,.14);color:var(--red);font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px}
+.runinfo{margin-top:auto;padding:14px 18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut);display:flex;justify-content:space-between}
+.runinfo b{color:#c3c8d8}
+</style></head>
+<body>
+<div class="toolbar">
+  <div class="brand"><span class="mk">✳</span> FlowForge</div>
+  <div class="wfname">Maintenance Triage <span class="ed">· auto-saved</span> <span class="tstat"><span class="d"></span>Live · 214 runs today</span></div>
+  <div class="tools">
+    <span class="tbtn">＋ Add node</span>
+    <span class="tbtn">≣ Logs</span>
+    <span class="tbtn run">▶ Test run <span class="k">⌘⏎</span></span>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="canvas"></div>
+
+  <svg class="wires" viewBox="0 0 1260 884" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="w1" x1="0" x2="1"><stop offset="0" stop-color="#d98b5f"/><stop offset="1" stop-color="#c46b3d"/></linearGradient>
+      <linearGradient id="w2" x1="0" x2="1"><stop offset="0" stop-color="#9a7de0"/><stop offset="1" stop-color="#5fb3ac"/></linearGradient>
+    </defs>
+    <!-- trigger -> claude -->
+    <path d="M250,300 C320,300 330,300 400,300" stroke="url(#w1)" stroke-width="2.5" fill="none"/>
+    <!-- claude -> branch -->
+    <path d="M636,300 C700,300 710,300 770,300" stroke="url(#w1)" stroke-width="2.5" fill="none"/>
+    <!-- branch -> emergency (top) -->
+    <path d="M982,268 C1030,220 1030,150 1030,132" stroke="url(#w2)" stroke-width="2.5" fill="none"/>
+    <!-- branch -> urgent (mid) -->
+    <path d="M982,300 C1010,300 1010,300 1030,300" stroke="url(#w2)" stroke-width="2.5" fill="none"/>
+    <!-- branch -> routine (bottom) -->
+    <path d="M982,332 C1030,392 1030,458 1030,476" stroke="url(#w2)" stroke-width="2.5" fill="none"/>
+    <!-- actions -> merge -->
+    <path d="M1030,190 C1160,215 1150,540 1088,566" stroke="#3a4256" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+    <path d="M1030,340 C1150,400 1130,540 1088,574" stroke="#3a4256" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+    <path d="M1030,540 C1060,556 1070,566 1088,582" stroke="#3a4256" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+    <circle cx="325" cy="300" r="3" fill="#e0a340"/><circle cx="703" cy="300" r="3" fill="#e0a340"/>
+  </svg>
+
+  <!-- Trigger -->
+  <div class="node trig" style="left:38px;top:246px">
+    <span class="port in"></span><span class="port out"></span>
+    <div class="nh"><div class="ic">◷</div><div><div class="tt">New Request</div><div class="ty">Trigger · Webhook</div></div></div>
+    <div class="nb">Resident submits a maintenance request via portal or SMS — text, photos and unit ID.</div>
+    <div class="tagrow"><span class="chip" style="background:rgba(217,139,95,.14);color:var(--clay)">resident portal</span><span class="chip" style="background:rgba(217,139,95,.14);color:var(--clay)">SMS</span></div>
+  </div>
+
+  <!-- Claude node -->
+  <div class="node claude" style="left:400px;top:232px">
+    <div class="glow"></div>
+    <span class="port in"></span><span class="port out"></span>
+    <span class="badge-out" style="background:rgba(79,194,122,.16);color:var(--green)">142 ms</span>
+    <div class="nh"><div class="ic">✳</div><div><div class="tt">Claude · Classify &amp; Triage</div><div class="ty">AI · Opus 4.6</div></div></div>
+    <div class="nb">Reads the request + photo, then returns urgency, category, the right trade, and a spend cap — as structured JSON.</div>
+    <div class="tagrow"><span class="chip" style="background:rgba(217,139,95,.14);color:var(--clay)">vision</span><span class="chip" style="background:rgba(217,139,95,.14);color:var(--clay)">structured output</span><span class="chip" style="background:rgba(95,179,172,.14);color:var(--teal)">vendor match</span></div>
+  </div>
+
+  <!-- Branch -->
+  <div class="node branch" style="left:770px;top:252px;width:212px">
+    <span class="port in"></span><span class="port out" style="top:22%"></span><span class="port out" style="top:50%"></span><span class="port out" style="top:78%"></span>
+    <div class="nh"><div class="ic">⑂</div><div><div class="tt">Route by Urgency</div><div class="ty">Switch · 3 paths</div></div></div>
+    <div class="nb">Splits on Claude's urgency score into three dispatch lanes.</div>
+  </div>
+
+  <!-- Emergency action -->
+  <div class="node act" style="left:1030px;top:86px;width:200px">
+    <span class="port in"></span>
+    <span class="badge-out" style="background:rgba(224,96,95,.18);color:var(--red)">EMERGENCY</span>
+    <div class="nh"><div class="ic" style="background:rgba(224,96,95,.16);color:var(--red)">⚡</div><div><div class="tt">Dispatch On-Call</div><div class="ty">Action · SMS + Call</div></div></div>
+    <div class="nb">Pages the on-call plumber, texts owner + resident, opens a priority ticket.</div>
+  </div>
+  <!-- Urgent -->
+  <div class="node act" style="left:1030px;top:252px;width:200px">
+    <span class="port in"></span>
+    <span class="badge-out" style="background:rgba(224,163,64,.18);color:var(--amber)">URGENT · 24H</span>
+    <div class="nh"><div class="ic" style="background:rgba(224,163,64,.14);color:var(--amber)">🔧</div><div><div class="tt">Assign Vendor</div><div class="ty">Action · Work order</div></div></div>
+    <div class="nb">Books the matched vendor within 24h and confirms a slot with the resident.</div>
+  </div>
+  <!-- Routine -->
+  <div class="node act" style="left:1030px;top:454px;width:200px">
+    <span class="port in"></span>
+    <span class="badge-out" style="background:rgba(95,179,172,.18);color:var(--teal)">ROUTINE</span>
+    <div class="nh"><div class="ic">◷</div><div><div class="tt">Batch &amp; Schedule</div><div class="ty">Action · Queue</div></div></div>
+    <div class="nb">Adds to the weekly maintenance run and notifies the resident of the window.</div>
+  </div>
+
+  <!-- Merge / log -->
+  <div class="node merge" style="left:1088px;top:540px;width:184px">
+    <span class="port in"></span>
+    <div class="nh"><div class="ic">▤</div><div><div class="tt">Log to Owner Dashboard</div><div class="ty">Action · Sync</div></div></div>
+    <div class="nb">Writes status, cost and photos to the owner portal in real time.</div>
+  </div>
+
+  <div class="zoom"><span>−</span><b>80%</b><span>+</span></div>
+  <div class="minimap"><div class="mm" style="left:8px;top:40px;width:22px;height:16px"></div><div class="mm" style="left:44px;top:38px;width:26px;height:18px;background:#c46b3d"></div><div class="mm" style="left:82px;top:38px;width:20px;height:16px"></div><div class="mm" style="left:112px;top:16px;width:20px;height:12px"></div><div class="mm" style="left:112px;top:40px;width:20px;height:12px"></div><div class="mm" style="left:112px;top:62px;width:20px;height:12px"></div></div>
+</div>
+
+<!-- Inspector -->
+<div class="insp">
+  <div class="ih"><div class="ic">✳</div><div><b>Claude · Classify &amp; Triage</b><span>Node output · run #214</span></div></div>
+  <div class="isec">
+    <div class="lab">Model</div>
+    <div class="model"><span class="dot"></span>Claude Opus 4.6 · vision <span style="margin-left:auto;color:var(--mut)">temp 0.2</span></div>
+  </div>
+  <div class="isec">
+    <div class="lab">Input</div>
+    <div class="field">Unit <span class="v">14-B · Cedar Court</span></div>
+    <div class="field">Resident says <span class="v" style="max-width:170px;text-align:right">"Water under sink, spreading fast"</span></div>
+    <div class="field">Photo attached <span class="v">1 image</span></div>
+  </div>
+  <div class="isec">
+    <div class="lab">Structured output</div>
+    <div class="jbox">
+<span class="jp">{</span>
+  <span class="jk">"urgency"</span>: <span class="js">"emergency"</span>,
+  <span class="jk">"category"</span>: <span class="js">"plumbing_leak"</span>,
+  <span class="jk">"trade"</span>: <span class="js">"plumber"</span>,
+  <span class="jk">"vendor"</span>: <span class="js">"RapidFlow Plumbing"</span>,
+  <span class="jk">"eta_hours"</span>: <span class="jn">2</span>,
+  <span class="jk">"spend_cap"</span>: <span class="jn">750</span>,
+  <span class="jk">"notify_owner"</span>: <span class="jb">true</span>
+<span class="jp">}</span>
+    </div>
+    <div style="margin-top:12px"><span class="out-tag">● Routed to Dispatch On-Call</span></div>
+  </div>
+  <div class="runinfo"><span>Avg triage time <b>142 ms</b></span><span>Auto-resolved <b>81%</b></span></div>
+</div>
+</body></html>

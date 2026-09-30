@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Vacancy Syndication — Listing Console</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0f2740;--navy2:#173a5e;--gold:#e0a340;--emer:#1f9d74;--ink:#1a2430;--mut:#68788a;--line:#e5ebf1;--bg:#f2f5f9;--card:#fff}
+html,body{height:100%}
+body{width:1600px;height:940px;background:var(--bg);font-family:'Inter','Segoe UI',ui-sans-serif,system-ui,sans-serif;color:var(--ink);overflow:hidden;display:flex;-webkit-font-smoothing:antialiased}
+/* sidebar */
+.side{width:230px;background:var(--navy);color:#a9c0d4;flex:none;display:flex;flex-direction:column;padding:18px 0}
+.sbrand{display:flex;align-items:center;gap:11px;padding:2px 20px 18px;font-weight:800;color:#fff;font-size:15px}
+.sbrand i{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,var(--gold),#c9862a);display:grid;place-items:center;color:#3a2708;font-weight:900;font-size:15px}
+.sbrand .sm{font-size:10.5px;color:#7b93a8;font-weight:600;display:block}
+.snav a{display:flex;align-items:center;gap:12px;padding:10px 20px;font-size:13.5px;color:#a9c0d4;font-weight:500}
+.snav a.on{background:rgba(224,163,64,.14);color:#fff;box-shadow:inset 3px 0 0 var(--gold)}
+.snav a .ct{margin-left:auto;background:rgba(255,255,255,.1);font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:8px}
+.sfoot{margin-top:auto;padding:16px 20px}
+.sfoot .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px}
+.sfoot .card b{color:#fff;font-size:12.5px}.sfoot .card p{font-size:11px;color:#8ba3b8;margin-top:4px;line-height:1.4}
+/* main */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.top{height:60px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 26px;flex:none}
+.top h1{font-size:16px}.top .crumb{color:var(--mut);font-weight:500;font-size:13px}
+.top .search{margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 14px;color:#9aa8b5;font-size:12.5px;width:220px}
+.top .add{background:var(--navy);color:#fff;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:9px}
+.body{flex:1;display:grid;grid-template-columns:1.15fr 1fr;gap:20px;padding:22px 26px;overflow:hidden}
+/* listing preview */
+.listing{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.gallery{height:270px;display:grid;grid-template-columns:2fr 1fr;gap:4px}
+.gallery .main-ph{background:linear-gradient(150deg,#3a6f8f,#173a5e);position:relative}
+.gallery .main-ph::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 70% at 30% 20%,rgba(255,255,255,.16),transparent 55%)}
+.gallery .col{display:grid;grid-template-rows:1fr 1fr;gap:4px}
+.gallery .g2{background:linear-gradient(150deg,#8a6b3a,#4a3818)}.gallery .g3{background:linear-gradient(150deg,#4a7d6b,#204a3c);position:relative}
+.gallery .g3 .more{position:absolute;inset:0;background:rgba(9,20,35,.55);display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
+.gallery .badge{position:absolute;top:14px;left:14px;background:var(--emer);color:#fff;font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px;z-index:2}
+.linfo{padding:20px 22px;flex:1}
+.linfo .rent{font-size:26px;font-weight:800;letter-spacing:-.02em}.linfo .rent span{font-size:14px;color:var(--mut);font-weight:600}
+.linfo h2{font-size:17px;margin:6px 0 2px}.linfo .addr{color:var(--mut);font-size:13.5px}
+.specs{display:flex;gap:22px;margin:16px 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec b{font-size:16px;display:block}.spec span{font-size:11.5px;color:var(--mut)}
+.feats{display:flex;flex-wrap:wrap;gap:8px}
+.feat{font-size:11.5px;font-weight:600;color:#3c4d5c;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:6px 11px}
+.desc{font-size:12.5px;color:#4a5a68;line-height:1.6;margin-top:14px}
+.aiwrote{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:#fdf3ea;border:1px solid #f0dcc4;color:#b5702e;font-size:11.5px;font-weight:600;padding:7px 12px;border-radius:9px}
+.aiwrote i{width:15px;height:15px;border-radius:4px;background:linear-gradient(135deg,#d9825e,#c15f3c);display:inline-block}
+/* syndication panel */
+.sync{background:var(--card);border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
+.synch{padding:18px 20px;border-bottom:1px solid var(--line)}
+.synch .row{display:flex;align-items:center;gap:10px}
+.synch h3{font-size:15px}.synch .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:rgba(31,157,116,.12);color:var(--emer);font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px}
+.synch .live .d{width:7px;height:7px;border-radius:50%;background:var(--emer);box-shadow:0 0 7px var(--emer)}
+.synch p{font-size:12px;color:var(--mut);margin-top:8px}
+.syncbar{display:flex;gap:14px;margin-top:12px}
+.syncbar div{font-size:11px;color:var(--mut)}.syncbar b{font-size:18px;color:var(--ink);display:block;letter-spacing:-.02em}
+.platlist{flex:1;overflow:hidden;padding:6px 0}
+.plat{display:flex;align-items:center;gap:13px;padding:13px 20px;border-bottom:1px solid var(--line)}
+.plat .lg{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+.plat .nm{font-size:13.5px;font-weight:700}.plat .meta{font-size:11.5px;color:var(--mut);margin-top:1px}
+.plat .right{margin-left:auto;text-align:right}
+.st{font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.st.pub{background:rgba(31,157,116,.13);color:var(--emer)}
+.st.sync{background:rgba(224,163,64,.15);color:#b5811f}
+.st.queue{background:#eef1f5;color:#8090a0}
+.st .d{width:6px;height:6px;border-radius:50%}
+.st.pub .d{background:var(--emer)}.st.sync .d{background:var(--gold);box-shadow:0 0 6px var(--gold)}.st.queue .d{background:#a8b4c2}
+.plat .views{font-size:11px;color:var(--mut);margin-top:4px}
+.plat .views b{color:var(--ink)}
+.zl{background:#1f66d0}.ac{background:#0b7d4e}.fb{background:#1877f2}.zu{background:#e8515a}.tr{background:#6b4fa0}.rt{background:#c9862a}
+.syncfoot{border-top:1px solid var(--line);padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)}
+.syncfoot .btn{margin-left:auto;background:var(--gold);color:#3a2708;font-weight:700;font-size:12.5px;padding:9px 16px;border-radius:9px}
+</style></head>
+<body>
+<div class="side">
+  <div class="sbrand"><i>K</i><div>Keystone<span class="sm">Listings Console</span></div></div>
+  <div class="snav">
+    <a>▤ Dashboard</a>
+    <a class="on">◈ Vacancies<span class="ct">7</span></a>
+    <a>↗ Syndication</a>
+    <a>👥 Applicants<span class="ct">23</span></a>
+    <a>◷ Showings</a>
+    <a>▦ Analytics</a>
+    <a>⚙ Settings</a>
+  </div>
+  <div class="sfoot"><div class="card"><b>Auto-syndication on</b><p>Listings publish to 6 channels the moment they go live.</p></div></div>
+</div>
+
+<div class="main">
+  <div class="top">
+    <h1>14-B Cedar Court</h1><span class="crumb">· Vacancies / Active listing</span>
+    <span class="search">Search listings, units…</span>
+    <span class="add">＋ New listing</span>
+  </div>
+  <div class="body">
+    <!-- Listing preview -->
+    <div class="listing">
+      <div class="gallery">
+        <div class="main-ph"><span class="badge">● Live · Available Aug 1</span></div>
+        <div class="col"><div class="g2"></div><div class="g3"><div class="more">+18 photos</div></div></div>
+      </div>
+      <div class="linfo">
+        <div class="rent">$2,150<span> / month</span></div>
+        <h2>Renovated 2-Bed with Balcony</h2>
+        <div class="addr">14-B Cedar Court · Travis Heights, Austin, TX 78704</div>
+        <div class="specs">
+          <div class="spec"><b>2</b><span>Beds</span></div>
+          <div class="spec"><b>2</b><span>Baths</span></div>
+          <div class="spec"><b>1,040</b><span>Sq ft</span></div>
+          <div class="spec"><b>2024</b><span>Renovated</span></div>
+          <div class="spec"><b>Aug 1</b><span>Move-in</span></div>
+        </div>
+        <div class="feats"><span class="feat">In-unit laundry</span><span class="feat">Stainless appliances</span><span class="feat">Balcony</span><span class="feat">Covered parking</span><span class="feat">Pet friendly</span><span class="feat">Central A/C</span></div>
+        <div class="desc">Sun-filled corner unit with quartz counters, a private balcony over the courtyard, and a walk-in closet. Steps from South Congress dining, with covered parking and in-unit laundry included.</div>
+        <div class="aiwrote"><i></i>Listing copy &amp; pricing drafted by Claude from unit data</div>
+      </div>
+    </div>
+
+    <!-- Syndication panel -->
+    <div class="sync">
+      <div class="synch">
+        <div class="row"><h3>Syndication status</h3><span class="live"><span class="d"></span>Auto-publishing</span></div>
+        <p>Published across your channels from one source. Edits sync everywhere automatically.</p>
+        <div class="syncbar"><div><b>6</b>Channels</div><div><b>4</b>Live now</div><div><b>1,284</b>Total views</div><div><b>23</b>Leads</div></div>
+      </div>
+      <div class="platlist">
+        <div class="plat"><div class="lg zl">Z</div><div><div class="nm">Zillow</div><div class="meta">Rentals network · syndicated</div><div class="views"><b>612</b> views · 11 leads</div></div><div class="right"><span class="st pub"><span class="d"></span>Published</span><div class="meta" style="margin-top:6px">2 min ago</div></div></div>
+        <div class="plat"><div class="lg ac">A</div><div><div class="nm">Apartments.com</div><div class="meta">Premium placement</div><div class="views"><b>388</b> views · 7 leads</div></div><div class="right"><span class="st pub"><span class="d"></span>Published</span><div class="meta" style="margin-top:6px">2 min ago</div></div></div>
+        <div class="plat"><div class="lg fb">f</div><div><div class="nm">Facebook Marketplace</div><div class="meta">Local + Rentals</div><div class="views"><b>206</b> views · 4 leads</div></div><div class="right"><span class="st pub"><span class="d"></span>Published</span><div class="meta" style="margin-top:6px">3 min ago</div></div></div>
+        <div class="plat"><div class="lg zu">Zu</div><div><div class="nm">Zumper</div><div class="meta">Verified listing</div><div class="views"><b>78</b> views · 1 lead</div></div><div class="right"><span class="st sync"><span class="d"></span>Syncing…</span><div class="meta" style="margin-top:6px">uploading 18 photos</div></div></div>
+        <div class="plat"><div class="lg tr">Tr</div><div><div class="nm">Trulia</div><div class="meta">Rentals network</div><div class="views">via Zillow feed</div></div><div class="right"><span class="st sync"><span class="d"></span>Syncing…</span><div class="meta" style="margin-top:6px">feed refresh</div></div></div>
+        <div class="plat"><div class="lg rt">R</div><div><div class="nm">Realtor.com</div><div class="meta">Rentals</div><div class="views">scheduled 2:00 PM</div></div><div class="right"><span class="st queue"><span class="d"></span>Queued</span><div class="meta" style="margin-top:6px">next sync run</div></div></div>
+      </div>
+      <div class="syncfoot"><span>Last full sync <b style="color:var(--ink)">2 min ago</b> · auto every 15 min</span><span class="btn">Sync now</span></div>
+    </div>
+  </div>
+</div>
+</body></html>
