@@ -1536,3 +1536,6 @@ em { color: var(--pink); }
 @media (max-width: 899px) {
   .hero::before, .page-hero::before { background: rgba(11, 6, 18, 0.72); }
 }
+
+/* Every rating star is golden */
+.star, .review-stars, .hero-stat-value span, .result-number span { color: var(--star) !important; }
