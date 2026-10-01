@@ -1402,3 +1402,16 @@ h1, h2, h3 { color: var(--text); }
 .price-featured .price-wa:hover { color: var(--white); }
 #contact-form .price-wa { display: flex; justify-content: center; }
 #contact-form .price-wa[hidden] { display: none; }
+
+/* Verified Upwork reviews */
+.review-verified { background: var(--surface); border: 1.5px solid var(--brand-upwork); }
+.review-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.review-upwork { background: var(--brand-upwork); color: var(--white); }
+.review-upwork svg { width: 22px; height: 22px; }
+.verified-badge {
+  font-family: var(--font-code); font-size: 0.72rem; font-weight: 500;
+  color: var(--brand-upwork); background: var(--green-dim);
+  padding: 4px 10px; border-radius: var(--pill);
+}
+.verified-badge:hover { text-decoration: underline; text-underline-offset: 3px; }
+.review-verified .review-name { font-size: 0.95rem; line-height: 1.35; }
