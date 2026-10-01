@@ -1539,3 +1539,34 @@ em { color: var(--pink); }
 
 /* Every rating star is golden */
 .star, .review-stars, .hero-stat-value span, .result-number span { color: var(--star) !important; }
+
+/* ── Official full-colour social logos (LinkedIn, WhatsApp, Upwork) ── */
+.nav-socials a, .footer-socials a, .nav-overlay-actions > a:not(.btn) { background: transparent !important; width: 34px; height: 34px; }
+.nav-socials svg.logo, .footer-socials svg.logo, .nav-overlay-actions svg.logo { width: 24px; height: 24px; }
+.nav-socials a:hover svg.logo, .footer-socials a:hover svg.logo { transform: translateY(-1px); filter: brightness(1.1); }
+.brand-badge.logo-full { background: transparent !important; border: 0 !important; }
+.brand-badge.logo-full svg.logo { width: 34px; height: 34px; }
+.connect-icon.brand-badge.logo-full svg.logo { width: 40px; height: 40px; }
+
+/* ── Hero photo: no frame, the cutout stands on the page and fades out at the bottom ── */
+.hero-circle {
+  width: 100%; border-radius: 0; overflow: visible; aspect-ratio: auto;
+  background: none !important; box-shadow: none !important;
+}
+.hero-circle img {
+  width: 100%; height: auto; object-fit: contain;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
+  filter: drop-shadow(0 30px 60px rgba(236, 61, 142, 0.35));
+}
+.hero-visual { aspect-ratio: auto; }
+
+/* ── Readable text over the ribbon in dark sections ── */
+.marquee-section, .process-section, .results-section { position: relative; isolation: isolate; }
+.marquee-section::before, .process-section::before, .results-section::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: rgba(11, 6, 18, 0.84);
+}
+.marquee-title { color: var(--on-dark); }
+.results-section .result-number { color: var(--on-dark); }
+.results-section .result-number span { color: var(--star) !important; }
