@@ -154,7 +154,7 @@
                     ${PAGES.map(p => `<li><a href="${p.href}">${p.label}</a></li>`).join('')}
                   </ul>
                 </div>
-                <div class="footer-col">
+                <div class="footer-col footer-col-services">
                   <h4>Services</h4>
                   <ul>
                     ${SERVICES.map(s => `<li><a href="${s.href}">${s.label}</a></li>`).join('')}
