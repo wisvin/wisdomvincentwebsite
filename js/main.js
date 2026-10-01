@@ -160,10 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   initForm('leadMagnetForm', 'leadMagnetSuccess');
 
-  /* ── Background platform animations ────────────────────────
-     Mini "live" app windows that look like the real tools
-     (n8n, Claude Code, Make, GoHighLevel, Zapier, an AI chat
-     widget and OpenClaw scraping). Colours come from the
+  /* ── Claude Code terminal animation ─────────────────────────
+     A mini "live" Claude Code terminal session. Colours come from the
      --pf-* tokens in style.css. Added to any element with
      data-bg="<type>"; animate only while on screen and stay
      frozen for prefers-reduced-motion users. */
@@ -212,51 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var BG = {
-    /* n8n — workflow editor executing an AI Agent flow */
-    n8n: function() {
-      var D = 6, ok = C('n8n-ok'), edge = C('n8n-edge'), txt = C('ink'), s = '';
-      s += '<defs><pattern id="n8n-dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="' + C('n8n-dot') + '"/></pattern></defs>';
-      s += R(0, 40, 480, 280, 0, 'url(#n8n-dots)');
-      s += titleBar('#fff', edge);
-      s += T(18, 27, 'n8n', 17, C('n8n'), ' font-weight="800"') + T(62, 25, 'Lead follow-up', 11, C('ink-soft'));
-      s += R(300, 13, 26, 14, 7, ok) + '<circle cx="319" cy="20" r="5" fill="#fff"/>' + T(332, 24, 'Active', 10, C('ink-soft'));
-      s += R(384, 10, 84, 20, 5, C('n8n-exec')) + T(394, 24, '&#9654; Execute', 10, '#fff', ' font-weight="600"');
-      var c1 = 'M94,162 L140,162', c2 = 'M264,148 C297,148 297,112 330,112', c3 = 'M264,176 C297,176 297,212 330,212';
-      [[c1, 0.16], [c2, 0.5], [c3, 0.5]].forEach(function(c) {
-        s += '<path d="' + c[0] + '" fill="none" stroke="' + edge + '" stroke-width="2">' + flip('stroke', edge, ok, c[1] + 0.08, D) + '</path>';
-        s += travel(c[0], c[1], c[1] + 0.08, D, ok);
-      });
-      s += '<g opacity="0">' + show(0.26, D) + T(100, 154, '1 item', 8, ok) + '</g>';
-      s += '<g opacity="0">' + show(0.6, D) + T(282, 124, '1 item', 8, ok) + T(282, 206, '1 item', 8, ok) + '</g>';
-      /* trigger node (rounded left edge, like n8n triggers) */
-      s += '<path d="M62,130 H84 Q94,130 94,140 V184 Q94,194 84,194 H62 A32,32 0 0 1 62,130 Z" fill="#fff" stroke="' + edge + '" stroke-width="2">' + flip('stroke', edge, ok, 0.1, D) + '</path>';
-      s += '<polygon points="66,146 55,165 63,165 59,180 72,158 64,158 69,146" fill="' + C('n8n') + '"/>';
-      s += T(62, 214, 'On form submit', 9, C('ink-soft'), ' text-anchor="middle"') + check(88, 134, 0.12, D, ok);
-      /* AI Agent node with sub-node ports */
-      s += RA(140, 120, 124, 84, 10, '#fff', edge, 2, flip('stroke', edge, ok, 0.44, D));
-      s += R(154, 146, 24, 20, 5, C('ink')) + '<circle cx="161" cy="155" r="2.5" fill="#fff"/><circle cx="171" cy="155" r="2.5" fill="#fff"/>';
-      s += T(186, 160, 'AI Agent', 12, C('ink'), ' font-weight="700"');
-      s += '<circle cx="246" cy="134" r="6" fill="none" stroke="' + C('n8n') + '" stroke-width="2" stroke-dasharray="9 30" opacity="0">' + show(0.24, D, 0.44) +
-        '<animateTransform attributeName="transform" type="rotate" from="0 246 134" to="360 246 134" dur="0.8s" repeatCount="indefinite"/></circle>';
-      s += check(258, 124, 0.46, D, ok);
-      [[172, 'Chat Model', C('ink')], [232, 'Memory', C('n8n-memory')]].forEach(function(n) {
-        s += '<polygon points="' + n[0] + ',198 ' + (n[0] + 6) + ',204 ' + n[0] + ',210 ' + (n[0] - 6) + ',204" fill="' + edge + '"/>';
-        s += '<line x1="' + n[0] + '" y1="210" x2="' + n[0] + '" y2="242" stroke="' + edge + '" stroke-width="2" stroke-dasharray="4 4"/>';
-        s += '<circle cx="' + n[0] + '" cy="262" r="20" fill="#fff" stroke="' + edge + '" stroke-width="2"/>';
-        s += '<circle cx="' + n[0] + '" cy="262" r="9" fill="' + n[2] + '"/>';
-        s += T(n[0], 296, n[1], 9, C('ink-soft'), ' text-anchor="middle"');
-      });
-      /* Gmail + Sheets output nodes */
-      s += RA(330, 80, 64, 64, 10, '#fff', edge, 2, flip('stroke', edge, ok, 0.62, D));
-      s += R(346, 100, 32, 24, 3, '#fff', C('app-gmail'), 2.5) + '<polyline points="346,102 362,114 378,102" fill="none" stroke="' + C('app-gmail') + '" stroke-width="2.5"/>';
-      s += T(362, 162, 'Send email', 9, C('ink-soft'), ' text-anchor="middle"') + check(388, 84, 0.64, D, ok);
-      s += RA(330, 180, 64, 64, 10, '#fff', edge, 2, flip('stroke', edge, ok, 0.62, D));
-      s += R(350, 194, 24, 34, 3, C('app-sheets')) + '<line x1="354" y1="206" x2="370" y2="206" stroke="#fff" stroke-width="2"/><line x1="354" y1="214" x2="370" y2="214" stroke="#fff" stroke-width="2"/>';
-      s += T(362, 262, 'Log lead', 9, C('ink-soft'), ' text-anchor="middle"') + check(388, 184, 0.66, D, ok);
-      return frame('n8n', C('n8n-canvas'), s);
-    },
-
-    /* Claude Code — terminal session */
     claude: function() {
       var D = 10, txt = C('claude-text'), dim = C('claude-dim'), or = C('claude'), s = '';
       s += R(0, 0, 480, 32, 0, C('claude-bar'));
@@ -283,153 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
       s += T(32, 291, '&gt;', 11, dim, ' class="pf-mono"');
       s += '<rect x="46" y="280" width="8" height="15" fill="' + txt + '"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></rect>';
       return frame('claude', C('claude-bg'), s);
-    },
-
-    /* Make.com — scenario editor */
-    make: function() {
-      var D = 5, s = '', line = C('make-line');
-      s += '<defs><linearGradient id="make-grad" x1="0" x2="1"><stop offset="0" stop-color="' + C('make') + '"/><stop offset="1" stop-color="' + C('make-2') + '"/></linearGradient></defs>';
-      s += titleBar('#fff', C('frame'));
-      s += T(18, 28, 'make', 19, 'url(#make-grad)', ' font-weight="800"') + T(76, 25, 'New lead &#8594; CRM', 11, C('ink-soft'));
-      s += R(412, 12, 52, 18, 9, C('make')) + T(428, 25, 'ON', 10, '#fff', ' font-weight="700"');
-      var A = [80, 160], B = [200, 160], G = [340, 95], S = [340, 225];
-      var ab = 'M' + A[0] + ',' + A[1] + ' L' + B[0] + ',' + B[1];
-      var bg = 'M' + B[0] + ',' + B[1] + ' C270,160 270,95 ' + G[0] + ',' + G[1];
-      var bs = 'M' + B[0] + ',' + B[1] + ' C270,160 270,225 ' + S[0] + ',' + S[1];
-      [ab, bg, bs].forEach(function(p) {
-        s += '<path d="' + p + '" fill="none" stroke="' + line + '" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9"/>';
-      });
-      s += travel(ab, 0.12, 0.3, D, C('make'), 6) + travel(bg, 0.38, 0.58, D, C('make'), 6) + travel(bs, 0.38, 0.58, D, C('make'), 6);
-      var mod = function(p, color, icon, label, sub, t) {
-        return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="38" fill="none" stroke="' + C('make') + '" stroke-width="3" opacity="0">' + show(t - 0.06, D, t + 0.06) + '</circle>' +
-          '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="31" fill="' + color + '"/>' + icon +
-          T(p[0], p[1] + 50, label, 10, C('ink'), ' text-anchor="middle" font-weight="700"') +
-          T(p[0], p[1] + 63, sub, 8.5, C('ink-soft'), ' text-anchor="middle"') +
-          '<g opacity="0">' + show(t, D) + '<circle cx="' + (p[0] + 24) + '" cy="' + (p[1] - 24) + '" r="10" fill="#fff" stroke="' + C('make') + '" stroke-width="2"/>' +
-          T(p[0] + 24, p[1] - 20, '1', 10, C('make'), ' text-anchor="middle" font-weight="700"') + '</g>';
-      };
-      s += mod(A, C('make-2'), '<path d="M70,168 a10,10 0 1 1 10,-18 M80,150 l-6,14 h14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>', 'Webhooks', 'Custom webhook', 0.12);
-      s += mod(B, C('make-router'), '<path d="M188,160 h10 M198,160 l12,-10 M198,160 l12,10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>', 'Router', '2 routes', 0.34);
-      s += mod(G, C('app-gmail'), R(326, 85, 28, 20, 3, '#fff') + '<polyline points="326,87 340,97 354,87" fill="none" stroke="' + C('app-gmail') + '" stroke-width="2.5"/>', 'Gmail', 'Send an email', 0.6);
-      s += mod(S, C('app-sheets'), R(330, 211, 20, 28, 3, '#fff') + '<line x1="333" y1="222" x2="347" y2="222" stroke="' + C('app-sheets') + '" stroke-width="2"/><line x1="333" y1="229" x2="347" y2="229" stroke="' + C('app-sheets') + '" stroke-width="2"/>', 'Google Sheets', 'Add a row', 0.6);
-      s += '<g>' + R(20, 272, 104, 32, 16, 'url(#make-grad)') + '<polygon points="36,281 36,295 47,288" fill="#fff"/>' + T(54, 293, 'Run once', 11, '#fff', ' font-weight="700"') +
-        '<animate attributeName="opacity" values="1;0.75;1" dur="2.5s" repeatCount="indefinite"/></g>';
-      return frame('make', C('make-canvas'), s);
-    },
-
-    /* GoHighLevel — Opportunities pipeline */
-    ghl: function() {
-      var D = 9, s = '', blue = C('ghl');
-      s += R(0, 0, 56, 320, 0, C('ghl-nav'));
-      s += '<polygon points="14,34 20,22 26,34" fill="' + C('ghl-yellow') + '"/><polygon points="22,34 28,18 34,34" fill="' + blue + '"/><polygon points="30,34 36,24 42,34" fill="' + C('ghl-green') + '"/>';
-      [60, 92, 124, 156, 188].forEach(function(y) { s += R(18, y, 20, 20, 5, y === 124 ? blue : C('ghl-nav-icon')); });
-      s += T(70, 28, 'Opportunities', 14, C('ghl-ink'), ' font-weight="700"');
-      s += R(186, 13, 104, 22, 6, '#fff', C('ghl-line'), 1) + T(196, 28, 'Sales Pipeline &#9662;', 9.5, C('ghl-ink'));
-      s += R(360, 12, 108, 24, 6, blue) + T(372, 28, '+ Add opportunity', 9.5, '#fff', ' font-weight="600"');
-      var stages = [['New Lead', blue, '3 · $7,200'], ['Contacted', C('ghl-yellow'), '2 · $5,300'], ['Qualified', C('ghl-purple'), '2 · $8,100'], ['Booked', C('ghl-green'), '2 · $6,400']];
-      stages.forEach(function(st, i) {
-        var x = 64 + i * 103;
-        s += R(x, 48, 97, 264, 8, C('ghl-col')) + R(x, 48, 97, 3, 0, st[1]);
-        s += T(x + 8, 67, st[0], 10, C('ghl-ink'), ' font-weight="700"') + T(x + 8, 80, st[2], 8, C('ghl-muted'));
-      });
-      var card = function(x, y, name, val, extra) {
-        return '<g' + (extra || '') + '>' + R(x, y, 85, 46, 6, '#fff', C('ghl-line'), 1) +
-          T(x + 8, y + 16, name, 9, C('ghl-ink'), ' font-weight="700"') + T(x + 8, y + 30, val, 9, C('ghl-green'), ' font-weight="700"') +
-          R(x + 8, y + 35, 30, 7, 3.5, C('ghl-tag')) + '</g>';
-      };
-      s += card(70, 90, 'Sarah K.', '$1,800') + card(70, 142, 'Mike D.', '$3,200');
-      s += card(173, 90, 'Lena P.', '$2,100') + card(276, 90, 'Omar A.', '$4,500') + card(379, 90, 'Grace N.', '$2,900');
-      /* the lead that moves through the pipeline */
-      s += '<g opacity="0">' + card(70, 194, 'Tom B. &#183; new', '$2,600') +
-        R(70, 194, 85, 46, 6, 'none', blue, 2) +
-        '<animateTransform attributeName="transform" type="translate" values="0,0;0,0;103,-52;103,-52;206,-52;206,-52;309,-52;309,-52" keyTimes="0;0.18;0.26;0.42;0.5;0.66;0.74;1" dur="' + D + 's" repeatCount="indefinite"/>' +
-        '<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.94;1" dur="' + D + 's" repeatCount="indefinite"/></g>';
-      var toast = function(t, end, txt) {
-        return '<g opacity="0">' + show(t, D, end) + R(300, 270, 168, 30, 7, C('ghl-ink')) + T(312, 289, txt, 9.5, '#fff') + '</g>';
-      };
-      s += toast(0.1, 0.26, '&#128172; SMS sent to Tom &#183; 0:05') + toast(0.76, 0.94, '&#128197; Call booked &#8212; Tue 2pm');
-      return frame('ghl', '#fff', s);
-    },
-
-    /* Zapier — Zap editor (the CompanyCam ↔ PaintScout Zap) */
-    zapier: function() {
-      var D = 6, s = '', or = C('zapier'), edge = C('zapier-line');
-      s += titleBar('#fff', edge);
-      s += R(18, 24, 10, 4, 0, or) + T(30, 27, 'zapier', 16, C('ink'), ' font-weight="800"');
-      s += T(98, 25, 'Sync new estimates', 11, C('ink-soft'));
-      s += R(400, 11, 66, 20, 4, or) + T(412, 25, 'Publish', 10, '#fff', ' font-weight="700"');
-      s += '<line x1="240" y1="92" x2="240" y2="254" stroke="' + edge + '" stroke-width="2"/>';
-      s += travel('M240,92 L240,254', 0.08, 0.8, D, or, 4);
-      var steps = [
-        ['app-leadconnector', '1. Pipeline Stage Changed', 'LeadConnector'],
-        ['zapier', '2. Only continue if&#8230;', 'Filter by Zapier'],
-        ['app-companycam', '3. Add Project', 'CompanyCam'],
-        ['app-paintscout', '4. Create Contact', 'PaintScout'],
-        ['zapier', '5. Send Outbound Email', 'Email by Zapier']
-      ];
-      steps.forEach(function(st, i) {
-        var y = 54 + i * 50, t = 0.08 + i * 0.16;
-        s += RA(110, y, 260, 38, 6, '#fff', edge, 1.5, flip('stroke', edge, or, t, D));
-        s += R(120, y + 9, 20, 20, 4, C(st[0]));
-        s += T(148, y + 17, st[1], 10, C('ink'), ' font-weight="700"') + T(148, y + 30, st[2], 8.5, C('ink-soft'));
-        s += check(354, y + 19, t + 0.06, D, C('zapier-ok'));
-        if (i < 4) s += '<circle cx="240" cy="' + (y + 44) + '" r="6" fill="#fff" stroke="' + edge + '"/>' + T(240, y + 47.5, '+', 9, C('ink-soft'), ' text-anchor="middle"');
-      });
-      return frame('zapier', C('zapier-canvas'), s);
-    },
-
-    /* AI website chat widget booking a call */
-    chat: function() {
-      var D = 10, s = '', ink = C('ink');
-      s += R(0, 0, 480, 30, 0, C('chat-bar'));
-      s += '<circle cx="16" cy="15" r="4.5" fill="' + C('mac-red') + '"/><circle cx="30" cy="15" r="4.5" fill="' + C('mac-yellow') + '"/><circle cx="44" cy="15" r="4.5" fill="' + C('mac-green') + '"/>';
-      s += R(120, 7, 240, 16, 8, '#fff') + T(240, 19, 'yourbusiness.com', 9, C('ink-soft'), ' text-anchor="middle"');
-      s += R(20, 54, 150, 16, 4, C('chat-skel')) + R(20, 78, 180, 10, 4, C('chat-skel')) + R(20, 94, 160, 10, 4, C('chat-skel')) + R(20, 118, 80, 22, 11, C('sun'));
-      s += R(20, 160, 190, 120, 8, C('chat-skel'));
-      s += R(232, 42, 232, 266, 12, '#fff', C('chat-line'), 1.5);
-      s += '<path d="M232,54 a12,12 0 0 1 12,-12 h208 a12,12 0 0 1 12,12 v34 h-232 z" fill="' + ink + '"/>';
-      s += '<circle cx="254" cy="66" r="11" fill="' + C('sun') + '"/>' + T(254, 70, 'AI', 9, ink, ' text-anchor="middle" font-weight="800"');
-      s += T(272, 63, 'AI Assistant', 11, '#fff', ' font-weight="700"') + T(272, 77, '&#9679; Online &#183; replies instantly', 8, C('chat-online'));
-      var bubble = function(me, y, txt, t) {
-        var w = Math.min(190, txt.replace(/&[^;]+;/g, 'x').length * 5.4 + 20), x = me ? 452 - w : 244;
-        return '<g opacity="0">' + show(t, D) + R(x, y, w, 24, 12, me ? C('sun') : C('chat-ai')) + T(x + 10, y + 16, txt, 9.5, ink) + '</g>';
-      };
-      s += bubble(true, 100, 'Do you manage 40+ units?', 0.08);
-      s += '<g opacity="0">' + show(0.16, D, 0.28) + R(244, 132, 46, 24, 12, C('chat-ai')) +
-        [258, 267, 276].map(function(x, i) { return '<circle cx="' + x + '" cy="144" r="3" fill="' + C('ink-soft') + '"><animate attributeName="cy" values="144;140;144" dur="0.9s" begin="' + (i * 0.15) + 's" repeatCount="indefinite"/></circle>'; }).join('') + '</g>';
-      s += bubble(false, 132, 'Yes! Want a free assessment?', 0.3);
-      s += bubble(false, 162, 'I have Tue 2pm or Wed 10am.', 0.38);
-      s += bubble(true, 194, 'Tue 2pm &#128077;', 0.5);
-      s += '<g opacity="0">' + show(0.62, D) + R(244, 226, 208, 34, 8, C('chat-booked-bg')) +
-        T(256, 241, '&#10003; Call booked &#183; Tue 2:00 PM', 9.5, C('chat-booked'), ' font-weight="700"') + T(256, 254, 'Synced to your CRM', 8, C('ink-soft')) + '</g>';
-      s += R(244, 272, 208, 24, 12, C('chat-ai')) + T(256, 288, 'Type a message&#8230;', 9, C('ink-soft'));
-      return frame('chat', '#fff', s);
-    },
-
-    /* OpenClaw — scraping a directory into a verified lead sheet */
-    scrape: function() {
-      var D = 8, s = '', ink = C('ink'), green = C('app-sheets');
-      s += R(0, 0, 480, 30, 0, C('chat-bar'));
-      s += '<circle cx="16" cy="15" r="4.5" fill="' + C('mac-red') + '"/><circle cx="30" cy="15" r="4.5" fill="' + C('mac-yellow') + '"/><circle cx="44" cy="15" r="4.5" fill="' + C('mac-green') + '"/>';
-      s += R(64, 7, 200, 16, 8, '#fff') + T(74, 19, 'directory.com/agencies?page=3', 8.5, C('ink-soft'));
-      s += R(330, 6, 140, 18, 9, ink) + T(342, 19, '&#9679; OpenClaw &#183; extracting', 8.5, C('scrape-live'), ' font-weight="700"');
-      for (var i = 0; i < 5; i++) {
-        var y = 44 + i * 52;
-        s += R(16, y, 196, 44, 6, C('scrape-card')) + R(24, y + 8, 28, 28, 6, C('chat-skel')) +
-          R(60, y + 11, 110, 8, 4, C('scrape-skel')) + R(60, y + 25, 80, 7, 3.5, C('chat-skel'));
-      }
-      s += '<rect x="14" y="42" width="200" height="48" rx="7" fill="' + C('sun') + '" opacity="0.35">' +
-        '<animate attributeName="y" values="42;94;146;198;250;250" keyTimes="0;0.18;0.36;0.54;0.72;1" dur="' + D + 's" repeatCount="indefinite" calcMode="discrete"/></rect>';
-      s += R(236, 44, 228, 260, 6, '#fff', C('chat-line'), 1);
-      s += R(236, 44, 228, 24, 0, green) + T(246, 60, 'Company', 9, '#fff', ' font-weight="700"') + T(330, 60, 'Email', 9, '#fff', ' font-weight="700"') + T(412, 60, 'Status', 9, '#fff', ' font-weight="700"');
-      var rows = [['Northpeak Co.', 'hello@north&#8230;'], ['Brightline', 'team@bright&#8230;'], ['Oakridge PM', 'info@oakri&#8230;'], ['Harbor &amp; Co', 'ops@harbor&#8230;'], ['Summit Realty', 'sales@summ&#8230;']];
-      rows.forEach(function(r, i) {
-        var y = 70 + i * 34, t = 0.1 + i * 0.18;
-        s += '<g opacity="0">' + show(t, D) + '<line x1="236" y1="' + (y + 32) + '" x2="464" y2="' + (y + 32) + '" stroke="' + C('chat-line') + '"/>' +
-          T(246, y + 20, r[0], 9, ink, ' font-weight="600"') + T(330, y + 20, r[1], 8.5, C('ink-soft')) +
-          R(408, y + 9, 48, 15, 7.5, C('chat-booked-bg')) + T(414, y + 20, '&#10003; verified', 7.5, C('chat-booked'), ' font-weight="700"') + '</g>';
-      });
-      return frame('scrape', C('scrape-canvas'), s);
     }
   };
 

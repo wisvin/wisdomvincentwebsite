@@ -156,23 +156,9 @@ Markup for cards, reviews and case studies lives only in `js/render.js` (used by
 
 ---
 
-## Background Platform Animations
+## Claude Code Terminal Animation
 
-Add `data-bg="<type>"` to a section (or `.page-hero`) to place a mini animated app window behind it, drawn in the platform's real colours so visitors recognise the tool:
-
-| Type | Looks like | Used on |
-|---|---|---|
-| `n8n` | n8n editor running an AI Agent workflow | Home "What I help with", n8n.html |
-| `claude` | Claude Code terminal session | Home "My process", claude-code.html |
-| `make` | Make.com scenario with modules + "Run once" | Home "Selected work", make.html |
-| `ghl` | GoHighLevel Opportunities pipeline | Home "Client results", gohighlevel.html |
-| `zapier` | Zapier Zap editor (the CompanyCam ↔ PaintScout Zap) | Home "By the numbers", zapier.html |
-| `chat` | Website AI chat widget booking a call | Home "Let's connect", ai-website.html |
-| `scrape` | OpenClaw scraping a directory into a lead sheet | openclaw.html |
-
-Built in `main.js` (`BG` object), colours from the `--pf-*` tokens in `style.css`. The script splits the section header (or `.page-hero` container) into two columns — text left, the live app window right (stacked on phones) — so windows are fully visible, never cropped. Opacity: `--bg-anim-opacity` (0.95). They animate only while on screen and freeze for reduced-motion users.
-
----
+`data-bg="claude"` on a section (home "My process") or `.page-hero` (claude-code.html) adds a mini animated Claude Code terminal beside the heading (the header is split: text left, terminal right). Built in `main.js` (`BG.claude`), colours from the `--pf-*` tokens, animates only while on screen, frozen for reduced-motion users. The other platform animations (n8n, Make, GHL, Zapier, chat, scraping) were removed at the owner's request — only Claude Code animations are used. The hero's `agent.log` terminal is separate markup in `index.html`.
 
 ## Adding a New Review
 
