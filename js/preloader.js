@@ -1,7 +1,7 @@
 /* preloader.js — loading screen. The site stays hidden until the page has
    completely finished loading (HTML, CSS, images and fonts).
    - First page of a visit: the full intro with the growth line, shown for
-     at least 1.8s so the sentence can be read.
+     at least 0.9s (kept short: content hidden longer hurts Google's speed score).
    - Later pages: hidden until loaded; if loading takes longer than a blink
      (350ms) a short version of the same screen appears.
    - Safety: never longer than 15s, so nobody gets stuck if something hangs. */
@@ -16,7 +16,7 @@
   var root = document.documentElement;
   var start = Date.now();
   var done = false;
-  var minShow = firstVisit ? 1800 : 0;
+  var minShow = firstVisit ? 900 : 0;
   root.classList.add('pl-active');
 
   function build(full) {

@@ -1217,7 +1217,7 @@ html.pl-active body > *:not(#preloader) * { animation-play-state: paused !import
   .pl-line, .pl-status { animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
   .pl-status { animation-delay: 0.25s; }
   .pl-dot { animation: bob 1.4s ease-in-out infinite; }
-  .pl-bar i { animation: pl-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .pl-bar i { animation: pl-fill 0.9s cubic-bezier(0.4, 0, 0.2, 1) both; }
   #preloader { transition: opacity 0.45s ease; }
 }
 html.pl-out #preloader { opacity: 0; }
