@@ -133,8 +133,28 @@
       '</div></section>';
   }
 
+  /* Spread verified reviews evenly through a list, so they don't stack in
+     one column of the masonry grid (which fills column by column). */
+  function spread(verified, others) {
+    var out = others.slice(), n = verified.length + others.length;
+    verified.forEach(function (r, i) {
+      out.splice(Math.min(out.length, Math.round(i * n / verified.length + n / verified.length / 2) - 1), 0, r);
+    });
+    return out;
+  }
+  function mixReviews(list) {
+    return spread(list.filter(function (r) { return r.verified; }), list.filter(function (r) { return !r.verified; }));
+  }
+  /* Home preview: every verified review, mixed with others, `count` in total */
+  function homeReviews(list, count) {
+    var v = list.filter(function (r) { return r.verified; });
+    var o = list.filter(function (r) { return !r.verified; }).slice(0, Math.max(0, count - v.length));
+    return spread(v, o).slice(0, count);
+  }
+
   root.WVRender = {
     KIND_LABEL: KIND_LABEL, caseUrl: caseUrl, flowDiagram: flowDiagram,
-    projectCard: projectCard, reviewCard: reviewCard, caseStudy: caseStudy
+    projectCard: projectCard, reviewCard: reviewCard, caseStudy: caseStudy,
+    mixReviews: mixReviews, homeReviews: homeReviews
   };
 })(typeof window !== 'undefined' ? window : this);

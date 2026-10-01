@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   if (window.REVIEWS) {
-    fill(document.getElementById('reviewsGrid'), window.REVIEWS.map(WV.reviewCard).join(''));
-    fill(document.getElementById('homeReviewsGrid'), window.REVIEWS.slice(0, 10).map(WV.reviewCard).join(''));
+    fill(document.getElementById('reviewsGrid'), WV.mixReviews(window.REVIEWS).map(WV.reviewCard).join(''));
+    fill(document.getElementById('homeReviewsGrid'), WV.homeReviews(window.REVIEWS, 10).map(WV.reviewCard).join(''));
   }
   initFilters();
   initLazyVideos();
