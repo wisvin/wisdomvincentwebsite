@@ -75,6 +75,10 @@ Lead with the problem and the outcome; tools are supporting detail. Headings tal
 
 ---
 
+## Visual theme (Cerebrium-inspired)
+
+Dark page (`--night` #0B0612) with a drifting magenta ribbon (`.bg-ribbon`, injected by `nav.js`). Content sits on white rounded panels: every direct child of `<main>` is a white panel except the dark sections `.hero`, `.page-hero`, `.marquee-section`, `.process-section`, `.results-section` (rounding is automatic via `+` / `:has()` selectors). Light (300) headlines, hot-pink accent `--pink` #EC3D8E, deep-navy text `--text` #141C52 on panels, mono uppercase buttons and `• LABEL` section labels. Profile photo: `assets/images/profile-cutout.webp` (transparent) on a magenta glow. All theme rules live in the "THEME — Cerebrium-inspired" block at the end of `style.css`.
+
 ## Coding Rules
 
 1. **No frameworks, no npm.** Pure HTML, CSS, vanilla JS only. The only tooling is the two scripts in `scripts/`, run locally; their output is committed, so hosting needs no build step.

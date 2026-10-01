@@ -183,6 +183,23 @@
     `;
   }
 
+
+  /* Drifting magenta ribbon behind the whole page (see .bg-ribbon in style.css) */
+  function buildRibbon() {
+    var g = function (id, a, b, c) {
+      return '<linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="' + a + '"/><stop offset=".5" stop-color="' + b + '"/><stop offset="1" stop-color="' + c + '"/></linearGradient>';
+    };
+    return '<div class="bg-ribbon" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">' +
+      '<defs>' + g('rb1', '#1A0620', '#B0176E', '#2A0830') + g('rb2', '#2A0830', '#F0559F', '#3A0B3C') + g('rb3', '#140418', '#7A1258', '#140418') +
+      '<filter id="rbBlur"><feGaussianBlur stdDeviation="6"/></filter></defs>' +
+      '<g filter="url(#rbBlur)" fill="none" stroke-linecap="round">' +
+      '<path d="M120,780 C300,520 520,880 700,560 S960,260 1080,420" stroke="url(#rb3)" stroke-width="210" opacity=".9"/>' +
+      '<path d="M60,620 C260,360 480,760 680,440 S920,140 1060,300" stroke="url(#rb1)" stroke-width="150" opacity=".95"/>' +
+      '<path d="M90,640 C280,400 490,770 690,460 S930,170 1060,320" stroke="url(#rb2)" stroke-width="26" opacity=".85"/>' +
+      '</g></svg></div>';
+  }
+
   function inject() {
     const mainEl = document.querySelector('main');
     if (!mainEl) return;
@@ -192,6 +209,10 @@
     mainEl.parentNode.insertBefore(navEl.firstElementChild, mainEl);
     const overlay = navEl.firstElementChild;
     if (overlay) mainEl.parentNode.insertBefore(overlay, mainEl);
+
+    const ribbonEl = document.createElement('div');
+    ribbonEl.innerHTML = buildRibbon();
+    document.body.insertBefore(ribbonEl.firstElementChild, document.body.firstChild);
 
     const footerEl = document.createElement('div');
     footerEl.innerHTML = buildFooter();
