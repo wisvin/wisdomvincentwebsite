@@ -68,6 +68,65 @@ window.PROJECTS = [
     "slug": "lukonix-ai-product-image-generator"
   },
   {
+    "title": "Vote Obby — Round-Based Roblox Game",
+    "kind": "client",
+    "cat": "game-development",
+    "catLabel": "Roblox Game",
+    "problem": "The client wanted a Roblox obby that runs itself: players pick the difficulty together, race the course against the clock, then go back and vote again, with nobody starting rounds by hand.",
+    "desc": "A complete round-based obby built in Roblox Studio: live difficulty voting, three courses, a round timer, checkpoints and moving laser obstacles, all scripted in Luau.",
+    "result": "Rounds run hands-free, from vote to finish line",
+    "video": "assets/videos/roblox-vote-obby.mp4",
+    "preview": "assets/videos/roblox-vote-obby-preview.mp4",
+    "poster": "assets/images/posters/roblox-vote-obby.jpg",
+    "stack": [
+      "Roblox Studio",
+      "Luau",
+      "RemoteEvents"
+    ],
+    "services": [],
+    "caseStudy": {
+      "clientBrief": "The client wanted a Roblox obby where the players decide what happens next. Between rounds everyone votes on the difficulty, the winning course starts automatically, and the round ends on a timer before sending everyone back to the lobby to vote again. It had to run on its own, with no one in the server starting rounds by hand, and it had to feel fair: no deaths that didn't make sense and no being sent back to the start for nothing.",
+      "plan": [
+        "A lobby with a live vote between Easy, Medium and Hard, with the count visible to everyone",
+        "A server-side game loop: intermission → starting → playing → round over, on repeat",
+        "Three courses with checkpoints, a round timer and a finish line that records each player's time",
+        "Moving laser obstacles that look smooth for every player and kill reliably",
+        "All interface built in code, so it is easy to change later"
+      ],
+      "whatWasBuilt": "Five scripts work together: GameManager runs the rounds on the server, VoteGui draws the voting and round screens, ObstacleAnimator and its client script move the lasers, and CheckpointService handles checkpoints, deaths and respawns.",
+      "steps": [
+        {
+          "title": "The game loop",
+          "detail": "A server script runs each round as a state machine. During intermission it collects votes through a RemoteEvent and broadcasts the countdown. When time is up it picks the winner (ties are broken at random, and if nobody votes a random difficulty is chosen), then teleports everyone to that course's start pad, spaced out in rows and facing the finish, with a 3-minute round timer."
+        },
+        {
+          "title": "Voting and round screens",
+          "detail": "The vote panel, the round banners (\"Easy wins the vote!\", \"Time left: 172s\") and the finish screen are built entirely in a client script and update from the server's state broadcasts, so every player sees the same countdown at the same time."
+        },
+        {
+          "title": "Moving obstacles",
+          "detail": "The server registers every part that has movement settings (axis, distance, duration) along with its home position. Each player's game then animates those parts every frame from the shared server clock, so the lasers glide smoothly and sit in the same place for everyone."
+        },
+        {
+          "title": "Checkpoints and finish",
+          "detail": "The game remembers the last checkpoint each player touched and respawns them there instead of in the lobby. The finish line records the player's time and placing (\"1st place – 0:35\") before the round ends and everyone returns to the lobby to vote again."
+        }
+      ],
+      "bottleneck": {
+        "title": "Lasers and falls didn't always kill",
+        "detail": "The first version had three reliability problems. Players who joined before the script was ready had no respawn handling. Players falling fast could pass straight through the kill floor. And Roblox's touch events don't fire dependably on parts that are being moved, so a laser could sometimes pass through a player with no effect."
+      },
+      "fix": "I rebuilt the checkpoint system as a hardened second version. It now sets up players who are already in the server, and instead of waiting for touch events it checks every player on every frame: anyone below the fall height dies, and anyone overlapping a laser or killer part is caught every time. The laser position is calculated from the same server clock the players' screens use to draw it, with a small margin of forgiveness, so what players see is exactly what kills them.",
+      "results": [
+        "Rounds run hands-free: vote, course, timer, finish, back to the lobby",
+        "Laser hits and falls are detected on every frame, with no missed hits",
+        "Players respawn at their last checkpoint, not at the start",
+        "One game loop drives all three difficulty courses, so new courses are easy to add"
+      ]
+    },
+    "slug": "roblox-vote-obby-game"
+  },
+  {
     "title": "CompanyCam ↔ PaintScout Account Sync",
     "kind": "client",
     "cat": "ai-automation",
