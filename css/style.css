@@ -1597,3 +1597,34 @@ em { color: var(--pink); }
 @media (min-width: 1280px) {
   .hero-visual { width: min(100%, 660px); margin-right: -40px; }
 }
+
+/* ── Lead pop-up: small slide-in form 25 seconds after arriving (built by main.js) ── */
+.lead-pop {
+  position: fixed; z-index: 150; left: 16px; right: 16px; bottom: 16px; margin-left: auto; max-width: 380px;
+  max-height: calc(100vh - 32px); overflow-y: auto;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  box-shadow: 0 18px 50px rgba(11, 6, 18, 0.35); padding: 22px 20px 18px;
+}
+.lead-pop-close {
+  position: absolute; top: 8px; right: 10px; width: 36px; height: 36px; border: 0; border-radius: 50%;
+  background: transparent; color: var(--muted); font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.lead-pop-close:hover { background: var(--card); color: var(--text); }
+.lead-pop-kicker { font-family: var(--font-code); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pink); margin: 0 0 6px; }
+.lead-pop-title { font-size: 1.25rem; font-weight: 400; line-height: 1.25; margin: 0 30px 8px 0; color: var(--text); }
+.lead-pop-text { color: var(--muted); font-size: 0.9rem; line-height: 1.5; margin: 0 0 12px; }
+.lead-pop label { display: block; font-size: 0.8rem; font-weight: 500; margin: 10px 0 4px; }
+.lead-pop .form-control { min-height: 44px; padding: 10px 12px; font-size: 0.95rem; }
+.lead-pop textarea.form-control { min-height: 76px; resize: vertical; }
+.lead-pop-submit { width: 100%; justify-content: center; margin-top: 14px; }
+.lead-pop-note { color: var(--muted); font-size: 0.75rem; margin: 10px 0 0; }
+.lead-pop-note a { color: var(--muted); text-decoration: underline; }
+.lead-pop-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.lead-pop-ok .lead-pop-title { margin-top: 4px; }
+@media (min-width: 768px) {
+  .lead-pop { left: auto; right: 24px; bottom: 24px; width: 380px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lead-pop { opacity: 0; transform: translateY(18px); transition: opacity 0.35s ease, transform 0.35s ease; }
+  .lead-pop.is-in { opacity: 1; transform: none; }
+}

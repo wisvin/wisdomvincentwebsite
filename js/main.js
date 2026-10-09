@@ -293,4 +293,98 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ── Lead pop-up: a small slide-in form 25 seconds after arriving ───────────
+     Not on the contact / privacy / 404 pages. It never shows again after a message is sent,
+     and stays away for 7 days after it is closed. It waits while someone is typing or the tab is hidden. */
+  (function initLeadPopup() {
+    var DELAY = 25000, SNOOZE_DAYS = 7, KEY = 'leadPopup';
+    var file = location.pathname.split('/').pop() || 'index.html';
+    if (/^(contact|privacy|404)\.html$/.test(file)) return;
+
+    function read() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+    function write(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* storage blocked: fine */ } }
+    var saved = read();
+    if (saved.done) return;
+    if (saved.snoozeUntil && Date.now() < saved.snoozeUntil) return;
+
+    var pop = null;
+
+    function close(snooze) {
+      if (!pop) return;
+      if (snooze) { var s = read(); s.snoozeUntil = Date.now() + SNOOZE_DAYS * 86400000; write(s); }
+      var el = pop; pop = null;
+      document.removeEventListener('keydown', onKey);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
+      el.classList.remove('is-in');
+      setTimeout(function () { el.remove(); }, 350);
+    }
+    function onKey(e) { if (e.key === 'Escape') close(true); }
+
+    function build() {
+      pop = document.createElement('aside');
+      pop.className = 'lead-pop';
+      pop.setAttribute('role', 'dialog');
+      pop.setAttribute('aria-labelledby', 'leadPopTitle');
+      pop.innerHTML =
+        '<button type="button" class="lead-pop-close" aria-label="Close">&times;</button>' +
+        '<div class="lead-pop-body">' +
+          '<p class="lead-pop-kicker">&bull; Free plan</p>' +
+          '<h2 class="lead-pop-title" id="leadPopTitle">What is slowing your business down?</h2>' +
+          '<p class="lead-pop-text">Tell me in a sentence or two. I will reply personally within 24 hours with how I would fix it.</p>' +
+          '<form id="leadPopupForm" action="https://formspree.io/f/mqevdzyr" method="POST">' +
+            '<input type="hidden" name="_subject" value="New enquiry from the website pop-up" />' +
+            '<input type="hidden" name="source" value="Website pop-up" />' +
+            '<input type="hidden" name="page" value="" />' +
+            '<input type="text" name="_gotcha" class="lead-pop-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />' +
+            '<label for="leadPopName">Your name</label>' +
+            '<input id="leadPopName" name="name" type="text" class="form-control" autocomplete="name" required />' +
+            '<label for="leadPopEmail">Email</label>' +
+            '<input id="leadPopEmail" name="email" type="email" class="form-control" autocomplete="email" placeholder="you@company.com" required />' +
+            '<label for="leadPopMsg">What do you want to fix or automate?</label>' +
+            '<textarea id="leadPopMsg" name="message" class="form-control" rows="3" required></textarea>' +
+            '<button type="submit" class="btn btn-primary lead-pop-submit">Send</button>' +
+          '</form>' +
+          '<p class="lead-pop-note">Only used to reply to you. <a href="privacy.html">Privacy policy</a></p>' +
+        '</div>' +
+        '<div class="lead-pop-ok" hidden>' +
+          '<h2 class="lead-pop-title">Thank you, I got it.</h2>' +
+          '<p class="lead-pop-text">I will reply to <strong class="lead-pop-who"></strong> within 24 hours. In a hurry? Message me on WhatsApp.</p>' +
+          '<a class="btn btn-primary lead-pop-submit" href="https://wa.me/2349136538627" target="_blank" rel="noopener">Open WhatsApp</a>' +
+        '</div>';
+      document.body.appendChild(pop);
+      pop.querySelector('input[name="page"]').value = location.pathname;
+      pop.querySelector('.lead-pop-close').addEventListener('click', function () { close(true); });
+      document.addEventListener('keydown', onKey);
+
+      var form = pop.querySelector('form');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+          .then(function (res) {
+            if (!res.ok) throw new Error('err');
+            var s = read(); s.done = true; write(s);
+            pop.querySelector('.lead-pop-who').textContent = form.elements.email.value;
+            pop.querySelector('.lead-pop-body').hidden = true;
+            pop.querySelector('.lead-pop-ok').hidden = false;
+          })
+          .catch(function () {
+            btn.textContent = 'Try again';
+            btn.disabled = false;
+            alert('Something went wrong. Please email wvemofficial@gmail.com directly.');
+          });
+      });
+      requestAnimationFrame(function () { requestAnimationFrame(function () { if (pop) pop.classList.add('is-in'); }); });
+    }
+
+    function tryShow() {
+      var a = document.activeElement;
+      if (document.hidden || (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))) { setTimeout(tryShow, 5000); return; }
+      build();
+    }
+    setTimeout(tryShow, DELAY);
+  })();
+
 });

@@ -272,3 +272,9 @@ Hosted on Vercel from the GitHub repo (`main` branch, root `/`, no build step). 
 ## Plans (no public prices)
 
 The home page `#plans` section shows three engagement types (Quick automation, Growth system, Ongoing partner) with timelines and what's included, but **no prices** — each card links to `contact.html?plan=<key>#contact-form`, where `main.js` fills the hidden `plan` field, retitles the form and sets the Formspree subject ("Tailored plan request: …"). The promise is a written plan and cost breakdown within 48 hours. Budget on the contact form is optional. Don't reintroduce prices in the page or structured data without the owner's say-so.
+
+---
+
+## Lead pop-up
+
+`js/main.js` (`initLeadPopup`) builds a small slide-in enquiry card 25 seconds after a page loads (not on `contact.html`, `privacy.html`, `404.html`). Fields: name, email, "what do you want to fix or automate?", sent to the same Formspree form as the contact page (`source` = "Website pop-up", `page` = path). It is not a full-screen overlay: bottom-right card on desktop, bottom card with 16px gutters on phones. It waits while someone is typing or the tab is hidden, closes with the × button or Esc, stays away for 7 days after being closed, and never returns after a message is sent (`localStorage` key `leadPopup`, all access wrapped in try/catch). Styles are in the last block of `css/style.css` (`.lead-pop*`); the slide-in transition sits inside a `prefers-reduced-motion: no-preference` block. Change the delay with `DELAY` in `initLeadPopup`.
