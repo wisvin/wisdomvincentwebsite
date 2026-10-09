@@ -293,11 +293,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Lead pop-up: a small slide-in form 25 seconds after arriving ───────────
+  /* ── Lead pop-up: a small slide-in form 30 seconds after arriving ───────────
      Not on the contact / privacy / 404 pages. It never shows again after a message is sent,
      and stays away for 7 days after it is closed. It waits while someone is typing or the tab is hidden. */
   (function initLeadPopup() {
-    var DELAY = 25000, SNOOZE_DAYS = 7, KEY = 'leadPopup';
+    var DELAY = 30000, SNOOZE_DAYS = 7, KEY = 'leadPopup';
     var file = location.pathname.split('/').pop() || 'index.html';
     if (/^(contact|privacy|404)\.html$/.test(file)) return;
 
