@@ -160,6 +160,10 @@ Markup for cards, reviews and case studies lives only in `js/render.js` (used by
 
 `data-bg="claude"` on a section (home "My process") or `.page-hero` (claude-code.html) adds a mini animated Claude Code terminal beside the heading (the header is split: text left, terminal right). Built in `main.js` (`BG.claude`), colours from the `--pf-*` tokens, animates only while on screen, frozen for reduced-motion users. The other platform animations (n8n, Make, GHL, Zapier, chat, scraping) were removed at the owner's request — only Claude Code animations are used. The hero's `agent.log` terminal is separate markup in `index.html`.
 
+## AI-training onboarding page
+
+`ai-training-help.html` is a standalone page for individuals (not businesses): one-to-one help getting set up for paid AI-training platforms (Mercor, Outlier, Handshake AI). It is not in the nav; it is shared by link. Contact links use `contact.html?plan=ai-training` (key in `PLAN_NAMES` in `main.js`). Keep the ground rules: the client uses their own account and identity and does their own tasks; no promises about acceptance or earnings; no public prices.
+
 ## Adding a New Review
 
 Reviews render from `window.REVIEWS` in `js/reviews-data.js` (`name`, `country`, `countryName`, `photo`, `text`). Cards show name and country only — no platform tag. Only add a platform/source label if it is where the review genuinely came from.
