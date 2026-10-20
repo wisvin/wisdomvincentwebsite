@@ -113,8 +113,7 @@ const byService = key => PROJECTS.filter(p => (p.services || []).indexOf(key) !=
 const fills = {
   'index.html': [
     [/<div class="feat-videos-grid" id="homeFeatured"[^>]*>/, cards(PROJECTS.filter(p => p.video), { autoplay: true })],
-    [/<div class="home-projects-grid" id="homeProjectsGrid"[^>]*>/, cards(PROJECTS.filter(p => p.kind === 'build').slice(0, 6))],
-    [/<div class="home-reviews-grid" id="homeReviewsGrid"[^>]*>/, WV.homeReviews(REVIEWS, 10).map(WV.reviewCard).join('\n')]
+    [/<div class="home-reviews-grid" id="homeReviewsGrid"[^>]*>/, WV.homeReviews(REVIEWS, 6).map(WV.reviewCard).join('\n')]
   ],
   'projects.html': [[/<div id="projectsGrid"[^>]*>/, cards(PROJECTS)]],
   'reviews.html': [[/<div id="reviewsGrid"[^>]*>/, WV.mixReviews(REVIEWS).map(WV.reviewCard).join('\n')]]

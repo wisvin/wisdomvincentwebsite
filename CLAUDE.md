@@ -160,6 +160,10 @@ Markup for cards, reviews and case studies lives only in `js/render.js` (used by
 
 `data-bg="claude"` on a section (home "My process") or `.page-hero` (claude-code.html) adds a mini animated Claude Code terminal beside the heading (the header is split: text left, terminal right). Built in `main.js` (`BG.claude`), colours from the `--pf-*` tokens, animates only while on screen, frozen for reduced-motion users. The other platform animations (n8n, Make, GHL, Zapier, chat, scraping) were removed at the owner's request — only Claude Code animations are used. The hero's `agent.log` terminal is separate markup in `index.html`.
 
+## Home page layout
+
+The home page is deliberately short: hero, certifications strip, "What I help with", selected work (4 video cards), 6 reviews, plans, closing CTA. Everything else lives on its own page so visitors are not scrolling forever: "My process" is on `about.html`, the before/after client results on `projects.html`, the free-audit lead magnet on `contact.html`, FAQs on `faq.html`. Do not add sections back to the home page without removing one.
+
 ## AI-training onboarding page
 
 `ai-training-help.html` is a standalone page for individuals (not businesses): one-to-one help getting set up for paid AI-training platforms (Mercor, Outlier, Handshake AI). It is not in the nav; it is shared by link. Contact links use `contact.html?plan=ai-training` (key in `PLAN_NAMES` in `main.js`). Keep the ground rules: the client uses their own account and identity and does their own tasks; no promises about acceptance or earnings; no public prices.
