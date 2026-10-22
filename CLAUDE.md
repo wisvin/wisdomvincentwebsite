@@ -285,7 +285,7 @@ Hosted on Vercel from the GitHub repo (`main` branch, root `/`, no build step). 
 
 ## Plans (no public prices)
 
-The home page `#plans` section shows three engagement types (Quick automation, Growth system, Ongoing partner) with timelines and what's included, but **no prices** — each card links to `contact.html?plan=<key>#contact-form`, where `main.js` fills the hidden `plan` field, retitles the form and sets the Formspree subject ("Tailored plan request: …"). The promise is a written plan and cost breakdown within 48 hours. Budget on the contact form is optional. Don't reintroduce prices in the page or structured data without the owner's say-so.
+The home page `#plans` section shows three engagement types (Quick automation, Growth system, Ongoing partner) with timelines and what's included, but **no prices** — each card links to `contact.html?plan=<key>#contact-form`, where `main.js` fills the hidden `plan` field, retitles the form and sets the Formspree subject ("Tailored plan request: …"). The promise is a written plan and cost breakdown within 24 hours. Budget on the contact form is optional. Don't reintroduce prices in the page or structured data without the owner's say-so.
 
 ---
 
