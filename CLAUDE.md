@@ -86,7 +86,7 @@ Dark page (`--night` #0B0612) with a drifting magenta ribbon (`.bg-ribbon`, inje
 3. **Use CSS variables.** Never hardcode hex values. Always use `var(--token)`.
 4. **Use semantic HTML.** `<main>`, `<section>`, `<nav>`, `<footer>`, `<h1>`–`h4>`, etc.
 5. **Mobile-first.** Write base styles for mobile, override for larger screens in media queries.
-6. **Motion is small and complementary.** All keyframes and transitions live inside `@media (prefers-reduced-motion: no-preference)` in the MOTION block of `style.css`. No scroll-reveal scripts, preloaders or cursor effects.
+6. **Motion is small and complementary.** All keyframes and transitions live inside `@media (prefers-reduced-motion: no-preference)` in the MOTION block of `style.css`. No scroll-reveal scripts or cursor effects. The only intro is `js/preloader.js`: on the first page of a visit the intro text fades and two dark "doors" slide apart to reveal the site (CSS block "Intro doors" at the end of `style.css`); visitors with reduced-motion settings get a simple fade, and later pages in the same visit get a short loading screen.
 7. **Nav and footer are injected** by `js/nav.js` — never add them to HTML files directly.
 8. **Each HTML page** must include:
    - Correct `<title>` and `<meta name="description">`

@@ -25,8 +25,11 @@
     el.id = 'preloader';
     el.setAttribute('role', 'status');
     el.setAttribute('aria-label', 'Loading');
+    var doors = full && !reduceMotion();
+    if (doors) el.className = 'pl-has-doors';
     el.innerHTML = full
-      ? '<div class="pl-inner">' +
+      ? (doors ? '<i class="pl-door pl-door-l" aria-hidden="true"></i><i class="pl-door pl-door-r" aria-hidden="true"></i>' : '') +
+        '<div class="pl-inner">' +
           '<div class="pl-logo">Wisdom<span>.</span></div>' +
           '<p class="pl-line">Clients don&rsquo;t care how much I build &mdash; until they see how much they <span class="hl">grow.</span></p>' +
           '<div class="pl-status"><span class="pl-dot" aria-hidden="true"></span>booting growth systems&hellip;</div>' +
@@ -40,7 +43,28 @@
     document.body.insertBefore(el, document.body.firstChild);
   }
 
+  function reduceMotion() {
+    try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+  }
+
+  function cleanup() {
+    root.classList.remove('pl-active', 'pl-out', 'pl-content-out', 'pl-doors-open');
+    var el = document.getElementById('preloader');
+    if (el) el.parentNode.removeChild(el);
+  }
+
   function reveal() {
+    var pre = document.getElementById('preloader');
+    if (pre && pre.className.indexOf('pl-has-doors') !== -1) {
+      /* first visit: the text fades, then two doors slide apart and the site is already visible behind them */
+      root.classList.add('pl-content-out');
+      setTimeout(function () {
+        root.classList.remove('pl-active');
+        root.classList.add('pl-doors-open');
+        setTimeout(cleanup, 1000);
+      }, 300);
+      return;
+    }
     root.classList.add('pl-out');
     setTimeout(function () {
       root.classList.remove('pl-active', 'pl-out');

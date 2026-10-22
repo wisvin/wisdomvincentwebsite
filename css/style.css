@@ -1628,3 +1628,17 @@ em { color: var(--pink); }
   .lead-pop { opacity: 0; transform: translateY(18px); transition: opacity 0.35s ease, transform 0.35s ease; }
   .lead-pop.is-in { opacity: 1; transform: none; }
 }
+
+/* ── Intro doors (first visit of a session): the text fades, then two doors slide apart (js/preloader.js) ── */
+#preloader.pl-has-doors { background: transparent; }
+.pl-door { position: absolute; top: 0; bottom: 0; width: 50%; background: var(--night); z-index: 0; will-change: transform; }
+.pl-door-l { left: 0; box-shadow: 1px 0 0 var(--pink); }
+.pl-door-r { right: 0; box-shadow: -1px 0 0 var(--pink); }
+.pl-has-doors .pl-inner { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .pl-door { transition: transform 0.9s cubic-bezier(0.76, 0, 0.18, 1); }
+  .pl-has-doors .pl-inner { transition: opacity 0.3s ease, transform 0.3s ease; }
+  html.pl-content-out .pl-has-doors .pl-inner { opacity: 0; transform: scale(0.98); }
+  html.pl-doors-open .pl-door-l { transform: translateX(-101%); }
+  html.pl-doors-open .pl-door-r { transform: translateX(101%); }
+}
