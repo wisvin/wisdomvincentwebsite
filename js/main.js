@@ -293,11 +293,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Lead pop-up: a small slide-in form 30 seconds after arriving ───────────
+  /* ── Lead pop-up: a small slide-in card once the visitor has scrolled halfway down, or after 45 seconds ──
      Not on the contact / privacy / 404 pages. It never shows again after a message is sent,
      and stays away for 7 days after it is closed. It waits while someone is typing or the tab is hidden. */
   (function initLeadPopup() {
-    var DELAY = 30000, SNOOZE_DAYS = 7, KEY = 'leadPopup';
+    var DELAY = 45000, SNOOZE_DAYS = 7, KEY = 'leadPopup', SCROLL_AT = 0.5;
     var file = location.pathname.split('/').pop() || 'index.html';
     if (/^(contact|privacy|404)\.html$/.test(file)) return;
 
@@ -328,9 +328,10 @@ document.addEventListener('DOMContentLoaded', function () {
       pop.innerHTML =
         '<button type="button" class="lead-pop-close" aria-label="Close">&times;</button>' +
         '<div class="lead-pop-body">' +
-          '<p class="lead-pop-kicker">&bull; Free plan</p>' +
-          '<h2 class="lead-pop-title" id="leadPopTitle">What is slowing your business down?</h2>' +
-          '<p class="lead-pop-text">Tell me in a sentence or two. I will reply personally within 24 hours with how I would fix it.</p>' +
+          '<p class="lead-pop-kicker">&bull; Free plan and cost</p>' +
+          '<h2 class="lead-pop-title" id="leadPopTitle">Get your free plan and cost within 24 hours</h2>' +
+          '<p class="lead-pop-text">Tell me what is slowing your business down. I read every message myself and reply with a clear next step.</p>' +
+          '<ul class="lead-pop-points"><li>Free</li><li>No obligation</li><li>Reply within 24 hours</li></ul>' +
           '<form id="leadPopupForm" action="https://formspree.io/f/mqevdzyr" method="POST">' +
             '<input type="hidden" name="_subject" value="New enquiry from the website pop-up" />' +
             '<input type="hidden" name="source" value="Website pop-up" />' +
@@ -342,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '<input id="leadPopEmail" name="email" type="email" class="form-control" autocomplete="email" placeholder="you@company.com" required />' +
             '<label for="leadPopMsg">What do you want to fix or automate?</label>' +
             '<textarea id="leadPopMsg" name="message" class="form-control" rows="3" required></textarea>' +
-            '<button type="submit" class="btn btn-primary lead-pop-submit">Send</button>' +
+            '<button type="submit" class="btn btn-primary lead-pop-submit">Get my free plan</button>' +
           '</form>' +
           '<p class="lead-pop-note">Only used to reply to you. <a href="privacy.html">Privacy policy</a></p>' +
         '</div>' +
@@ -384,7 +385,15 @@ document.addEventListener('DOMContentLoaded', function () {
       if (document.hidden || (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))) { setTimeout(tryShow, 5000); return; }
       build();
     }
-    setTimeout(tryShow, DELAY);
+    // Show when the visitor has read about half the page, or after DELAY, whichever comes first (once).
+    var triggered = false;
+    function trigger() { if (triggered) return; triggered = true; window.removeEventListener('scroll', onScroll); tryShow(); }
+    function onScroll() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max >= SCROLL_AT) trigger();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    setTimeout(trigger, DELAY);
   })();
 
 });

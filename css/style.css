@@ -1742,3 +1742,23 @@ main.panels-split > .projects-section .project-category { background: color-mix(
   main.panels-split > .projects-section .project-card:hover { transform: translateY(-6px); box-shadow: 0 44px 70px -40px color-mix(in srgb, var(--pink) 85%, transparent); }
 }
 main.panels-split > .projects-section .feat-videos-grid { align-items: stretch; }
+
+/* ── Lead pop-up, premium look: dark glass card with a pink accent line ── */
+.lead-pop {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--night-2) 96%, transparent), color-mix(in srgb, var(--night) 97%, transparent));
+  color: var(--on-dark); border: 1px solid var(--on-dark-3); border-radius: var(--radius-xl); padding: 30px 24px 20px;
+  box-shadow: 0 34px 70px -24px color-mix(in srgb, var(--night) 95%, transparent), 0 24px 60px -34px color-mix(in srgb, var(--pink) 65%, transparent);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.lead-pop::before { content: ''; position: absolute; left: 24px; right: 24px; top: 0; height: 2px; border-radius: 0 0 2px 2px; background: linear-gradient(90deg, var(--pink), color-mix(in srgb, var(--pink) 0%, transparent)); }
+.lead-pop-close { color: var(--on-dark-2); }
+.lead-pop-close:hover { background: var(--on-dark-3); color: var(--on-dark); }
+.lead-pop-title { color: var(--on-dark); font-size: 1.5rem; font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-right: 34px; }
+.lead-pop-text { color: var(--on-dark-2); }
+.lead-pop-points { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 4px; padding: 0; list-style: none; font-family: var(--font-code); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--on-dark-2); }
+.lead-pop-points li::before { content: '\2713\00a0'; color: var(--pink); }
+.lead-pop label { color: var(--on-dark-2); }
+.lead-pop .form-control { background: color-mix(in srgb, var(--white) 7%, transparent); border: 1px solid var(--on-dark-3); color: var(--on-dark); }
+.lead-pop .form-control::placeholder { color: color-mix(in srgb, var(--white) 38%, transparent); }
+.lead-pop .form-control:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pink) 25%, transparent); }
+.lead-pop-note, .lead-pop-note a { color: var(--on-dark-2); }
