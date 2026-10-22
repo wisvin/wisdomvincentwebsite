@@ -1,27 +1,24 @@
 /* preloader.js — loading screen. The site stays hidden until the page has
    completely finished loading (HTML, CSS, images and fonts).
-   - Home page, once a day per visitor: the full intro with the growth line, shown for
+   - Home page, once per visit: the full intro with the growth line, shown for
      at least 0.6s (kept short: content hidden longer hurts Google's speed score).
-   - Every other page and repeat visits: hidden until loaded; if loading takes longer than a blink
+   - Every other page and repeat views in the same visit: hidden until loaded; if loading takes longer than a blink
      (350ms) a short version of the same screen appears.
    - Safety: never longer than 15s, so nobody gets stuck if something hangs. */
 (function () {
-  /* The full intro (with the doors) plays only on the home page, and at most once a day per visitor.
-     Someone landing on any other page (an email link, a search result) goes straight to the content. */
-  var KEY = 'wv-intro-ts';
-  var DAY = 24 * 60 * 60 * 1000;
+  /* The full intro (with the doors) plays on the home page every time someone opens the site (once per visit),
+     not again when they click "Home" later in the same visit. Someone landing on any other page (an email link,
+     a search result) goes straight to the content. To play it on every home page load, set firstVisit = isHome. */
+  var KEY = 'wv-intro-seen';
   var path = location.pathname.replace(/\/+$/, '');
   var isHome = path === '' || /\/index\.html$/.test(path);
   var firstVisit = false;
   if (isHome) {
     firstVisit = true;
     try {
-      var last = parseInt(localStorage.getItem(KEY), 10);
-      if (last && Date.now() - last < DAY) firstVisit = false;
-      else localStorage.setItem(KEY, String(Date.now()));
-    } catch (e) {
-      try { firstVisit = !sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, '1'); } catch (e2) { /* storage blocked: play it */ }
-    }
+      firstVisit = !sessionStorage.getItem(KEY);
+      sessionStorage.setItem(KEY, '1');
+    } catch (e) { /* storage blocked: play it */ }
   }
 
   var root = document.documentElement;

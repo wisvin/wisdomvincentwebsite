@@ -166,9 +166,9 @@ The home page is deliberately short: hero, certifications strip, "What I help wi
 
 ## Industry landing pages and proof
 
-or-property-managers.html, or-home-services.html and or-clinics.html are landing pages for cold-email leads (not in the nav). Their four automations use the same wording as the emails (lead-pipeline/src/industries.js) and every number comes from a real case study in projects-data.js, labelled *Client project* or *Demo build*. The email signatures link to the matching page (LANDING in lead-pipeline/src/email.js). The home page proof box shows four real before/after numbers (.proof-metrics). Only use numbers that exist in projects-data.js; never invent results.
+`for-property-managers.html`, `for-home-services.html` and `for-clinics.html` are landing pages for cold-email leads (not in the nav). Their four automations use the same wording as the emails (`lead-pipeline/src/industries.js`) and every number comes from a real case study in `projects-data.js`, labelled *Client project* or *Demo build*. The email signatures link to the matching page (`LANDING` in `lead-pipeline/src/email.js`). The home page proof box shows four real before/after numbers (`.proof-metrics`). Only use numbers that exist in `projects-data.js`; never invent results.
 
-The intro (js/preloader.js) plays only on the home page, at most once a day per visitor; every other page loads straight to content.
+The intro (`js/preloader.js`) plays on the home page once per visit (every time the site is opened, not again when clicking Home in the same visit); every other page loads straight to content. The hero numbers (50+ projects, 100% Job Success, 4.9 rating, 10+ countries) are a full-width row under the hero.
 
 ## AI-training onboarding page
 
