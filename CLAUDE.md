@@ -164,6 +164,12 @@ Markup for cards, reviews and case studies lives only in `js/render.js` (used by
 
 The home page is deliberately short: hero, certifications strip, "What I help with", selected work (4 video cards), 6 reviews, plans, closing CTA. Everything else lives on its own page so visitors are not scrolling forever: "My process" is on `about.html`, the before/after client results on `projects.html`, the free-audit lead magnet on `contact.html`, FAQs on `faq.html`. Do not add sections back to the home page without removing one.
 
+## Industry landing pages and proof
+
+or-property-managers.html, or-home-services.html and or-clinics.html are landing pages for cold-email leads (not in the nav). Their four automations use the same wording as the emails (lead-pipeline/src/industries.js) and every number comes from a real case study in projects-data.js, labelled *Client project* or *Demo build*. The email signatures link to the matching page (LANDING in lead-pipeline/src/email.js). The home page proof box shows four real before/after numbers (.proof-metrics). Only use numbers that exist in projects-data.js; never invent results.
+
+The intro (js/preloader.js) plays only on the home page, at most once a day per visitor; every other page loads straight to content.
+
 ## AI-training onboarding page
 
 `ai-training-help.html` is a standalone page for individuals (not businesses): one-to-one help getting set up for paid AI-training platforms (Mercor, Outlier, Handshake AI). It is not in the nav; it is shared by link. Contact links use `contact.html?plan=ai-training` (key in `PLAN_NAMES` in `main.js`). Keep the ground rules: the client uses their own account and identity and does their own tasks; no promises about acceptance or earnings; no public prices.

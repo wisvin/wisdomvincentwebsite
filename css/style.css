@@ -1636,8 +1636,8 @@ em { color: var(--pink); }
 .pl-door-r { right: 0; box-shadow: -1px 0 0 var(--pink); }
 .pl-has-doors .pl-inner { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: no-preference) {
-  .pl-door { transition: transform 0.9s cubic-bezier(0.76, 0, 0.18, 1); }
-  .pl-has-doors .pl-inner { transition: opacity 0.3s ease, transform 0.3s ease; }
+  .pl-door { transition: transform 0.8s cubic-bezier(0.76, 0, 0.18, 1); }
+  .pl-has-doors .pl-inner { transition: opacity 0.2s ease, transform 0.2s ease; }
   html.pl-content-out .pl-has-doors .pl-inner { opacity: 0; transform: scale(0.98); }
   html.pl-doors-open .pl-door-l { transform: translateX(-101%); }
   html.pl-doors-open .pl-door-r { transform: translateX(101%); }
@@ -1654,3 +1654,15 @@ main.panels-split > .creds-strip { padding: 28px 0; }
 /* ── Home page: the closing banner sits straight on the dark page (no white box around it) ── */
 main.panels-split > section:last-child { background: transparent; padding-top: 0; padding-bottom: 12px; }
 main.panels-split > section:last-child .cta-banner { box-shadow: inset 0 0 0 1px var(--on-dark-3); }
+
+/* ── Proof numbers: real before/after results from client projects (home) ── */
+.proof-metrics { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 14px; }
+.proof-metric { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.proof-metric:hover { border-color: var(--pink); }
+.proof-num { font-family: var(--font-heading); font-weight: 300; font-size: clamp(1.9rem, 3.2vw, 2.6rem); letter-spacing: -0.04em; line-height: 1.05; color: var(--text); }
+.proof-label { font-size: 0.95rem; color: var(--text); }
+.proof-src { margin-top: auto; padding-top: 4px; font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--pink); }
+@media (min-width: 640px) { .proof-metrics { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .proof-metrics { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 900px) { .proof-metrics-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px) { .process-steps.steps-4 { grid-template-columns: repeat(2, 1fr); } }

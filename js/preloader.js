@@ -1,22 +1,33 @@
 /* preloader.js — loading screen. The site stays hidden until the page has
    completely finished loading (HTML, CSS, images and fonts).
-   - First page of a visit: the full intro with the growth line, shown for
-     at least 0.9s (kept short: content hidden longer hurts Google's speed score).
-   - Later pages: hidden until loaded; if loading takes longer than a blink
+   - Home page, once a day per visitor: the full intro with the growth line, shown for
+     at least 0.6s (kept short: content hidden longer hurts Google's speed score).
+   - Every other page and repeat visits: hidden until loaded; if loading takes longer than a blink
      (350ms) a short version of the same screen appears.
    - Safety: never longer than 15s, so nobody gets stuck if something hangs. */
 (function () {
-  var KEY = 'wv-intro-seen';
-  var firstVisit = true;
-  try {
-    firstVisit = !sessionStorage.getItem(KEY);
-    sessionStorage.setItem(KEY, '1');
-  } catch (e) { /* storage blocked — treat as first visit */ }
+  /* The full intro (with the doors) plays only on the home page, and at most once a day per visitor.
+     Someone landing on any other page (an email link, a search result) goes straight to the content. */
+  var KEY = 'wv-intro-ts';
+  var DAY = 24 * 60 * 60 * 1000;
+  var path = location.pathname.replace(/\/+$/, '');
+  var isHome = path === '' || /\/index\.html$/.test(path);
+  var firstVisit = false;
+  if (isHome) {
+    firstVisit = true;
+    try {
+      var last = parseInt(localStorage.getItem(KEY), 10);
+      if (last && Date.now() - last < DAY) firstVisit = false;
+      else localStorage.setItem(KEY, String(Date.now()));
+    } catch (e) {
+      try { firstVisit = !sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, '1'); } catch (e2) { /* storage blocked: play it */ }
+    }
+  }
 
   var root = document.documentElement;
   var start = Date.now();
   var done = false;
-  var minShow = firstVisit ? 900 : 0;
+  var minShow = firstVisit ? 600 : 0;
   root.classList.add('pl-active');
 
   function build(full) {
@@ -61,8 +72,8 @@
       setTimeout(function () {
         root.classList.remove('pl-active');
         root.classList.add('pl-doors-open');
-        setTimeout(cleanup, 1000);
-      }, 300);
+        setTimeout(cleanup, 900);
+      }, 200);
       return;
     }
     root.classList.add('pl-out');
