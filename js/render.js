@@ -145,10 +145,14 @@
   function mixReviews(list) {
     return spread(list.filter(function (r) { return r.verified; }), list.filter(function (r) { return !r.verified; }));
   }
-  /* Home preview: every verified review, mixed with others, `count` in total */
+  /* Home preview: half verified (Upwork) reviews, half reviews from clients in other countries, mixed, `count` in total.
+     The verified ones are taken from different places in the list (every other one) so they are not all about the same job. */
   function homeReviews(list, count) {
-    var v = list.filter(function (r) { return r.verified; });
-    var o = list.filter(function (r) { return !r.verified; }).slice(0, Math.max(0, count - v.length));
+    var verified = list.filter(function (r) { return r.verified; });
+    var others = list.filter(function (r) { return !r.verified; });
+    var vCount = Math.min(verified.length, Math.ceil(count / 2));
+    var v = verified.filter(function (r, i) { return i % 2 === 1; }).concat(verified.filter(function (r, i) { return i % 2 === 0; })).slice(0, vCount);
+    var o = others.slice(0, Math.max(0, count - v.length));
     return spread(v, o).slice(0, count);
   }
 

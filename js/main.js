@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if (window.REVIEWS) {
     fill(document.getElementById('reviewsGrid'), WV.mixReviews(window.REVIEWS).map(WV.reviewCard).join(''));
-    fill(document.getElementById('homeReviewsGrid'), WV.homeReviews(window.REVIEWS, 10).map(WV.reviewCard).join(''));
+    fill(document.getElementById('homeReviewsGrid'), WV.homeReviews(window.REVIEWS, 6).map(WV.reviewCard).join(''));
   }
   initFilters();
   initLazyVideos();
