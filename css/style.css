@@ -1650,3 +1650,7 @@ main.panels-split > .creds-strip { padding: 28px 0; }
   main.panels-split > *:not(.hero):not(.page-hero) { border-radius: 22px; margin-top: 8px; }
   main.panels-split > .creds-strip { padding: 18px 0; }
 }
+
+/* ── Home page: the closing banner sits straight on the dark page (no white box around it) ── */
+main.panels-split > section:last-child { background: transparent; padding-top: 0; padding-bottom: 12px; }
+main.panels-split > section:last-child .cta-banner { box-shadow: inset 0 0 0 1px var(--on-dark-3); }
