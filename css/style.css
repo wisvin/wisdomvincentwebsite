@@ -1670,3 +1670,75 @@ main.panels-split > section:last-child .cta-banner { box-shadow: inset 0 0 0 1px
 
 /* ── Hero numbers: a full-width row under the hero, larger on desktop ── */
 @media (min-width: 900px) { .hero-stat-value { font-size: clamp(2.25rem, 3.6vw, 3.25rem); } .hero-stat-label { font-size: 1rem; margin-top: 8px; } }
+
+/* ── Expertise proof: its own box with larger, verifiable cards (home) ── */
+.expertise-section { padding: 64px 0; }
+.expertise-section .section-header { margin-bottom: 40px; }
+.expertise-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+.expertise-card { display: flex; flex-direction: column; gap: 10px; padding: 28px 26px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.expertise-card:hover { border-color: var(--pink); }
+.expertise-badge { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--deep-1); color: var(--white); font-size: 1.3rem; margin-bottom: 6px; }
+.expertise-upwork .expertise-badge { background: var(--brand-upwork); }
+.expertise-source { font-family: var(--font-code); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.expertise-title { font-family: var(--font-heading); font-weight: 400; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing: -0.035em; line-height: 1.08; color: var(--text); }
+.expertise-detail { font-size: 0.95rem; color: var(--text); }
+.expertise-verify { margin-top: auto; padding-top: 6px; font-family: var(--font-code); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--pink); }
+@media (min-width: 640px) { .expertise-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .expertise-grid { grid-template-columns: repeat(4, 1fr); } }
+/* Hero numbers: bigger */
+@media (min-width: 900px) { .hero-stat-value { font-size: clamp(3rem, 5vw, 4.75rem); } .hero-stat-label { font-size: 1.125rem; margin-top: 10px; } }
+@media (max-width: 899px) { .hero-stat-value { font-size: 2.6rem; } .hero-stat-label { font-size: 0.95rem; } }
+
+/* ── Home page: "What clients say" sits straight on the dark page (no white box); the review cards stay light ── */
+main.panels-split > .reviews-section { background: transparent; }
+main.panels-split > .reviews-section .section-title { color: var(--on-dark); }
+main.panels-split > .reviews-section .section-label, main.panels-split > .reviews-section .section-sub { color: var(--on-dark-2); }
+main.panels-split > .reviews-section .view-all-wrap .btn-outline { color: var(--on-dark); border-color: var(--on-dark-2); background: transparent; }
+
+/* ── Plans: one main starter card, two short options beneath (home) ── */
+.plan-one { display: grid; gap: 32px; max-width: 1000px; margin: 0 auto; padding: 36px 30px; border-radius: var(--radius-xl); }
+.plan-one-main, .plan-one-side { display: flex; flex-direction: column; gap: 10px; }
+.plan-one .price-amount { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.plan-one ul { margin-top: 8px; }
+.plan-one-steps { list-style: none; counter-reset: step; display: grid; gap: 14px; margin: 6px 0 18px; padding: 0; }
+.plan-one-steps li { counter-increment: step; position: relative; padding-left: 38px; font-size: 1rem; line-height: 1.45; color: var(--white); }
+.plan-one-steps li::before { content: counter(step); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--pink); color: var(--white); font-family: var(--font-code); font-size: 0.78rem; }
+.plan-one .price-cta { align-self: flex-start; }
+.plan-more { display: grid; gap: 14px; max-width: 1000px; margin: 18px auto 0; }
+.plan-more-item { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.plan-more-item p { font-size: 0.95rem; color: var(--text); margin: 0; }
+.plan-more-link { margin-top: auto; padding-top: 6px; font-family: var(--font-code); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--pink); }
+@media (min-width: 900px) { .plan-one { grid-template-columns: 1.15fr 1fr; gap: 56px; padding: 52px; } }
+@media (min-width: 760px) { .plan-more { grid-template-columns: 1fr 1fr; } }
+
+/* ── Home: "Real problems, solved" on the dark page with richer glass cards ── */
+main.panels-split > .projects-section { position: relative; background: transparent; padding-top: 56px; padding-bottom: 72px; }
+main.panels-split > .projects-section::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 78% 22%, color-mix(in srgb, var(--pink) 24%, transparent), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 12% 85%, color-mix(in srgb, var(--pink) 14%, transparent), transparent 70%);
+}
+main.panels-split > .projects-section > .container { position: relative; }
+main.panels-split > .projects-section .section-title { color: var(--on-dark); }
+main.panels-split > .projects-section .section-title em { color: var(--pink); }
+main.panels-split > .projects-section .section-label, main.panels-split > .projects-section .section-sub { color: var(--on-dark-2); }
+main.panels-split > .projects-section .project-card {
+  background: linear-gradient(165deg, color-mix(in srgb, var(--white) 11%, transparent), color-mix(in srgb, var(--white) 3%, transparent));
+  border: 1px solid var(--on-dark-3); border-radius: var(--radius-xl); padding: 14px;
+  box-shadow: 0 34px 60px -44px color-mix(in srgb, var(--pink) 70%, transparent);
+}
+main.panels-split > .projects-section .project-card:hover { border-color: color-mix(in srgb, var(--pink) 65%, transparent); }
+main.panels-split > .projects-section .project-thumb { border-radius: var(--radius-lg); }
+main.panels-split > .projects-section .project-body h3 { color: var(--on-dark); font-weight: 400; font-size: 1.4rem; letter-spacing: -0.03em; }
+main.panels-split > .projects-section .project-body p, main.panels-split > .projects-section .project-problem { color: var(--on-dark-2); }
+main.panels-split > .projects-section .project-problem span { color: var(--pink); }
+main.panels-split > .projects-section .project-result { background: color-mix(in srgb, var(--white) 9%, transparent); color: var(--on-dark); border-left-color: var(--pink); }
+main.panels-split > .projects-section .project-stack .tag { background: transparent; border: 1px solid var(--on-dark-3); color: var(--on-dark-2); }
+main.panels-split > .projects-section .project-link { color: var(--pink); }
+main.panels-split > .projects-section .project-category { background: color-mix(in srgb, var(--night) 72%, transparent); color: var(--on-dark); }
+@media (prefers-reduced-motion: no-preference) {
+  main.panels-split > .projects-section .project-card { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease; }
+  main.panels-split > .projects-section .project-card:hover { transform: translateY(-6px); box-shadow: 0 44px 70px -40px color-mix(in srgb, var(--pink) 85%, transparent); }
+}
+main.panels-split > .projects-section .feat-videos-grid { align-items: stretch; }

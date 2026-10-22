@@ -162,7 +162,7 @@ Markup for cards, reviews and case studies lives only in `js/render.js` (used by
 
 ## Home page layout
 
-The home page is deliberately short: hero, certifications strip, "What I help with", selected work (4 video cards), 6 reviews, plans, closing CTA. Everything else lives on its own page so visitors are not scrolling forever: "My process" is on `about.html`, the before/after client results on `projects.html`, the free-audit lead magnet on `contact.html`, FAQs on `faq.html`. Do not add sections back to the home page without removing one.
+The home page is deliberately short and alternates dark and white: hero (with a full-width row of four numbers underneath), a white box of four real before/after results, a white "Expertise proof" box (Upwork 100% Job Success + three Make certifications, each verifiable), "What I help with", "Real problems, solved" (dark, glass cards, 4 videos), "What clients say" (dark, 3 Upwork-verified + 3 direct-client reviews), "Start with one thing that works" (one main starter card plus two short options), and the closing banner (dark, no white box). Every white section is its own rounded box with a gap (`main.panels-split`). Everything else lives on its own page: "My process" is on `about.html`, the before/after client results on `projects.html`, the free-audit lead magnet on `contact.html`, FAQs on `faq.html`. Do not add sections back to the home page without removing one.
 
 ## Industry landing pages and proof
 
