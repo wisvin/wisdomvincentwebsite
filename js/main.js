@@ -158,6 +158,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var subject = document.querySelector('#contactForm input[name="_subject"]');
     if (subject) subject.value = 'Tailored plan request: ' + PLAN_NAMES[planKey];
   }
+  /* ── Waterproofing page: ?co= and ?town= in this page's link are passed on to the embedded demo (personal demo for that company) ── */
+  var demoFrame = document.querySelector('iframe[data-demo-embed]');
+  if (demoFrame) {
+    try {
+      var qs = new URLSearchParams(location.search), dp = new URLSearchParams();
+      ['co', 'town'].forEach(function (k) { if (qs.get(k)) dp.set(k, qs.get(k)); });
+      if (dp.toString()) {
+        var demoUrl = demoFrame.getAttribute('src').split('?')[0] + '?' + dp.toString();
+        demoFrame.src = demoUrl;
+        var openLink = document.querySelector('a[data-demo-open]');
+        if (openLink) openLink.href = demoUrl;
+      }
+    } catch (e) { /* the plain demo still works */ }
+  }
   initForm('leadMagnetForm', 'leadMagnetSuccess');
 
   /* ── Claude Code terminal animation ─────────────────────────

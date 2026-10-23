@@ -172,7 +172,7 @@ The intro (`js/preloader.js`) plays on the home page once per visit (every time 
 
 ## Waterproofing landing page
 
-`for-waterproofing.html` is the landing page for the Booked Jobs cold emails to basement waterproofing companies (not in the nav, in the sitemap). It presents Wisdom alone (not Joel or Booked Jobs Co.), describes the free 1 to 2 week test (no setup fee, nothing to pay for the test, no guarantee of results) and the one-company-per-town rule, and reuses the same three real case-study numbers as the other landing pages. Its contact links use `contact.html?plan=waterproofing` (key in `PLAN_NAMES` in `main.js`). Do not add invented results or a price; the owner has no client proof for this offer yet.
+`for-waterproofing.html` is the landing page for the Booked Jobs cold emails to basement waterproofing companies (not in the nav, in the sitemap). It presents Wisdom alone and shows the Booked Jobs demo (`https://www.bookedjobsco.com/wisdom/demo`, Joel's site, which already knows the `/wisdom` rep and uses Wisdom's Calendly) in an iframe right under the headline; `?co=` and `?town=` in this page's link are passed on to the demo (`main.js`). The demo's names and numbers are examples and the page says so. It then describes the free 1 to 2 week test the way Joel's pilot page does (no setup fee, nothing to pay for the test, week-by-week steps, no guarantee of results), the one-company-per-town rule, the six FAQ answers and the same three real case-study numbers as the other landing pages. Its contact links use `contact.html?plan=waterproofing` (key in `PLAN_NAMES` in `main.js`). Do not add invented results or a price; the owner has no client proof for this offer yet.
 
 ## AI-training onboarding page
 
