@@ -1762,3 +1762,38 @@ main.panels-split > .projects-section .feat-videos-grid { align-items: stretch; 
 .lead-pop .form-control::placeholder { color: color-mix(in srgb, var(--white) 38%, transparent); }
 .lead-pop .form-control:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pink) 25%, transparent); }
 .lead-pop-note, .lead-pop-note a { color: var(--on-dark-2); }
+
+/* ── Home page: only the Expertise proof (certifications) stays in a white box; results, "What I help with" and plans sit straight on the dark page ── */
+main.panels-split > .creds-strip,
+main.panels-split > .pillars-section,
+main.panels-split > .pricing-section { background: transparent; }
+main.panels-split > .pillars-section { padding-top: 64px; padding-bottom: 64px; }
+main.panels-split > .pricing-section { padding-top: 64px; padding-bottom: 72px; }
+
+/* Results */
+main.panels-split > .creds-strip .proof-metric { background: color-mix(in srgb, var(--white) 7%, transparent); border-color: var(--on-dark-3); }
+main.panels-split > .creds-strip .proof-metric:hover { border-color: color-mix(in srgb, var(--pink) 65%, transparent); }
+main.panels-split > .creds-strip .proof-num { color: var(--on-dark); }
+main.panels-split > .creds-strip .proof-label { color: var(--on-dark-2); }
+
+/* What I help with */
+main.panels-split > .pillars-section .section-title { color: var(--on-dark); }
+main.panels-split > .pillars-section .section-label { color: var(--on-dark-2); }
+main.panels-split > .pillars-section .pillars-header .btn-outline { color: var(--on-dark); border-color: var(--on-dark-2); background: transparent; }
+main.panels-split > .pillars-section .pillars { border-top-color: var(--on-dark-2); }
+main.panels-split > .pillars-section .pillar { border-bottom-color: var(--on-dark-3); }
+main.panels-split > .pillars-section .pillar:hover { background: color-mix(in srgb, var(--white) 6%, transparent); }
+main.panels-split > .pillars-section .pillar-num { border-color: var(--on-dark-2); color: var(--on-dark); }
+main.panels-split > .pillars-section .pillar h3, main.panels-split > .pillars-section .pillar-cta { color: var(--on-dark); }
+main.panels-split > .pillars-section .pillar p, main.panels-split > .pillars-section .pillar-tools { color: var(--on-dark-2); }
+
+main.panels-split > .pillars-section .pillar-label { color: color-mix(in srgb, var(--pc, var(--pink)) 45%, var(--white)); }
+
+/* Plans */
+main.panels-split > .pricing-section .section-title { color: var(--on-dark); }
+main.panels-split > .pricing-section .section-label, main.panels-split > .pricing-section .section-sub, main.panels-split > .pricing-section .pricing-note { color: var(--on-dark-2); }
+main.panels-split > .pricing-section .pricing-note a { color: var(--on-dark); }
+main.panels-split > .pricing-section .plan-one { border: 1px solid var(--on-dark-3); }
+main.panels-split > .pricing-section .plan-more-item { background: color-mix(in srgb, var(--white) 7%, transparent); border-color: var(--on-dark-3); }
+main.panels-split > .pricing-section .plan-more-item p { color: var(--on-dark-2); }
+main.panels-split > .pricing-section .plan-more-item .price-name { color: var(--sun); }
