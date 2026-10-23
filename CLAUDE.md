@@ -170,6 +170,10 @@ The home page is deliberately short and alternates dark and white: hero (with a 
 
 The intro (`js/preloader.js`) plays on the home page once per visit (every time the site is opened, not again when clicking Home in the same visit); every other page loads straight to content. The hero numbers (50+ projects, 100% Job Success, 4.9 rating, 10+ countries) are a full-width row under the hero.
 
+## Waterproofing landing page
+
+`for-waterproofing.html` is the landing page for the Booked Jobs cold emails to basement waterproofing companies (not in the nav, in the sitemap). It presents Wisdom alone (not Joel or Booked Jobs Co.), describes the free 1 to 2 week test (no setup fee, nothing to pay for the test, no guarantee of results) and the one-company-per-town rule, and reuses the same three real case-study numbers as the other landing pages. Its contact links use `contact.html?plan=waterproofing` (key in `PLAN_NAMES` in `main.js`). Do not add invented results or a price; the owner has no client proof for this offer yet.
+
 ## AI-training onboarding page
 
 `ai-training-help.html` is a standalone page for individuals (not businesses): one-to-one help getting set up for paid AI-training platforms (Mercor, Outlier, Handshake AI). It is not in the nav; it is shared by link. Contact links use `contact.html?plan=ai-training` (key in `PLAN_NAMES` in `main.js`). Keep the ground rules: the client uses their own account and identity and does their own tasks; no promises about acceptance or earnings; no public prices.

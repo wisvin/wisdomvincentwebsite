@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Arriving from a "Get my tailored plan" card: note the plan and adapt the form */
   var planKey = new URLSearchParams(location.search).get('plan');
-  var PLAN_NAMES = { 'quick-automation': 'Quick automation', 'growth-system': 'Growth system', 'ongoing-partner': 'Ongoing partner', 'ai-training': 'AI-training onboarding help' };
+  var PLAN_NAMES = { 'quick-automation': 'Quick automation', 'growth-system': 'Growth system', 'ongoing-partner': 'Ongoing partner', 'ai-training': 'AI-training onboarding help', 'waterproofing': 'Free test for my waterproofing company' };
   var planField = document.getElementById('planField');
   if (planField && PLAN_NAMES[planKey]) {
     planField.value = PLAN_NAMES[planKey];
