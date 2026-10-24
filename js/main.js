@@ -158,19 +158,29 @@ document.addEventListener('DOMContentLoaded', function () {
     var subject = document.querySelector('#contactForm input[name="_subject"]');
     if (subject) subject.value = 'Tailored plan request: ' + PLAN_NAMES[planKey];
   }
-  /* ── Waterproofing page: ?co= and ?town= in this page's link are passed on to the embedded demo (personal demo for that company) ── */
-  var demoFrame = document.querySelector('iframe[data-demo-embed]');
-  if (demoFrame) {
+  /* ── Waterproofing page: the Booked Jobs demo loads only when tapped (it is heavy: video + 3D), and ?co= / ?town= in this page's link are passed on to it ── */
+  var demoWrap = document.querySelector('[data-demo-wrap]');
+  if (demoWrap) {
+    var demoUrl = demoWrap.getAttribute('data-demo-src');
     try {
       var qs = new URLSearchParams(location.search), dp = new URLSearchParams();
       ['co', 'town'].forEach(function (k) { if (qs.get(k)) dp.set(k, qs.get(k)); });
-      if (dp.toString()) {
-        var demoUrl = demoFrame.getAttribute('src').split('?')[0] + '?' + dp.toString();
-        demoFrame.src = demoUrl;
-        var openLink = document.querySelector('a[data-demo-open]');
-        if (openLink) openLink.href = demoUrl;
-      }
+      if (dp.toString()) demoUrl += '?' + dp.toString();
     } catch (e) { /* the plain demo still works */ }
+    var openLink = document.querySelector('a[data-demo-open]');
+    if (openLink) openLink.href = demoUrl;
+    var loadBtn = demoWrap.querySelector('[data-demo-load]');
+    if (loadBtn) loadBtn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = demoUrl;
+      f.title = '3-minute demo: your waterproofing company, 30 days from now';
+      f.allow = 'autoplay; fullscreen; accelerometer; gyroscope; clipboard-write';
+      f.setAttribute('allowfullscreen', '');
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      demoWrap.textContent = '';
+      demoWrap.appendChild(f);
+      demoWrap.classList.add('is-live');
+    });
   }
   initForm('leadMagnetForm', 'leadMagnetSuccess');
 
