@@ -23,6 +23,7 @@
     { href: 'ai-website.html',  label: 'AI-Powered Websites',      icon: '🌐' },
     { href: 'openclaw.html',    label: 'Lead Generation & Data',   icon: '🎯' },
     { href: 'gohighlevel.html', label: 'CRM & Lead Follow-up',     icon: '🚀' },
+    { href: 'for-waterproofing.html', label: 'Basement & Waterproofing', icon: '💧' },
   ];
 
   const SOCIALS = [

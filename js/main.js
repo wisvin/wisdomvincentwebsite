@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Arriving from a "Get my tailored plan" card: note the plan and adapt the form */
   var planKey = new URLSearchParams(location.search).get('plan');
-  var PLAN_NAMES = { 'quick-automation': 'Quick automation', 'growth-system': 'Growth system', 'ongoing-partner': 'Ongoing partner', 'ai-training': 'AI-training onboarding help', 'waterproofing': 'Free test for my waterproofing company' };
+  var PLAN_NAMES = { 'quick-automation': 'Quick automation', 'growth-system': 'Growth system', 'ongoing-partner': 'Ongoing partner', 'ai-training': 'AI-training onboarding help', 'waterproofing': 'Free test for my basement or waterproofing company' };
   var planField = document.getElementById('planField');
   if (planField && PLAN_NAMES[planKey]) {
     planField.value = PLAN_NAMES[planKey];
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (loadBtn) loadBtn.addEventListener('click', function () {
       var f = document.createElement('iframe');
       f.src = demoUrl;
-      f.title = '3-minute demo: your waterproofing company, 30 days from now';
+      f.title = '3-minute demo: your company, 30 days from now';
       f.allow = 'autoplay; fullscreen; accelerometer; gyroscope; clipboard-write';
       f.setAttribute('allowfullscreen', '');
       f.referrerPolicy = 'strict-origin-when-cross-origin';
