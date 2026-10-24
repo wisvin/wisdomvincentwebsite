@@ -1801,6 +1801,9 @@ main.panels-split > .pricing-section .plan-more-item .price-name { color: var(--
 /* ── Waterproofing landing page: the Booked Jobs demo is shown inside the page (loads on tap) ── */
 .demo-embed { max-width: 1100px; margin: 0 auto; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border); background: var(--night); }
 .demo-embed iframe { display: block; width: 100%; height: min(88vh, 860px); min-height: 520px; border: 0; }
+.demo-embed.is-live { position: relative; }
+.demo-embed.is-live::after { content: 'Loading the demo…'; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-code); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-2); }
+.demo-embed.is-live iframe { position: relative; z-index: 1; }
 .demo-facade { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 380px; padding: 40px 24px; text-align: center; color: var(--on-dark); background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--pink) 32%, transparent), transparent 62%), var(--night); }
 .demo-facade-kicker { font-family: var(--font-code); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--on-dark-2); }
 .demo-facade-title { margin: 0; font-family: var(--font-heading); font-weight: 300; font-size: clamp(1.9rem, 5vw, 3.2rem); letter-spacing: -0.04em; line-height: 1.05; color: var(--on-dark); }

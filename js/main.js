@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var subject = document.querySelector('#contactForm input[name="_subject"]');
     if (subject) subject.value = 'Tailored plan request: ' + PLAN_NAMES[planKey];
   }
-  /* ── Waterproofing page: the Booked Jobs demo loads only when tapped (it is heavy: video + 3D), and ?co= / ?town= in this page's link are passed on to it ── */
+  /* ── Waterproofing page: the Booked Jobs demo starts when it scrolls into view or is tapped (it is heavy: video + 3D, so it is not loaded with the page), and ?co= / ?town= in this page's link are passed on to it ── */
   var demoWrap = document.querySelector('[data-demo-wrap]');
   if (demoWrap) {
     var demoUrl = demoWrap.getAttribute('data-demo-src');
@@ -169,8 +169,10 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) { /* the plain demo still works */ }
     var openLink = document.querySelector('a[data-demo-open]');
     if (openLink) openLink.href = demoUrl;
-    var loadBtn = demoWrap.querySelector('[data-demo-load]');
-    if (loadBtn) loadBtn.addEventListener('click', function () {
+    var demoStarted = false;
+    function startDemo() {
+      if (demoStarted) return;
+      demoStarted = true;
       var f = document.createElement('iframe');
       f.src = demoUrl;
       f.title = '3-minute demo: your company, 30 days from now';
@@ -178,9 +180,18 @@ document.addEventListener('DOMContentLoaded', function () {
       f.setAttribute('allowfullscreen', '');
       f.referrerPolicy = 'strict-origin-when-cross-origin';
       demoWrap.textContent = '';
-      demoWrap.appendChild(f);
       demoWrap.classList.add('is-live');
-    });
+      demoWrap.appendChild(f);
+    }
+    var loadBtn = demoWrap.querySelector('[data-demo-load]');
+    if (loadBtn) loadBtn.addEventListener('click', startDemo);
+    // Starts by itself when the visitor scrolls to it, so nobody has to find a button, and the page stays light until then.
+    if ('IntersectionObserver' in window) {
+      var demoWatch = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { demoWatch.disconnect(); startDemo(); }
+      }, { threshold: 0.2 });
+      demoWatch.observe(demoWrap);
+    }
   }
   initForm('leadMagnetForm', 'leadMagnetSuccess');
 
