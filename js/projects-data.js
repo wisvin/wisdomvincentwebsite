@@ -321,14 +321,8 @@ window.PROJECTS = [
       "feedback": "Priya M."
     },
     "slug": "saas-client-onboarding-on-autopilot",
-    "flow": [
-      "Stripe payment",
-      "Make.com",
-      "Create account",
-      "Welcome email",
-      "Slack channel",
-      "Notion workspace"
-    ]
+    "previewClass": "tp-09",
+    "projectFile": "assets/projects/1 - 09_SaaS_Client_Onboarding.html"
   },
   {
     "title": "Lead Nurture & Pipeline System",
@@ -397,14 +391,8 @@ window.PROJECTS = [
       "feedback": "Ayasha M."
     },
     "slug": "lead-nurture-pipeline-system",
-    "flow": [
-      "Ad lead",
-      "GoHighLevel",
-      "SMS in 5 min",
-      "Email touches",
-      "Pipeline stage",
-      "Booked call"
-    ]
+    "previewClass": "tp-08",
+    "projectFile": "assets/projects/1 - 08_Lead_Nurture_Pipeline.html"
   },
   {
     "title": "Self-Running Financial Reporting",
@@ -468,14 +456,8 @@ window.PROJECTS = [
       "feedback": "Marcus O."
     },
     "slug": "self-running-financial-reporting",
-    "flow": [
-      "Schedule",
-      "n8n",
-      "Xero sync",
-      "Build report",
-      "Email report",
-      "Trigger distribution"
-    ]
+    "previewClass": "tp-10",
+    "projectFile": "assets/projects/1 - 10_Financial_Reporting_Sync.html"
   },
   {
     "title": "Opsdesk — AI Ops Console",

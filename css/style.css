@@ -547,6 +547,9 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 .tp-03 { background-image: url('../assets/images/projects/03_Norrland_Ecommerce.webp'); }
 .tp-05 { background-image: url('../assets/images/projects/05_Meridian_Analytics.webp'); }
 .tp-06 { background-image: url('../assets/images/projects/06_Opsdesk_Console.webp'); }
+.tp-08 { background-image: url('../assets/images/projects/08_Lead_Nurture_Pipeline.webp'); }
+.tp-09 { background-image: url('../assets/images/projects/09_SaaS_Client_Onboarding.webp'); }
+.tp-10 { background-image: url('../assets/images/projects/10_Financial_Reporting_Sync.webp'); }
 .tp-12 { background-image: url('../assets/images/projects/12_Lead_Capture_Funnel.webp'); }
 .tp-14 { background-image: url('../assets/images/projects/14_Maintenance_Triage_Workflow.webp'); }
 .tp-15 { background-image: url('../assets/images/projects/15_Vacancy_Syndication.webp'); }

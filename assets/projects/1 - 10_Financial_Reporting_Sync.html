@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n — Automated Financial Reporting &amp; Xero Reconciliation Console</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0D13;--panel:#121620;--card:#1A202E;--border:#263044;
+  --text:#EEF2F6;--mut:#8E99AE;--orange:#FF6D5A;--green:#10B981;--blue:#38BDF8;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased;padding:24px;}
+.app{max-width:1160px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
+.header{padding:16px 24px;background:#0E121B;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+.brand-badge{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--orange),#FF907F);display:grid;place-items:center;font-weight:900;font-size:13px;color:#fff;}
+.badge-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-family:var(--font-mono);background:#10281E;color:var(--green);border:1px solid #165338;padding:4px 10px;border-radius:20px;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:20px 24px;background:#10141E;border-bottom:1px solid var(--border);}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;}
+.kpi-lbl{font-size:11px;font-family:var(--font-mono);color:var(--mut);text-transform:uppercase;letter-spacing:0.04em;}
+.kpi-val{font-size:24px;font-weight:800;letter-spacing:-0.03em;margin:4px 0 2px;}
+.kpi-meta{font-size:11px;color:var(--green);font-weight:600;}
+.content{padding:24px;}
+.grid-2{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;}
+@media (max-width:850px){.grid-2{grid-template-columns:1fr;}}
+.table-wrap{background:#0F131D;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.table-head{padding:14px 18px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;display:flex;justify-content:space-between;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 18px;color:var(--mut);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;background:#141926;}
+td{padding:12px 18px;border-top:1px solid #1C2436;}
+.status-pill{font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.status-pill.done{background:#0F291E;color:var(--green);border:1px solid #165338;}
+.side-box{background:#0F131D;border:1px solid var(--border);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:14px;}
+.box-title{font-size:12px;font-family:var(--font-mono);font-weight:700;color:var(--mut);text-transform:uppercase;}
+.metric-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1C2436;font-size:12.5px;}
+.metric-row:last-child{border:none;}
+.pill-active{background:rgba(16,185,129,0.12);color:var(--green);padding:2px 8px;border-radius:6px;font-family:var(--font-mono);font-size:11px;}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <div class="brand">
+      <div class="brand-badge">⚡</div>
+      <div>n8n &middot; Autonomous Financial Reporting &amp; Xero Sync Engine</div>
+    </div>
+    <div class="badge-status">
+      <span class="dot"></span>
+      <span>AUTOMATED RECONCILIATION &middot; ZERO HUMAN INPUT</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-lbl">Manual Admin Time</div>
+      <div class="kpi-val" style="color:var(--green);">0 Hours</div>
+      <div class="kpi-meta">&#8595; Down from 6 hrs/week</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Monthly Volume Reconciled</div>
+      <div class="kpi-val" style="color:var(--blue);">$418,920</div>
+      <div class="kpi-meta">&#10003; 100% matched to bank feed</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Executive P&amp;L Delivery</div>
+      <div class="kpi-val" style="color:var(--orange);">Every Monday 7 AM</div>
+      <div class="kpi-meta">&#10003; Automated PDF to Slack &amp; Email</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Audit Accuracy</div>
+      <div class="kpi-val" style="color:var(--text);">100%</div>
+      <div class="kpi-meta">&#10003; Zero manual transcription errors</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="grid-2">
+      <div class="table-wrap">
+        <div class="table-head">
+          <span>Weekly Financial Compilation Logs</span>
+          <span style="font-size:11px;font-family:var(--font-mono);color:var(--green);">&#9889; n8n Schedule Active</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Reporting Cycle</th>
+              <th>Source</th>
+              <th>Gross Revenue</th>
+              <th>Net Margin</th>
+              <th>PDF Distribution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Week 46 (Current)</b></td>
+              <td>Xero + Stripe</td>
+              <td>$108,420.00</td>
+              <td style="color:var(--green);font-weight:700;">+34.2%</td>
+              <td><span class="status-pill done">&#10003; Sent to Founders</span></td>
+            </tr>
+            <tr>
+              <td><b>Week 45</b></td>
+              <td>Xero + Stripe</td>
+              <td>$104,890.00</td>
+              <td style="color:var(--green);font-weight:700;">+32.8%</td>
+              <td><span class="status-pill done">&#10003; Sent to Founders</span></td>
+            </tr>
+            <tr>
+              <td><b>Week 44</b></td>
+              <td>Xero + Stripe</td>
+              <td>$98,750.00</td>
+              <td style="color:var(--green);font-weight:700;">+31.4%</td>
+              <td><span class="status-pill done">&#10003; Sent to Founders</span></td>
+            </tr>
+            <tr>
+              <td><b>Week 43</b></td>
+              <td>Xero + Stripe</td>
+              <td>$106,860.00</td>
+              <td style="color:var(--green);font-weight:700;">+33.1%</td>
+              <td><span class="status-pill done">&#10003; Sent to Founders</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="side-box">
+        <div class="box-title">System Status &amp; Integration Health</div>
+        <div class="metric-row">
+          <span>Xero API Webhook</span>
+          <span class="pill-active">Connected (OAuth2)</span>
+        </div>
+        <div class="metric-row">
+          <span>Stripe Payout Listener</span>
+          <span class="pill-active">Active (0ms latency)</span>
+        </div>
+        <div class="metric-row">
+          <span>PDF Compilation (Puppeteer)</span>
+          <span class="pill-active">Ready &middot; 2.4s avg render</span>
+        </div>
+        <div class="metric-row">
+          <span>Slack #exec-finance Delivery</span>
+          <span class="pill-active">Verified Delivery</span>
+        </div>
+        <div class="metric-row">
+          <span>Data Ingestion Speed</span>
+          <span style="font-family:var(--font-mono);color:#93C5FD;font-weight:600;">14,200 rows in 4.1s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

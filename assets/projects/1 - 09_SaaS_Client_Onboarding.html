@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make.com — Autopilot SaaS Client Onboarding Console</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0D14;--panel:#121622;--card:#1A2030;--border:#263047;
+  --text:#EEF2F6;--mut:#8E99AE;--accent:#8E75FF;--purple:#6C5CE7;--green:#10B981;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased;padding:24px;}
+.app{max-width:1160px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6);}
+.header{padding:16px 24px;background:#0E121C;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+.brand-badge{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#9D4EDD,#6C5CE7);display:grid;place-items:center;font-weight:900;font-size:13px;color:#fff;}
+.badge-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-family:var(--font-mono);background:#17153A;color:#A78BFA;border:1px solid #3B2D71;padding:4px 10px;border-radius:20px;}
+.dot{width:6px;height:6px;border-radius:50%;background:#A78BFA;box-shadow:0 0 8px #A78BFA;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:20px 24px;background:#101420;border-bottom:1px solid var(--border);}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;}
+.kpi-lbl{font-size:11px;font-family:var(--font-mono);color:var(--mut);text-transform:uppercase;letter-spacing:0.04em;}
+.kpi-val{font-size:24px;font-weight:800;letter-spacing:-0.03em;margin:4px 0 2px;}
+.kpi-meta{font-size:11px;color:var(--green);font-weight:600;}
+.content{padding:24px;}
+.stepper{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:24px;}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;}
+.step-card.success{border-color:rgba(16,185,129,0.4);background:#111B22;}
+.step-num{font-family:var(--font-mono);font-size:10.5px;color:var(--mut);font-weight:700;}
+.step-name{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.step-desc{font-size:11px;color:var(--mut);line-height:1.4;}
+.step-status{font-size:10px;font-family:var(--font-mono);color:var(--green);background:rgba(16,185,129,0.12);padding:2px 6px;border-radius:4px;align-self:flex-start;margin-top:auto;}
+.table-wrap{background:#0F131D;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.table-head{padding:14px 18px;border-bottom:1px solid var(--border);font-size:13px;font-weight:700;display:flex;justify-content:space-between;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 18px;color:var(--mut);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;background:#141926;}
+td{padding:12px 18px;border-top:1px solid #1C2436;}
+.status-pill{font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.status-pill.done{background:#0F291E;color:var(--green);border:1px solid #165338;}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <div class="brand">
+      <div class="brand-badge">🔗</div>
+      <div>Make.com &middot; Enterprise Client Onboarding Orchestrator</div>
+    </div>
+    <div class="badge-status">
+      <span class="dot"></span>
+      <span>AUTONOMOUS WORKFLOW &middot; 0 MANUAL TOUCHPOINTS</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-lbl">Onboarding Duration</div>
+      <div class="kpi-val" style="color:var(--green);">2 Hours</div>
+      <div class="kpi-meta">&#8595; Down from 3 days manual</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Clients Onboarded</div>
+      <div class="kpi-val" style="color:#A78BFA;">142</div>
+      <div class="kpi-meta">&#10003; 100% automated completion</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Errors / Delays</div>
+      <div class="kpi-val" style="color:var(--text);">0</div>
+      <div class="kpi-meta">&#10003; Zero missed welcome steps</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Staff Time Saved</div>
+      <div class="kpi-val" style="color:#F59E0B;">28 hrs/wk</div>
+      <div class="kpi-meta">&#8593; Team focused on retention</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="stepper">
+      <div class="step-card success">
+        <div class="step-num">STEP 01</div>
+        <div class="step-name">💳 Stripe Payment</div>
+        <div class="step-desc">Webhook captures customer data, plan tier, and payment verification.</div>
+        <div class="step-status">&#10003; Instant Trigger</div>
+      </div>
+      <div class="step-card success">
+        <div class="step-num">STEP 02</div>
+        <div class="step-name">👤 Account Provisioned</div>
+        <div class="step-desc">Auth0 tenant created, database role assigned, API key generated.</div>
+        <div class="step-status">&#10003; 4.2s runtime</div>
+      </div>
+      <div class="step-card success">
+        <div class="step-num">STEP 03</div>
+        <div class="step-name">💬 Slack Connect</div>
+        <div class="step-desc">Private `#client-name` channel generated with team members invited.</div>
+        <div class="step-status">&#10003; Channel Live</div>
+      </div>
+      <div class="step-card success">
+        <div class="step-num">STEP 04</div>
+        <div class="step-name">📑 Notion Workspace</div>
+        <div class="step-desc">Project onboarding template cloned, customized, and shared.</div>
+        <div class="step-status">&#10003; Shared with client</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-head">
+        <span>Recent Automated Onboarding Executions</span>
+        <span style="font-size:11px;font-family:var(--font-mono);color:var(--mut);">All Systems Synced</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Client Organization</th>
+            <th>Tier</th>
+            <th>Stripe Amount</th>
+            <th>Slack Channel</th>
+            <th>Notion Portal</th>
+            <th>Execution Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Hyperion Media Group</b></td>
+            <td>Enterprise ($4,800/mo)</td>
+            <td>$4,800.00</td>
+            <td>#hyperion-connect</td>
+            <td>/portal/hyperion</td>
+            <td><span class="status-pill done">&#10003; Completed in 1m 48s</span></td>
+          </tr>
+          <tr>
+            <td><b>Apex Logistics Corp</b></td>
+            <td>Growth ($2,200/mo)</td>
+            <td>$2,200.00</td>
+            <td>#apex-connect</td>
+            <td>/portal/apex</td>
+            <td><span class="status-pill done">&#10003; Completed in 1m 12s</span></td>
+          </tr>
+          <tr>
+            <td><b>Crestline Digital</b></td>
+            <td>Enterprise ($4,800/mo)</td>
+            <td>$4,800.00</td>
+            <td>#crestline-team</td>
+            <td>/portal/crestline</td>
+            <td><span class="status-pill done">&#10003; Completed in 1m 35s</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
