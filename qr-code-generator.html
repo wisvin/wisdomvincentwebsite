@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Free Custom QR Code Generator | Wisdom</title>
+  <meta name="description" content="Generate high-resolution, private QR codes for URLs, WhatsApp direct chat, Wi-Fi networks, and vCard business cards. Customize colors and export as PNG or vector SVG." />
+  <link rel="canonical" href="https://wisdom-vincent.vercel.app/qr-code-generator.html" />
+  <meta name="theme-color" content="#0B0612" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wisdom" />
+  <meta property="og:url" content="https://wisdom-vincent.vercel.app/qr-code-generator.html" />
+  <meta property="og:title" content="Free Custom QR Code Generator | Wisdom" />
+  <meta property="og:description" content="Generate high-resolution, private QR codes for URLs, WhatsApp direct chat, Wi-Fi networks, and vCard business cards. 100% in-browser." />
+  <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <link rel="stylesheet" href="css/style.css?v=63" />
+  <script src="js/qr-engine.js?v=63" defer></script>
+  <script src="js/nav.js?v=63" defer></script>
+  <script src="js/main.js?v=63" defer></script>
+  <script src="js/analytics.js?v=63" defer></script>
+  <style>
+    .qr-studio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-top: 24px;
+    }
+    @media (min-width: 960px) {
+      .qr-studio-grid {
+        grid-template-columns: 1.25fr 0.95fr;
+        gap: 48px;
+      }
+    }
+    .qr-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.06);
+    }
+    .qr-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .qr-tab {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .qr-tab:hover {
+      border-color: var(--pink);
+    }
+    .qr-tab.active {
+      background: var(--night);
+      color: #fff;
+      border-color: var(--night);
+      box-shadow: 0 4px 12px rgba(11,6,18,0.2);
+    }
+    .qr-pane {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .qr-pane.active {
+      display: flex;
+    }
+    .qr-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .qr-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .qr-input, .qr-select, .qr-textarea {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .qr-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .qr-input:focus, .qr-select:focus, .qr-textarea:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(236,61,142,0.12);
+    }
+    .qr-custom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+    }
+    @media (max-width: 600px) {
+      .qr-custom-row { grid-template-columns: 1fr; }
+    }
+    .qr-color-picker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+    }
+    .qr-color-picker input[type="color"] {
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: none;
+    }
+    .qr-preview-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: sticky;
+      top: 96px;
+    }
+    .qr-canvas-wrap {
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.12);
+      display: grid;
+      place-items: center;
+      max-width: 340px;
+      width: 100%;
+      aspect-ratio: 1;
+      margin-bottom: 20px;
+    }
+    .qr-canvas-wrap canvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .qr-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 340px;
+    }
+    .qr-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      width: 100%;
+      text-decoration: none;
+    }
+    .qr-btn-primary {
+      background: var(--pink);
+      color: #fff;
+    }
+    .qr-btn-primary:hover {
+      background: #d62b7a;
+      transform: translateY(-1px);
+    }
+    .qr-btn-secondary {
+      background: var(--night);
+      color: #fff;
+    }
+    .qr-btn-secondary:hover {
+      background: #1b1228;
+    }
+    .qr-btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .qr-btn-outline:hover {
+      background: var(--card);
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--night);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--pink);
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+    }
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.78rem;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Free Tools &middot; Utility Suite</span>
+      <h1>Instant, Private <span class="hl">QR Code Studio.</span></h1>
+      <p>Generate high-resolution, custom QR codes for websites, WhatsApp direct messages, Wi-Fi networks, and digital business cards. Runs 100% in your browser &mdash; zero tracking, totally private, and free forever.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="qr-studio-grid">
+        
+        <!-- Left: Form Controls -->
+        <div class="qr-card">
+          <!-- Mode Tabs -->
+          <div class="qr-tabs" role="tablist">
+            <button class="qr-tab active" data-pane="url">🔗 Website URL</button>
+            <button class="qr-tab" data-pane="whatsapp">💬 WhatsApp</button>
+            <button class="qr-tab" data-pane="wifi">📶 Wi-Fi</button>
+            <button class="qr-tab" data-pane="vcard">👤 Contact (vCard)</button>
+            <button class="qr-tab" data-pane="text">📝 Plain Text</button>
+          </div>
+
+          <!-- PANE: URL -->
+          <div class="qr-pane active" id="pane-url">
+            <div class="qr-group">
+              <label for="input-url">Website URL</label>
+              <input type="url" id="input-url" class="qr-input" placeholder="https://example.com" value="https://wisdom-vincent.vercel.app" />
+            </div>
+            <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">Point visitors directly to your landing page, portfolio, or menu.</p>
+          </div>
+
+          <!-- PANE: WHATSAPP -->
+          <div class="qr-pane" id="pane-whatsapp">
+            <div class="qr-group">
+              <label for="input-wa-phone">WhatsApp Number (with country code)</label>
+              <input type="tel" id="input-wa-phone" class="qr-input" placeholder="+1234567890" value="+2349136538627" />
+            </div>
+            <div class="qr-group">
+              <label for="input-wa-msg">Prefilled Message (Optional)</label>
+              <textarea id="input-wa-msg" class="qr-textarea" placeholder="Hi Wisdom, I want to discuss an automation project...">Hi Wisdom, I found your website and would like to learn more!</textarea>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">Opens WhatsApp directly with your number and pre-written message ready to send.</p>
+          </div>
+
+          <!-- PANE: WI-FI -->
+          <div class="qr-pane" id="pane-wifi">
+            <div class="qr-group">
+              <label for="input-wifi-ssid">Network Name (SSID)</label>
+              <input type="text" id="input-wifi-ssid" class="qr-input" placeholder="Office-Guest-WiFi" value="Wisdom-Guest" />
+            </div>
+            <div class="qr-group">
+              <label for="input-wifi-pass">Password</label>
+              <input type="text" id="input-wifi-pass" class="qr-input" placeholder="WiFi Password" value="welcome2026" />
+            </div>
+            <div class="qr-group">
+              <label for="input-wifi-auth">Security Type</label>
+              <select id="input-wifi-auth" class="qr-select">
+                <option value="WPA" selected>WPA / WPA2 (Most common)</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">None (Open Network)</option>
+              </select>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">Guests scan this code with their phone camera to instantly connect without typing passwords.</p>
+          </div>
+
+          <!-- PANE: VCARD -->
+          <div class="qr-pane" id="pane-vcard">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="qr-group">
+                <label for="input-vc-first">First Name</label>
+                <input type="text" id="input-vc-first" class="qr-input" placeholder="Wisdom" value="Wisdom" />
+              </div>
+              <div class="qr-group">
+                <label for="input-vc-last">Last Name</label>
+                <input type="text" id="input-vc-last" class="qr-input" placeholder="Vincent" value="Vincent" />
+              </div>
+            </div>
+            <div class="qr-group">
+              <label for="input-vc-title">Job Title</label>
+              <input type="text" id="input-vc-title" class="qr-input" placeholder="AI Developer & Automation Engineer" value="AI Developer &amp; Automation Engineer" />
+            </div>
+            <div class="qr-group">
+              <label for="input-vc-org">Company / Brand</label>
+              <input type="text" id="input-vc-org" class="qr-input" placeholder="Wisdom Vincent Systems" value="Wisdom" />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="qr-group">
+                <label for="input-vc-phone">Phone</label>
+                <input type="tel" id="input-vc-phone" class="qr-input" placeholder="+1234567890" value="+2349136538627" />
+              </div>
+              <div class="qr-group">
+                <label for="input-vc-email">Email</label>
+                <input type="email" id="input-vc-email" class="qr-input" placeholder="wvemofficial@gmail.com" value="wvemofficial@gmail.com" />
+              </div>
+            </div>
+            <div class="qr-group">
+              <label for="input-vc-url">Website</label>
+              <input type="url" id="input-vc-url" class="qr-input" placeholder="https://wisdom-vincent.vercel.app" value="https://wisdom-vincent.vercel.app" />
+            </div>
+          </div>
+
+          <!-- PANE: TEXT -->
+          <div class="qr-pane" id="pane-text">
+            <div class="qr-group">
+              <label for="input-raw-text">Custom Text</label>
+              <textarea id="input-raw-text" class="qr-textarea" placeholder="Paste any text or data here...">Hello from Wisdom Vincent — AI Developer &amp; Automation Engineer</textarea>
+            </div>
+          </div>
+
+          <!-- Customization Options -->
+          <div class="qr-custom-row">
+            <div class="qr-group">
+              <label>Foreground Color</label>
+              <div class="qr-color-picker">
+                <input type="color" id="qr-color-dark" value="#0B0D14" />
+                <span id="qr-color-dark-val" style="font-family: var(--font-code); font-size: 0.85rem;">#0B0D14</span>
+              </div>
+            </div>
+            <div class="qr-group">
+              <label>Background Color</label>
+              <div class="qr-color-picker">
+                <input type="color" id="qr-color-light" value="#FFFFFF" />
+                <span id="qr-color-light-val" style="font-family: var(--font-code); font-size: 0.85rem;">#FFFFFF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Preview & Downloads -->
+        <div class="qr-preview-box">
+          <div class="qr-card" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="qr-canvas-wrap">
+              <canvas id="qr-canvas" width="360" height="360"></canvas>
+            </div>
+
+            <div class="qr-actions">
+              <button id="btn-dl-png" class="qr-btn qr-btn-primary">
+                <span>📥</span> Download High-Res PNG
+              </button>
+              <button id="btn-dl-svg" class="qr-btn qr-btn-secondary">
+                <span>⚡</span> Download Vector SVG
+              </button>
+              <button id="btn-copy" class="qr-btn qr-btn-outline">
+                <span>📋</span> Copy Image to Clipboard
+              </button>
+            </div>
+
+            <div class="privacy-badge">
+              <span>🔒</span> 100% Client-Side &middot; Zero Data Sent to Servers
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead Hook Banner -->
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <span class="section-label">Automate &amp; Scale</span>
+        <h2>Need dynamic QR codes created<br />automatically at scale?</h2>
+        <p>Creating one code manually is great for marketing tests. But if your business needs personalized QR codes auto-generated on invoices, inventory tags, shipping labels, or CRM lead campaigns, I can build an automated pipeline for you.</p>
+        <div class="cta-actions">
+          <a href="contact.html?plan=quick-automation#contact-form" class="btn btn-primary">Get a Custom Automation Plan &rarr;</a>
+          <a href="https://calendly.com/wvemofficial/30min" target="_blank" rel="noopener" class="btn btn-outline">Book a Strategy Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast-msg">
+  <span>✓</span> <span id="toast-text">Copied to clipboard!</span>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var activeMode = 'url';
+  var canvas = document.getElementById('qr-canvas');
+  var colorDark = document.getElementById('qr-color-dark');
+  var colorLight = document.getElementById('qr-color-light');
+  var darkVal = document.getElementById('qr-color-dark-val');
+  var lightVal = document.getElementById('qr-color-light-val');
+  var toast = document.getElementById('toast');
+  var toastText = document.getElementById('toast-text');
+
+  function showToast(msg) {
+    toastText.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 2200);
+  }
+
+  function getPayload() {
+    switch (activeMode) {
+      case 'url':
+        var u = document.getElementById('input-url').value.trim();
+        return u || 'https://wisdom-vincent.vercel.app';
+      case 'whatsapp':
+        var phone = document.getElementById('input-wa-phone').value.replace(/[^0-9]/g, '');
+        var msg = encodeURIComponent(document.getElementById('input-wa-msg').value.trim());
+        return 'https://wa.me/' + phone + (msg ? '?text=' + msg : '');
+      case 'wifi':
+        var ssid = document.getElementById('input-wifi-ssid').value.trim();
+        var pass = document.getElementById('input-wifi-pass').value.trim();
+        var auth = document.getElementById('input-wifi-auth').value;
+        return 'WIFI:T:' + auth + ';S:' + ssid + ';P:' + pass + ';;';
+      case 'vcard':
+        var fn = document.getElementById('input-vc-first').value.trim();
+        var ln = document.getElementById('input-vc-last').value.trim();
+        var title = document.getElementById('input-vc-title').value.trim();
+        var org = document.getElementById('input-vc-org').value.trim();
+        var tel = document.getElementById('input-vc-phone').value.trim();
+        var email = document.getElementById('input-vc-email').value.trim();
+        var web = document.getElementById('input-vc-url').value.trim();
+        return 'BEGIN:VCARD\nVERSION:3.0\nN:' + ln + ';' + fn + ';;;\nFN:' + fn + ' ' + ln +
+          (org ? '\nORG:' + org : '') +
+          (title ? '\nTITLE:' + title : '') +
+          (tel ? '\nTEL;TYPE=CELL:' + tel : '') +
+          (email ? '\nEMAIL:' + email : '') +
+          (web ? '\nURL:' + web : '') +
+          '\nEND:VCARD';
+      case 'text':
+        var t = document.getElementById('input-raw-text').value;
+        return t || 'Wisdom Vincent — AI & Automation';
+      default:
+        return 'https://wisdom-vincent.vercel.app';
+    }
+  }
+
+  function renderQR() {
+    if (!window.WvQR) {
+      setTimeout(renderQR, 100);
+      return;
+    }
+    var text = getPayload();
+    try {
+      window.WvQR.drawCanvas(canvas, text, {
+        size: 360,
+        margin: 2,
+        colorDark: colorDark.value,
+        colorLight: colorLight.value
+      });
+    } catch (e) {
+      console.warn('QR render error:', e);
+    }
+  }
+
+  // Tabs
+  var tabs = document.querySelectorAll('.qr-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      activeMode = tab.getAttribute('data-pane');
+      document.querySelectorAll('.qr-pane').forEach(function(p) { p.classList.remove('active'); });
+      var target = document.getElementById('pane-' + activeMode);
+      if (target) target.classList.add('active');
+      renderQR();
+    });
+  });
+
+  // Inputs live change
+  document.querySelectorAll('.qr-input, .qr-textarea, .qr-select').forEach(function(el) {
+    el.addEventListener('input', renderQR);
+    el.addEventListener('change', renderQR);
+  });
+
+  colorDark.addEventListener('input', function() {
+    darkVal.textContent = colorDark.value.toUpperCase();
+    renderQR();
+  });
+  colorLight.addEventListener('input', function() {
+    lightVal.textContent = colorLight.value.toUpperCase();
+    renderQR();
+  });
+
+  // Download PNG
+  document.getElementById('btn-dl-png').addEventListener('click', function() {
+    var text = getPayload();
+    var highResCanvas = document.createElement('canvas');
+    window.WvQR.drawCanvas(highResCanvas, text, {
+      size: 1024,
+      margin: 2,
+      colorDark: colorDark.value,
+      colorLight: colorLight.value
+    });
+    var a = document.createElement('a');
+    a.download = 'qr-code-' + activeMode + '.png';
+    a.href = highResCanvas.toDataURL('image/png');
+    a.click();
+    showToast('High-Res PNG downloaded!');
+  });
+
+  // Download SVG
+  document.getElementById('btn-dl-svg').addEventListener('click', function() {
+    var text = getPayload();
+    var svg = window.WvQR.getSVG(text, {
+      size: 1024,
+      margin: 2,
+      colorDark: colorDark.value,
+      colorLight: colorLight.value
+    });
+    var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.download = 'qr-code-' + activeMode + '.svg';
+    a.href = url;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Vector SVG downloaded!');
+  });
+
+  // Copy Image to Clipboard
+  document.getElementById('btn-copy').addEventListener('click', function() {
+    canvas.toBlob(function(blob) {
+      if (!blob) return;
+      if (navigator.clipboard && navigator.clipboard.write) {
+        navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]).then(function() {
+          showToast('QR code copied to clipboard!');
+        }).catch(function() {
+          showToast('Clipboard access denied');
+        });
+      } else {
+        showToast('Clipboard API not supported');
+      }
+    });
+  });
+
+  renderQR();
+});
+</script>
+
+</body>
+</html>

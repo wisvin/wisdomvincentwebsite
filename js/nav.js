@@ -24,6 +24,7 @@
     { href: 'openclaw.html',    label: 'Lead Generation & Data',   icon: '🎯' },
     { href: 'gohighlevel.html', label: 'CRM & Lead Follow-up',     icon: '🚀' },
     { href: 'for-waterproofing.html', label: 'Basement & Waterproofing', icon: '💧' },
+    { href: 'qr-code-generator.html', label: 'QR Code Studio',        icon: '📱' },
   ];
 
   const SOCIALS = [
