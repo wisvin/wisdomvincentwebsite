@@ -10,6 +10,7 @@
     { href: 'index.html',    label: 'Home' },
     { href: 'about.html',   label: 'About' },
     { href: 'projects.html',label: 'Projects' },
+    { href: 'tools.html',   label: 'Free Tools' },
     { href: 'reviews.html', label: 'Reviews' },
     { href: 'faq.html',     label: 'FAQ' },
     { href: 'contact.html', label: 'Contact' },
@@ -24,7 +25,8 @@
     { href: 'openclaw.html',    label: 'Lead Generation & Data',   icon: '🎯' },
     { href: 'gohighlevel.html', label: 'CRM & Lead Follow-up',     icon: '🚀' },
     { href: 'for-waterproofing.html', label: 'Basement & Waterproofing', icon: '💧' },
-    { href: 'qr-code-generator.html', label: 'QR Code Studio',        icon: '📱' },
+    { href: 'tools.html',             label: 'Free Tools Suite',        icon: '🛠️' },
+    { href: 'qr-code-generator.html', label: 'QR Code Studio',          icon: '📱' },
   ];
 
   const SOCIALS = [

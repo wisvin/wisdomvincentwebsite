@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Free Business &amp; Developer Browser Tools | Wisdom</title>
+  <meta name="description" content="Free, client-side browser utilities for businesses, marketers, and developers. QR Code Studio, WebP Image Compressor, UTM Builder, and Invoice Maker. 100% private, zero uploads." />
+  <link rel="canonical" href="https://wisdom-vincent.vercel.app/tools.html" />
+  <meta name="theme-color" content="#0B0612" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wisdom" />
+  <meta property="og:url" content="https://wisdom-vincent.vercel.app/tools.html" />
+  <meta property="og:title" content="Free Business &amp; Developer Browser Tools | Wisdom" />
+  <meta property="og:description" content="Instant, privacy-first client-side browser tools. Zero tracking, zero file uploads, totally free forever." />
+  <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Business &amp; Developer Browser Tools | Wisdom" />
+  <meta name="twitter:description" content="Instant, privacy-first client-side browser tools. Zero tracking, zero file uploads, totally free forever." />
+  <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <link rel="stylesheet" href="css/style.css?v=63" />
+  <script src="js/preloader.js?v=63"></script>
+  <script src="js/nav.js?v=63" defer></script>
+  <script src="js/main.js?v=63" defer></script>
+  <script src="js/analytics.js?v=63" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://wisdom-vincent.vercel.app/tools.html",
+      "url": "https://wisdom-vincent.vercel.app/tools.html",
+      "name": "Free Business & Developer Browser Tools | Wisdom",
+      "description": "Free, privacy-first client-side browser utilities for businesses, marketers, and developers. 100% in-browser.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wisdom-vincent.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": "https://wisdom-vincent.vercel.app/tools.html" }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    .tools-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+      align-items: center;
+    }
+    .tool-filter-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tool-filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .tool-filter-btn.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+      box-shadow: 0 4px 12px rgba(20,28,82,0.15);
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    @media (min-width: 768px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1080px) {
+      .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(236, 61, 142, 0.4);
+      box-shadow: 0 16px 36px -12px rgba(20, 28, 82, 0.1);
+    }
+    .tool-card.is-hidden {
+      display: none !important;
+    }
+    .tool-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .tool-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .tool-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tool-badge-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 2px rgba(47, 122, 75, 0.25);
+    }
+    .tool-badge-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tool-badge-custom {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+      background: var(--accent-dim);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tool-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .tool-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .tool-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .tool-spec-pill {
+      font-size: 0.76rem;
+      font-weight: 500;
+      font-family: var(--font-code);
+      background: var(--card);
+      color: var(--text-soft);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .tool-card-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .action-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(236, 61, 142, 0.25);
+    }
+    .action-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .action-secondary {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      cursor: not-allowed;
+    }
+    .action-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .action-outline:hover {
+      background: var(--card);
+      border-color: var(--text);
+    }
+    .why-client-side {
+      margin-top: 80px;
+      padding: 48px 36px;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 36px;
+    }
+    @media (min-width: 800px) {
+      .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .why-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .why-item-icon {
+      font-size: 1.8rem;
+    }
+    .why-item h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .why-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      align-items: center;
+      margin-top: 24px;
+    }
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+  <!-- -- Page Hero ---------------------------------------- -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Free Browser Suite</span>
+      <h1>Tools that run on your machine. <span class="hl">Private, instant, free forever.</span></h1>
+      <p>No account logins, zero tracking cookies, and no files uploaded to cloud servers. Every utility here executes 100% inside your browser using modern client-side web APIs &mdash; fast, private, and unlimited.</p>
+      
+      <div class="trust-strip">
+        <div class="trust-item">🛡️ 100% Client-Side Privacy</div>
+        <div class="trust-item">⚡ Zero Server Latency</div>
+        <div class="trust-item">🆓 No Credit Card or Sign-Up</div>
+        <div class="trust-item">📦 Open Web Standards</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -- Tools Section ------------------------------------ -->
+  <section class="tools-section" style="padding-top: 10px;">
+    <div class="container">
+
+      <!-- Filter Controls -->
+      <div class="tools-filter-bar" role="tablist">
+        <button class="tool-filter-btn active" data-filter="all">All Utilities</button>
+        <button class="tool-filter-btn" data-filter="marketing">Marketing &amp; Links</button>
+        <button class="tool-filter-btn" data-filter="media">Media &amp; Web</button>
+        <button class="tool-filter-btn" data-filter="business">Business &amp; Operations</button>
+        <button class="tool-filter-btn" data-filter="ai">AI &amp; Productivity</button>
+      </div>
+
+      <!-- Tools Grid -->
+      <div class="tools-grid" id="toolsGrid">
+
+        <!-- Tool 1: QR Code Studio (Active) -->
+        <div class="tool-card" data-category="marketing">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">📱</div>
+              <span class="tool-badge-live">Active &bull; Free</span>
+            </div>
+            <h2 class="tool-title">Pro QR Code Studio</h2>
+            <p class="tool-desc">Generate high-resolution, branded QR codes for websites, WhatsApp direct chat, Wi-Fi network sharing, and vCard business cards with custom colors.</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Vector SVG Export</span>
+              <span class="tool-spec-pill">1024px PNG</span>
+              <span class="tool-spec-pill">Clipboard Copy</span>
+              <span class="tool-spec-pill">Zero Tracking</span>
+            </div>
+          </div>
+          <a href="qr-code-generator.html" class="tool-card-action action-primary">
+            Launch QR Studio <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Tool 2: WebP Image Optimizer (Roadmap) -->
+        <div class="tool-card" data-category="media">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">🖼️</div>
+              <span class="tool-badge-soon">In Development</span>
+            </div>
+            <h2 class="tool-title">Client-Side WebP Optimizer</h2>
+            <p class="tool-desc">Batch compress and convert PNG, JPG, and GIF images to modern WebP format without uploading your private graphics or client assets to any server.</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Canvas API</span>
+              <span class="tool-spec-pill">Quality Control</span>
+              <span class="tool-spec-pill">Lossless / Lossy</span>
+              <span class="tool-spec-pill">Drag &amp; Drop</span>
+            </div>
+          </div>
+          <div class="tool-card-action action-secondary">
+            Releasing Next &bull; v1.1
+          </div>
+        </div>
+
+        <!-- Tool 3: UTM Campaign Link Builder (Roadmap) -->
+        <div class="tool-card" data-category="marketing">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">🔗</div>
+              <span class="tool-badge-soon">In Development</span>
+            </div>
+            <h2 class="tool-title">UTM Campaign Architect</h2>
+            <p class="tool-desc">Build error-free Google Analytics tracking URLs for Meta Ads, Google Ads, LinkedIn campaigns, and email newsletters with instant parameter sanitization.</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Ad Presets</span>
+              <span class="tool-spec-pill">Auto Slug Cleaner</span>
+              <span class="tool-spec-pill">1-Click Copy</span>
+              <span class="tool-spec-pill">History Log</span>
+            </div>
+          </div>
+          <div class="tool-card-action action-secondary">
+            In Development
+          </div>
+        </div>
+
+        <!-- Tool 4: Instant Invoice Builder (Roadmap) -->
+        <div class="tool-card" data-category="business">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">🧾</div>
+              <span class="tool-badge-soon">In Development</span>
+            </div>
+            <h2 class="tool-title">One-Click Invoice Generator</h2>
+            <p class="tool-desc">Create professional, print-ready PDF invoices, work estimates, and receipts in seconds with automated line-item calculations, tax, and currency support.</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Instant PDF Export</span>
+              <span class="tool-spec-pill">Local Storage Save</span>
+              <span class="tool-spec-pill">Multi-Currency</span>
+              <span class="tool-spec-pill">Logo Upload</span>
+            </div>
+          </div>
+          <div class="tool-card-action action-secondary">
+            In Development
+          </div>
+        </div>
+
+        <!-- Tool 5: Prompt Token Estimator (Roadmap) -->
+        <div class="tool-card" data-category="ai">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">🤖</div>
+              <span class="tool-badge-soon">In Development</span>
+            </div>
+            <h2 class="tool-title">AI Prompt Token &amp; Cost Estimator</h2>
+            <p class="tool-desc">Measure exact token counts, character lengths, and projected API costs for Claude 3.7, GPT-4o, and Gemini before triggering bulk automated pipelines.</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Live Tokenizer</span>
+              <span class="tool-spec-pill">Pricing Matrix</span>
+              <span class="tool-spec-pill">JSON Validator</span>
+              <span class="tool-spec-pill">Context Limits</span>
+            </div>
+          </div>
+          <div class="tool-card-action action-secondary">
+            In Development
+          </div>
+        </div>
+
+        <!-- Tool 6: Custom Tool Request (Call to Action) -->
+        <div class="tool-card" data-category="business">
+          <div>
+            <div class="tool-card-top">
+              <div class="tool-icon-wrap">⚙️</div>
+              <span class="tool-badge-custom">Custom Engineering</span>
+            </div>
+            <h2 class="tool-title">Need a Custom Internal Tool?</h2>
+            <p class="tool-desc">Have a specific operational calculation, client-facing quoting widget, or automated data pipeline you want built directly into your website?</p>
+            <div class="tool-specs">
+              <span class="tool-spec-pill">Tailored to Your Flow</span>
+              <span class="tool-spec-pill">AI Agent Integration</span>
+              <span class="tool-spec-pill">Zero Maintenance</span>
+            </div>
+          </div>
+          <a href="contact.html" class="tool-card-action action-outline">
+            Request a Custom Tool <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Why Client-Side Box -->
+      <div class="why-client-side">
+        <div class="section-header">
+          <span class="section-label">Engineering Standards</span>
+          <h2 class="section-title" style="font-size: 1.85rem; margin-top: 6px;">Why client-side tools matter for your business</h2>
+          <p class="section-sub" style="margin-bottom: 0;">Most online tools force you through sign-up walls, upload your private files to foreign cloud servers, and restrict basic exports behind paid tiers. Here is how these tools differ:</p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="why-item-icon">🔒</div>
+            <h3>100% Privacy by Design</h3>
+            <p>Your inputs, documents, Wi-Fi credentials, and contact details are processed strictly inside your own browser memory. No data is logged, stored, or transmitted to any remote database.</p>
+          </div>
+
+          <div class="why-item">
+            <div class="why-item-icon">⚡</div>
+            <h3>Instant 60fps Performance</h3>
+            <p>By eliminating server roundtrips, tools render with zero network latency. Exports generate instantly, whether you are creating one asset or running bulk generations.</p>
+          </div>
+
+          <div class="why-item">
+            <div class="why-item-icon">💸</div>
+            <h3>Permanently Free, No Bait-and-Switch</h3>
+            <p>Because these utilities run entirely on your browser hardware rather than costing expensive server computing power, they remain completely free forever without watermarks or export caps.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var filterButtons = document.querySelectorAll('.tool-filter-btn');
+  var cards = document.querySelectorAll('.tool-card');
+
+  filterButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterButtons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var filter = btn.getAttribute('data-filter');
+
+      cards.forEach(function(card) {
+        var cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('is-hidden');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>
