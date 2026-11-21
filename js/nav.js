@@ -26,6 +26,7 @@
     { href: 'for-waterproofing.html', label: 'Basement & Waterproofing', icon: '💧' },
     { href: 'tools.html',             label: 'Free Tools Suite',        icon: '🛠️' },
     { href: 'qr-code-generator.html', label: 'QR Code Studio',          icon: '📱' },
+    { href: 'image-compressor.html',  label: 'WebP Image Compressor',   icon: '🖼️' },
   ];
 
   const SOCIALS = [

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Free WebP Image Compressor &amp; Converter | Wisdom</title>
+  <meta name="description" content="Batch compress and convert PNG, JPG, and GIF images to WebP 100% in your browser. Zero server uploads, completely private, and ultra-fast." />
+  <link rel="canonical" href="https://wisdom-vincent.vercel.app/image-compressor.html" />
+  <meta name="theme-color" content="#0B0612" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wisdom" />
+  <meta property="og:url" content="https://wisdom-vincent.vercel.app/image-compressor.html" />
+  <meta property="og:title" content="Free WebP Image Compressor &amp; Converter | Wisdom" />
+  <meta property="og:description" content="Batch compress and convert PNG, JPG, and GIF images to WebP 100% in your browser. Totally private and free." />
+  <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free WebP Image Compressor &amp; Converter | Wisdom" />
+  <meta name="twitter:description" content="Batch compress and convert PNG, JPG, and GIF images to WebP 100% in your browser. Totally private and free." />
+  <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <link rel="stylesheet" href="css/style.css?v=63" />
+  <script src="js/preloader.js?v=63"></script>
+  <script src="js/nav.js?v=63" defer></script>
+  <script src="js/main.js?v=63" defer></script>
+  <script src="js/analytics.js?v=63" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://wisdom-vincent.vercel.app/image-compressor.html",
+      "url": "https://wisdom-vincent.vercel.app/image-compressor.html",
+      "name": "Free WebP Image Compressor & Converter | Wisdom",
+      "description": "Free, private client-side WebP image optimizer and converter. Zero server uploads.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wisdom-vincent.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": "https://wisdom-vincent.vercel.app/tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "WebP Compressor", "item": "https://wisdom-vincent.vercel.app/image-compressor.html" }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    .compressor-container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .dropzone-box {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .dropzone-box:hover, .dropzone-box.dragover {
+      border-color: var(--primary);
+      background: var(--accent-dim);
+      box-shadow: 0 10px 30px rgba(236, 61, 142, 0.08);
+    }
+    .dropzone-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .dropzone-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .dropzone-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .controls-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .controls-card {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 24px;
+      }
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .control-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .control-value {
+      font-family: var(--font-code);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .range-slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(236,61,142,0.4);
+      transition: transform 0.15s;
+    }
+    .range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    .control-select {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+    .control-select:focus {
+      border-color: var(--primary);
+    }
+    .queue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 36px;
+      margin-bottom: 16px;
+    }
+    .queue-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .queue-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .file-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    @media (max-width: 640px) {
+      .file-item {
+        grid-template-columns: 50px 1fr;
+        gap: 12px;
+      }
+      .file-item-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .file-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .file-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+    .file-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-stats {
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .saved-badge {
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+    .file-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-download-item {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-download-item:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-remove-item {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 6px;
+      font-size: 1.1rem;
+      line-height: 1;
+      border-radius: 6px;
+    }
+    .btn-remove-item:hover {
+      color: #dc3545;
+      background: var(--card);
+    }
+    .empty-state {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px dashed var(--border);
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+  <!-- -- Page Hero ---------------------------------------- -->
+  <div class="page-hero">
+    <div class="container">
+      <div style="margin-bottom: 14px;">
+        <a href="tools.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 500; color: var(--muted); text-decoration: none;">&larr; Back to all free tools</a>
+      </div>
+      <span class="section-label">Free Tools &middot; Web Performance</span>
+      <h1>Client-Side <span class="hl">WebP Image Compressor.</span></h1>
+      <p>Batch convert and compress PNG, JPG, and GIF images to lightweight WebP format directly in your browser. Zero file uploads, 100% private, and instant hardware-accelerated processing.</p>
+    </div>
+  </div>
+
+  <!-- -- Compressor Studio -------------------------------- -->
+  <section style="padding-top: 10px;">
+    <div class="container">
+      <div class="compressor-container">
+
+        <!-- Upload Dropzone -->
+        <div class="dropzone-box" id="dropzone">
+          <div class="dropzone-icon">🖼️</div>
+          <div class="dropzone-title">Drag &amp; drop images here, or browse</div>
+          <div class="dropzone-sub">Supports PNG, JPG, JPEG, WebP, GIF, BMP &bull; Multiple files allowed</div>
+          <button type="button" class="btn btn-primary" id="btnBrowse">Select Images from Device</button>
+          <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" multiple style="display:none;" />
+        </div>
+
+        <!-- Global Settings Panel -->
+        <div class="controls-card">
+          <!-- Quality Slider -->
+          <div class="control-group">
+            <div class="control-header">
+              <span class="control-label">Compression Quality</span>
+              <span class="control-value" id="qualityVal">80%</span>
+            </div>
+            <input type="range" id="qualityRange" class="range-slider" min="10" max="100" value="80" step="5" />
+          </div>
+
+          <!-- Max Resolution / Resize -->
+          <div class="control-group">
+            <div class="control-header">
+              <span class="control-label">Max Dimension</span>
+            </div>
+            <select id="resizeSelect" class="control-select">
+              <option value="0">Original Size (No Resize)</option>
+              <option value="1920">1920px (Desktop Full)</option>
+              <option value="1280">1280px (Standard Web)</option>
+              <option value="800">800px (Mobile / Blog)</option>
+            </select>
+          </div>
+
+          <!-- Target Format -->
+          <div class="control-group">
+            <div class="control-header">
+              <span class="control-label">Format</span>
+            </div>
+            <select id="formatSelect" class="control-select">
+              <option value="image/webp">WebP (Smallest &amp; Modern)</option>
+              <option value="image/jpeg">JPEG (Standard)</option>
+              <option value="image/png">PNG (Lossless)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Queue Section -->
+        <div class="queue-header" id="queueHeader" style="display:none;">
+          <div class="queue-title" id="queueCount">Compressed Files (0)</div>
+          <div class="queue-actions">
+            <button type="button" class="btn btn-outline" id="btnClear" style="font-size:0.85rem; padding:8px 14px;">Clear All</button>
+            <button type="button" class="btn btn-primary" id="btnDownloadAll" style="font-size:0.85rem; padding:8px 16px;">Download All</button>
+          </div>
+        </div>
+
+        <div class="file-list" id="fileList">
+          <div class="empty-state" id="emptyState">
+            No images uploaded yet. Drop some images above to start compressing!
+          </div>
+        </div>
+
+        <!-- Educational & Conversion Grid -->
+        <div class="why-client-side" style="margin-top: 60px;">
+          <div class="section-header">
+            <span class="section-label">Web Performance</span>
+            <h2 class="section-title" style="font-size: 1.75rem;">Why WebP makes your website significantly faster</h2>
+            <p class="section-sub">Images typically make up over 60% of a website's total page weight. Converting to WebP solves this instantly:</p>
+          </div>
+
+          <div class="why-grid">
+            <div class="why-item">
+              <div class="why-item-icon">📉</div>
+              <h3>30% to 80% Smaller Files</h3>
+              <p>WebP uses predictive coding to compress images far more efficiently than older JPEG or PNG formats while preserving crisp visual fidelity.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-item-icon">⚡</div>
+              <h3>Faster Google PageSpeed</h3>
+              <p>Smaller media payloads mean faster Largest Contentful Paint (LCP) times, helping your site rank higher on Google search results.</p>
+            </div>
+            <div class="why-item">
+              <div class="why-item-icon">🔒</div>
+              <h3>100% In-Browser Privacy</h3>
+              <p>Unlike cloud conversion websites that store your images on external servers, this tool executes entirely within your browser's local memory.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom CTA Card -->
+        <div class="cta-banner" style="margin-top: 50px;">
+          <span class="section-label">Website Optimization</span>
+          <h2>Need your entire site or online store optimized?</h2>
+          <p>Compressing images is only step one. I audit, refactor, and automate high-performance web systems and Shopify storefronts to pass Google Core Web Vitals with flying colors.</p>
+          <div class="cta-actions">
+            <a href="https://calendly.com/wvemofficial/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a Speed Audit</a>
+            <a href="projects.html" class="btn btn-outline">Explore Case Studies</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var dropzone = document.getElementById('dropzone');
+  var fileInput = document.getElementById('fileInput');
+  var btnBrowse = document.getElementById('btnBrowse');
+  var qualityRange = document.getElementById('qualityRange');
+  var qualityVal = document.getElementById('qualityVal');
+  var resizeSelect = document.getElementById('resizeSelect');
+  var formatSelect = document.getElementById('formatSelect');
+  var fileList = document.getElementById('fileList');
+  var emptyState = document.getElementById('emptyState');
+  var queueHeader = document.getElementById('queueHeader');
+  var queueCount = document.getElementById('queueCount');
+  var btnClear = document.getElementById('btnClear');
+  var btnDownloadAll = document.getElementById('btnDownloadAll');
+
+  var rawFiles = []; // stores raw file objects
+  var processedResults = []; // stores processed items
+
+  function formatBytes(bytes) {
+    if (bytes === 0) return '0 B';
+    var k = 1024;
+    var sizes = ['B', 'KB', 'MB', 'GB'];
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  // Quality range update
+  qualityRange.addEventListener('input', function() {
+    qualityVal.textContent = qualityRange.value + '%';
+    reprocessAll();
+  });
+
+  resizeSelect.addEventListener('change', reprocessAll);
+  formatSelect.addEventListener('change', reprocessAll);
+
+  // File pickers
+  btnBrowse.addEventListener('click', function(e) {
+    e.stopPropagation();
+    fileInput.click();
+  });
+  dropzone.addEventListener('click', function() {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', function(e) {
+    if (e.target.files && e.target.files.length) {
+      handleFiles(Array.from(e.target.files));
+      fileInput.value = '';
+    }
+  });
+
+  // Drag and drop handlers
+  ['dragenter', 'dragover'].forEach(function(evt) {
+    dropzone.addEventListener(evt, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.add('dragover');
+    });
+  });
+
+  ['dragleave', 'drop'].forEach(function(evt) {
+    dropzone.addEventListener(evt, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.remove('dragover');
+    });
+  });
+
+  dropzone.addEventListener('drop', function(e) {
+    var dt = e.dataTransfer;
+    if (dt && dt.files && dt.files.length) {
+      handleFiles(Array.from(dt.files));
+    }
+  });
+
+  function handleFiles(files) {
+    var valid = files.filter(function(f) {
+      return f.type.indexOf('image/') === 0;
+    });
+    if (!valid.length) return;
+    rawFiles = rawFiles.concat(valid);
+    reprocessAll();
+  }
+
+  function reprocessAll() {
+    if (rawFiles.length === 0) {
+      emptyState.style.display = 'block';
+      queueHeader.style.display = 'none';
+      fileList.innerHTML = '';
+      fileList.appendChild(emptyState);
+      processedResults = [];
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    queueHeader.style.display = 'flex';
+    queueCount.textContent = 'Processed Files (' + rawFiles.length + ')';
+    fileList.innerHTML = '';
+
+    processedResults = [];
+
+    var quality = parseFloat(qualityRange.value) / 100;
+    var maxDim = parseInt(resizeSelect.value, 10);
+    var mime = formatSelect.value;
+    var ext = mime === 'image/webp' ? 'webp' : (mime === 'image/jpeg' ? 'jpg' : 'png');
+
+    rawFiles.forEach(function(file, index) {
+      var itemEl = document.createElement('div');
+      itemEl.className = 'file-item';
+      itemEl.innerHTML = '<div style="color:var(--muted); font-size:0.85rem;">Processing...</div>';
+      fileList.appendChild(itemEl);
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          var width = img.width;
+          var height = img.height;
+
+          // Resize calculation
+          if (maxDim > 0 && (width > maxDim || height > maxDim)) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          var canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          canvas.toBlob(function(blob) {
+            if (!blob) return;
+
+            var origSize = file.size;
+            var compSize = blob.size;
+            var diff = origSize - compSize;
+            var pct = Math.round((diff / origSize) * 100);
+            var pctStr = pct > 0 ? ('-' + pct + '%') : ('+' + Math.abs(pct) + '%');
+
+            var blobUrl = URL.createObjectURL(blob);
+            var baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+            var downloadName = baseName + '-optimized.' + ext;
+
+            processedResults[index] = {
+              url: blobUrl,
+              name: downloadName
+            };
+
+            itemEl.innerHTML = 
+              '<img class="file-thumb" src="' + blobUrl + '" alt="preview" />' +
+              '<div class="file-meta">' +
+                '<div class="file-name">' + file.name + ' &rarr; ' + downloadName + '</div>' +
+                '<div class="file-stats">' +
+                  '<span>' + formatBytes(origSize) + ' &rarr; <strong>' + formatBytes(compSize) + '</strong></span>' +
+                  '<span class="saved-badge">' + pctStr + '</span>' +
+                  '<span>&bull; ' + width + ' &times; ' + height + 'px</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="file-item-actions">' +
+                '<a href="' + blobUrl + '" download="' + downloadName + '" class="btn-download-item">' +
+                  'Download &darr;' +
+                '</a>' +
+                '<button type="button" class="btn-remove-item" title="Remove" data-index="' + index + '">&times;</button>' +
+              '</div>';
+
+            var removeBtn = itemEl.querySelector('.btn-remove-item');
+            if (removeBtn) {
+              removeBtn.addEventListener('click', function() {
+                rawFiles.splice(index, 1);
+                reprocessAll();
+              });
+            }
+          }, mime, quality);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Clear all button
+  btnClear.addEventListener('click', function() {
+    rawFiles = [];
+    reprocessAll();
+  });
+
+  // Download all sequential trigger
+  btnDownloadAll.addEventListener('click', function() {
+    processedResults.forEach(function(item, idx) {
+      if (item && item.url) {
+        setTimeout(function() {
+          var a = document.createElement('a');
+          a.href = item.url;
+          a.download = item.name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, idx * 250);
+      }
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
