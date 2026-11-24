@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=2" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+  <title>Free UTM Campaign Link Architect &amp; Builder | Wisdom</title>
+  <meta name="description" content="Generate error-free Google Analytics (GA4) UTM tracking URLs with preset channels for Meta Ads, Google Ads, LinkedIn, TikTok, and newsletters. 100% in-browser." />
+  <link rel="canonical" href="https://wisdom-vincent.vercel.app/utm-builder.html" />
+  <meta name="theme-color" content="#0B0612" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wisdom" />
+  <meta property="og:url" content="https://wisdom-vincent.vercel.app/utm-builder.html" />
+  <meta property="og:title" content="Free UTM Campaign Link Architect &amp; Builder | Wisdom" />
+  <meta property="og:description" content="Generate error-free Google Analytics (GA4) UTM tracking URLs with preset channels for Meta, Google, LinkedIn, and email. 100% in-browser." />
+  <meta property="og:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free UTM Campaign Link Architect &amp; Builder | Wisdom" />
+  <meta name="twitter:description" content="Generate error-free Google Analytics (GA4) UTM tracking URLs with preset channels for Meta, Google, LinkedIn, and email. 100% in-browser." />
+  <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
+  <link rel="stylesheet" href="css/style.css?v=63" />
+  <script src="js/preloader.js?v=63"></script>
+  <script src="js/nav.js?v=63" defer></script>
+  <script src="js/main.js?v=63" defer></script>
+  <script src="js/analytics.js?v=63" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://wisdom-vincent.vercel.app/utm-builder.html",
+      "url": "https://wisdom-vincent.vercel.app/utm-builder.html",
+      "name": "Free UTM Campaign Link Architect & Builder | Wisdom",
+      "description": "Free, privacy-first client-side UTM tracking link generator for GA4 and performance marketing.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wisdom-vincent.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": "https://wisdom-vincent.vercel.app/tools.html" },
+        { "@type": "ListItem", "position": 3, "name": "UTM Campaign Architect", "item": "https://wisdom-vincent.vercel.app/utm-builder.html" }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    .utm-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    @media (min-width: 960px) {
+      .utm-layout {
+        grid-template-columns: 1.25fr 0.95fr;
+        gap: 40px;
+        align-items: start;
+      }
+    }
+    .utm-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+    }
+    .preset-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .preset-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .preset-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .preset-pill.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+    .utm-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .utm-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .utm-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .utm-tag-req {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-family: var(--font-code);
+    }
+    .utm-tag-opt {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: var(--font-code);
+    }
+    .utm-input {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .utm-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(236,61,142,0.12);
+    }
+    .utm-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .sanitization-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 10px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+    .san-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .san-toggle input {
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .preview-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.6;
+      word-break: break-all;
+      min-height: 90px;
+      user-select: all;
+    }
+    .url-part-base { color: var(--text); font-weight: 600; }
+    .url-part-q { color: var(--muted); }
+    .url-part-key { color: var(--primary); font-weight: 600; }
+    .url-part-val { color: var(--green); }
+    .preview-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn-copy-link {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .btn-copy-link:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .secondary-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .btn-sec-action {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-sec-action:hover {
+      background: var(--card);
+      border-color: var(--text);
+    }
+    .history-card {
+      margin-top: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .history-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .history-clear {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+    .history-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+    }
+    .history-url {
+      font-family: var(--font-code);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-soft);
+      max-width: 80%;
+    }
+    .history-copy {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .history-copy:hover {
+      background: var(--surface);
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--deep-1);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1000;
+      border: 1px solid var(--primary);
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main">
+
+  <!-- -- Page Hero ---------------------------------------- -->
+  <div class="page-hero">
+    <div class="container">
+      <div style="margin-bottom: 14px;">
+        <a href="tools.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; font-weight: 500; color: var(--muted); text-decoration: none;">&larr; Back to all free tools</a>
+      </div>
+      <span class="section-label">Free Tools &middot; Paid Media &amp; Analytics</span>
+      <h1>UTM Campaign <span class="hl">Link Architect.</span></h1>
+      <p>Build standardized, error-free Google Analytics (GA4) campaign tracking links in seconds. Includes presets for Meta Ads, Google Search, LinkedIn, and newsletters with automatic slug sanitization.</p>
+    </div>
+  </div>
+
+  <!-- -- Studio Section ----------------------------------- -->
+  <section style="padding-top: 10px;">
+    <div class="container">
+      <div class="utm-layout">
+
+        <!-- Left: Form Controls -->
+        <div class="utm-card">
+          <!-- Quick Presets -->
+          <div class="utm-label" style="margin-bottom: 10px;">1-Click Channel Presets</div>
+          <div class="preset-pills" role="tablist">
+            <button type="button" class="preset-pill active" data-preset="custom">✨ Custom</button>
+            <button type="button" class="preset-pill" data-preset="meta">📘 Meta / Facebook Ads</button>
+            <button type="button" class="preset-pill" data-preset="google">🔍 Google Search Ads</button>
+            <button type="button" class="preset-pill" data-preset="linkedin">💼 LinkedIn Ads</button>
+            <button type="button" class="preset-pill" data-preset="tiktok">🎵 TikTok Ads</button>
+            <button type="button" class="preset-pill" data-preset="email">✉️ Email Newsletter</button>
+            <button type="button" class="preset-pill" data-preset="twitter">𝕏 X / Twitter Ads</button>
+          </div>
+
+          <!-- Website URL -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-url" class="utm-label">Website URL</label>
+              <span class="utm-tag-req">Required</span>
+            </div>
+            <input type="url" id="input-url" class="utm-input" placeholder="https://yourwebsite.com/landing-page" value="https://wisdom-vincent.vercel.app" />
+            <p class="utm-hint">The destination landing page for your ad or email campaign.</p>
+          </div>
+
+          <!-- Campaign Source -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-source" class="utm-label">Campaign Source (utm_source)</label>
+              <span class="utm-tag-req">Required</span>
+            </div>
+            <input type="text" id="input-source" class="utm-input" placeholder="e.g. facebook, google, newsletter" value="facebook" />
+            <p class="utm-hint">Identifies which platform or referrer is sending the traffic.</p>
+          </div>
+
+          <!-- Campaign Medium -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-medium" class="utm-label">Campaign Medium (utm_medium)</label>
+              <span class="utm-tag-req">Required</span>
+            </div>
+            <input type="text" id="input-medium" class="utm-input" placeholder="e.g. cpc, paid_social, email, banner" value="paid_social" />
+            <p class="utm-hint">Identifies the marketing medium (e.g. cpc for paid search, paid_social, email).</p>
+          </div>
+
+          <!-- Campaign Name -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-campaign" class="utm-label">Campaign Name (utm_campaign)</label>
+              <span class="utm-tag-req">Required</span>
+            </div>
+            <input type="text" id="input-campaign" class="utm-input" placeholder="e.g. spring_sale, lead_gen_q1, retargeting" value="ai_automation_pilot" />
+            <p class="utm-hint">Identifies the specific promotion, product, or campaign objective.</p>
+          </div>
+
+          <!-- Campaign Term -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-term" class="utm-label">Campaign Term (utm_term)</label>
+              <span class="utm-tag-opt">Optional</span>
+            </div>
+            <input type="text" id="input-term" class="utm-input" placeholder="e.g. workflow_automation, real_estate_leads" />
+            <p class="utm-hint">Used for paid search keywords or audience targeting segments.</p>
+          </div>
+
+          <!-- Campaign Content -->
+          <div class="utm-form-group">
+            <div class="utm-label-row">
+              <label for="input-content" class="utm-label">Campaign Content (utm_content)</label>
+              <span class="utm-tag-opt">Optional</span>
+            </div>
+            <input type="text" id="input-content" class="utm-input" placeholder="e.g. video_ad_v2, blue_cta_button, sidebar_link" />
+            <p class="utm-hint">Used to differentiate ads or links that point to the same URL (A/B testing).</p>
+          </div>
+
+          <!-- Sanitization Options -->
+          <div class="sanitization-options">
+            <label class="san-toggle">
+              <input type="checkbox" id="chk-lowercase" checked />
+              Force lowercase (prevents split metrics in GA4)
+            </label>
+            <label class="san-toggle">
+              <input type="checkbox" id="chk-replace-spaces" checked />
+              Replace spaces with underscores (_)
+            </label>
+          </div>
+        </div>
+
+        <!-- Right: Generated Output & History -->
+        <div>
+          <div class="utm-card">
+            <div class="utm-label" style="margin-bottom: 12px;">Generated Campaign URL</div>
+            
+            <div class="preview-box" id="previewBox">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="preview-actions">
+              <button type="button" class="btn-copy-link" id="btnCopy">
+                📋 Copy Campaign URL
+              </button>
+              <div class="secondary-actions">
+                <a href="#" target="_blank" rel="noopener" class="btn-sec-action" id="btnTest">
+                  ↗ Test Link
+                </a>
+                <a href="#" class="btn-sec-action" id="btnMakeQR">
+                  📱 Create QR Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Links History -->
+          <div class="history-card">
+            <div class="history-header">
+              <span class="history-title">Recent Generated Links</span>
+              <button type="button" class="history-clear" id="btnClearHistory">Clear</button>
+            </div>
+            <div class="history-list" id="historyList">
+              <div style="font-size:0.82rem; color:var(--muted); text-align:center; padding:12px 0;">
+                Generated links will appear here for quick access.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Educational & Conversion Grid -->
+      <div class="why-client-side" style="margin-top: 60px;">
+        <div class="section-header">
+          <span class="section-label">Tracking Best Practices</span>
+          <h2 class="section-title" style="font-size: 1.75rem;">Why standardized UTM tracking saves ad spend</h2>
+          <p class="section-sub">Without clean UTM parameters, Google Analytics splits traffic into "Direct" or "Unassigned", blinding your media team:</p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="why-item-icon">🎯</div>
+            <h3>Eliminates Split Attribution</h3>
+            <p>Google Analytics is case-sensitive. Having <code>Facebook</code>, <code>facebook</code>, and <code>FB</code> splits one campaign into three separate buckets. Our auto-sanitizer forces consistency.</p>
+          </div>
+
+          <div class="why-item">
+            <div class="why-item-icon">🧪</div>
+            <h3>Clear Creative A/B Testing</h3>
+            <p>Using <code>utm_content</code> allows you to pinpoint the exact headline, video creative, or button color that drove the highest-paying customers.</p>
+          </div>
+
+          <div class="why-item">
+            <div class="why-item-icon">⚡</div>
+            <h3>CRM Lead Source Pass-Through</h3>
+            <p>Capturing UTM parameters inside hidden form fields routes the exact source and keyword directly into your GoHighLevel or HubSpot CRM records.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA Banner -->
+      <div class="cta-banner" style="margin-top: 50px;">
+        <span class="section-label">Automated Marketing Pipelines</span>
+        <h2>Need your lead data connected directly to your CRM?</h2>
+        <p>Generating links is step one. I build automated multi-channel pipelines that capture UTM parameters directly from your landing pages, sync them to your CRM, and notify your sales team in Slack within 60 seconds.</p>
+        <div class="cta-actions">
+          <a href="https://calendly.com/wvemofficial/30min" target="_blank" rel="noopener" class="btn btn-primary">Book an Automation Strategy Call</a>
+          <a href="projects.html" class="btn btn-outline">Explore Case Studies</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="toast-msg" id="toast">Campaign URL copied to clipboard!</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var inputUrl = document.getElementById('input-url');
+  var inputSource = document.getElementById('input-source');
+  var inputMedium = document.getElementById('input-medium');
+  var inputCampaign = document.getElementById('input-campaign');
+  var inputTerm = document.getElementById('input-term');
+  var inputContent = document.getElementById('input-content');
+  var chkLowercase = document.getElementById('chk-lowercase');
+  var chkReplaceSpaces = document.getElementById('chk-replace-spaces');
+  
+  var previewBox = document.getElementById('previewBox');
+  var btnCopy = document.getElementById('btnCopy');
+  var btnTest = document.getElementById('btnTest');
+  var btnMakeQR = document.getElementById('btnMakeQR');
+  var toast = document.getElementById('toast');
+  var historyList = document.getElementById('historyList');
+  var btnClearHistory = document.getElementById('btnClearHistory');
+  var presetButtons = document.querySelectorAll('.preset-pill');
+
+  var PRESETS = {
+    custom: { source: '', medium: '', campaign: '' },
+    meta: { source: 'facebook', medium: 'paid_social', campaign: 'lead_gen_q1' },
+    google: { source: 'google', medium: 'cpc', campaign: 'search_intent' },
+    linkedin: { source: 'linkedin', medium: 'paid_social', campaign: 'b2b_outreach' },
+    tiktok: { source: 'tiktok', medium: 'paid_social', campaign: 'viral_hook' },
+    email: { source: 'newsletter', medium: 'email', campaign: 'weekly_digest' },
+    twitter: { source: 'twitter', medium: 'paid_social', campaign: 'announcement' }
+  };
+
+  function sanitize(val) {
+    if (!val) return '';
+    var s = val.trim();
+    if (chkLowercase.checked) s = s.toLowerCase();
+    if (chkReplaceSpaces.checked) s = s.replace(/\s+/g, '_');
+    return s;
+  }
+
+  function getCleanUrl() {
+    var rawUrl = inputUrl.value.trim();
+    if (!rawUrl) rawUrl = 'https://wisdom-vincent.vercel.app';
+    if (!/^https?:\/\//i.test(rawUrl)) {
+      rawUrl = 'https://' + rawUrl;
+    }
+
+    var source = sanitize(inputSource.value);
+    var medium = sanitize(inputMedium.value);
+    var campaign = sanitize(inputCampaign.value);
+    var term = sanitize(inputTerm.value);
+    var content = sanitize(inputContent.value);
+
+    try {
+      var u = new URL(rawUrl);
+      if (source) u.searchParams.set('utm_source', source);
+      if (medium) u.searchParams.set('utm_medium', medium);
+      if (campaign) u.searchParams.set('utm_campaign', campaign);
+      if (term) u.searchParams.set('utm_term', term);
+      if (content) u.searchParams.set('utm_content', content);
+      return u.toString();
+    } catch (e) {
+      return rawUrl;
+    }
+  }
+
+  function renderPreview() {
+    var fullUrl = getCleanUrl();
+    try {
+      var u = new URL(fullUrl);
+      var origin = u.origin + u.pathname;
+      var params = Array.from(u.searchParams.entries());
+
+      var html = '<span class="url-part-base">' + origin + '</span>';
+      if (params.length > 0) {
+        html += '<span class="url-part-q">?</span>';
+        var parts = params.map(function(pair, i) {
+          return '<span class="url-part-key">' + encodeURIComponent(pair[0]) + '</span>=' +
+                 '<span class="url-part-val">' + encodeURIComponent(pair[1]) + '</span>';
+        });
+        html += parts.join('<span class="url-part-q">&amp;</span>');
+      }
+      previewBox.innerHTML = html;
+    } catch (e) {
+      previewBox.textContent = fullUrl;
+    }
+
+    btnTest.href = fullUrl;
+    btnMakeQR.href = 'qr-code-generator.html?url=' + encodeURIComponent(fullUrl);
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 2200);
+  }
+
+  // Presets click
+  presetButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      presetButtons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var p = PRESETS[btn.getAttribute('data-preset')];
+      if (p) {
+        if (p.source) inputSource.value = p.source;
+        if (p.medium) inputMedium.value = p.medium;
+        if (p.campaign) inputCampaign.value = p.campaign;
+        renderPreview();
+      }
+    });
+  });
+
+  // Inputs change
+  var inputs = [inputUrl, inputSource, inputMedium, inputCampaign, inputTerm, inputContent, chkLowercase, chkReplaceSpaces];
+  inputs.forEach(function(el) {
+    el.addEventListener('input', renderPreview);
+    el.addEventListener('change', renderPreview);
+  });
+
+  // History management
+  function getHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('wv_utm_history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveToHistory(url) {
+    var hist = getHistory();
+    hist = hist.filter(function(item) { return item !== url; });
+    hist.unshift(url);
+    if (hist.length > 8) hist = hist.slice(0, 8);
+    try {
+      localStorage.setItem('wv_utm_history', JSON.stringify(hist));
+    } catch (e) {}
+    renderHistory();
+  }
+
+  function renderHistory() {
+    var hist = getHistory();
+    if (!hist.length) {
+      historyList.innerHTML = '<div style="font-size:0.82rem; color:var(--muted); text-align:center; padding:12px 0;">Generated links will appear here for quick access.</div>';
+      return;
+    }
+    historyList.innerHTML = '';
+    hist.forEach(function(url) {
+      var item = document.createElement('div');
+      item.className = 'history-item';
+      item.innerHTML = 
+        '<span class="history-url" title="' + url + '">' + url + '</span>' +
+        '<button type="button" class="history-copy">Copy</button>';
+      item.querySelector('.history-copy').addEventListener('click', function() {
+        navigator.clipboard.writeText(url).then(function() {
+          showToast('Copied from history!');
+        });
+      });
+      historyList.appendChild(item);
+    });
+  }
+
+  btnClearHistory.addEventListener('click', function() {
+    try { localStorage.removeItem('wv_utm_history'); } catch (e) {}
+    renderHistory();
+  });
+
+  // Copy button
+  btnCopy.addEventListener('click', function() {
+    var fullUrl = getCleanUrl();
+    navigator.clipboard.writeText(fullUrl).then(function() {
+      showToast('Campaign URL copied to clipboard!');
+      saveToHistory(fullUrl);
+    }).catch(function() {
+      showToast('Clipboard access denied');
+    });
+  });
+
+  renderPreview();
+  renderHistory();
+});
+</script>
+
+</body>
+</html>

@@ -595,6 +595,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Check for pre-filled url parameter from UTM builder or external links
+  var urlParam = new URLSearchParams(window.location.search).get('url');
+  if (urlParam) {
+    var urlInput = document.getElementById('input-url');
+    if (urlInput) urlInput.value = urlParam;
+  }
+
   renderQR();
 });
 </script>

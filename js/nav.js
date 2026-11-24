@@ -27,6 +27,7 @@
     { href: 'tools.html',             label: 'Free Tools Suite',        icon: '🛠️' },
     { href: 'qr-code-generator.html', label: 'QR Code Studio',          icon: '📱' },
     { href: 'image-compressor.html',  label: 'WebP Image Compressor',   icon: '🖼️' },
+    { href: 'utm-builder.html',        label: 'UTM Campaign Architect',  icon: '🔗' },
   ];
 
   const SOCIALS = [
