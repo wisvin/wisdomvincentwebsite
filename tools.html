@@ -296,17 +296,22 @@
     .trust-strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 28px;
+      gap: 12px;
       align-items: center;
-      margin-top: 24px;
+      margin-top: 28px;
     }
     .trust-item {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      color: var(--text-soft);
+      color: #0F172A;
+      background: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
   </style>
 </head>
@@ -347,83 +352,83 @@
       <!-- Tools Grid -->
       <div class="tools-grid" id="toolsGrid">
 
-        <!-- Tool 1: QR Code Studio (Active) -->
+        <!-- Tool 1: QR Code Generator (Active) -->
         <div class="tool-card" data-category="marketing">
           <div>
             <div class="tool-card-top">
               <div class="tool-icon-wrap">📱</div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
-            <h2 class="tool-title">Pro QR Code Studio</h2>
-            <p class="tool-desc">Generate high-resolution, branded QR codes for websites, WhatsApp direct chat, Wi-Fi network sharing, and vCard business cards with custom colors.</p>
+            <h2 class="tool-title">QR Code Generator</h2>
+            <p class="tool-desc">Create clean, custom QR codes for your website, WhatsApp, Wi-Fi, or digital business card in seconds. Free forever, no sign-up required.</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Vector SVG Export</span>
-              <span class="tool-spec-pill">1024px PNG</span>
-              <span class="tool-spec-pill">Clipboard Copy</span>
-              <span class="tool-spec-pill">Zero Tracking</span>
+              <span class="tool-spec-pill">PNG &amp; Vector SVG</span>
+              <span class="tool-spec-pill">Custom Colors</span>
+              <span class="tool-spec-pill">1-Click Copy</span>
+              <span class="tool-spec-pill">Never Expires</span>
             </div>
           </div>
           <a href="qr-code-generator.html" class="tool-card-action action-primary">
-            Launch QR Studio <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            Open QR Generator <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
 
-        <!-- Tool 2: WebP Image Optimizer (Active) -->
+        <!-- Tool 2: Image Compressor & Converter (Active) -->
         <div class="tool-card" data-category="media">
           <div>
             <div class="tool-card-top">
               <div class="tool-icon-wrap">🖼️</div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
-            <h2 class="tool-title">Client-Side WebP Optimizer</h2>
-            <p class="tool-desc">Batch compress and convert PNG, JPG, and GIF images to modern WebP format without uploading your private graphics or client assets to any server.</p>
+            <h2 class="tool-title">Image Compressor &amp; Converter</h2>
+            <p class="tool-desc">Shrink image file sizes by up to 80% without losing quality. Convert PNG and JPG photos to modern WebP right inside your browser.</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Canvas API</span>
-              <span class="tool-spec-pill">Quality Control</span>
-              <span class="tool-spec-pill">Lossless / Lossy</span>
-              <span class="tool-spec-pill">Drag &amp; Drop</span>
+              <span class="tool-spec-pill">Make Images 80% Lighter</span>
+              <span class="tool-spec-pill">Keep Crisp Quality</span>
+              <span class="tool-spec-pill">PNG &amp; JPG to WebP</span>
+              <span class="tool-spec-pill">Batch Download</span>
             </div>
           </div>
           <a href="image-compressor.html" class="tool-card-action action-primary">
-            Launch Compressor <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            Open Image Compressor <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
 
-        <!-- Tool 3: UTM Campaign Link Builder (Active) -->
+        <!-- Tool 3: Ad & Campaign Link Builder (Active) -->
         <div class="tool-card" data-category="marketing">
           <div>
             <div class="tool-card-top">
               <div class="tool-icon-wrap">🔗</div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
-            <h2 class="tool-title">UTM Campaign Architect</h2>
-            <p class="tool-desc">Build error-free Google Analytics tracking URLs for Meta Ads, Google Ads, LinkedIn campaigns, and email newsletters with instant parameter sanitization.</p>
+            <h2 class="tool-title">Ad &amp; Campaign Link Builder</h2>
+            <p class="tool-desc">Build clean, trackable links for Facebook, Instagram, Google Ads, TikTok, and email newsletters so you know exactly where your sales come from.</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Ad Presets</span>
-              <span class="tool-spec-pill">Auto Slug Cleaner</span>
+              <span class="tool-spec-pill">Meta &amp; Google Ads</span>
+              <span class="tool-spec-pill">Email Newsletters</span>
+              <span class="tool-spec-pill">Auto-Fixes Typos</span>
               <span class="tool-spec-pill">1-Click Copy</span>
-              <span class="tool-spec-pill">History Log</span>
             </div>
           </div>
           <a href="utm-builder.html" class="tool-card-action action-primary">
-            Launch Architect <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            Open Link Builder <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
 
-        <!-- Tool 4: Instant Invoice Builder (Roadmap) -->
+        <!-- Tool 4: Free Invoice Generator (Roadmap) -->
         <div class="tool-card" data-category="business">
           <div>
             <div class="tool-card-top">
               <div class="tool-icon-wrap">🧾</div>
               <span class="tool-badge-soon">In Development</span>
             </div>
-            <h2 class="tool-title">One-Click Invoice Generator</h2>
-            <p class="tool-desc">Create professional, print-ready PDF invoices, work estimates, and receipts in seconds with automated line-item calculations, tax, and currency support.</p>
+            <h2 class="tool-title">Free Invoice Generator</h2>
+            <p class="tool-desc">Create professional, print-ready PDF invoices and client estimates in seconds with automatic line-item calculations, tax, and currency support.</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Instant PDF Export</span>
-              <span class="tool-spec-pill">Local Storage Save</span>
+              <span class="tool-spec-pill">Instant PDF Download</span>
+              <span class="tool-spec-pill">Auto Tax &amp; Totals</span>
               <span class="tool-spec-pill">Multi-Currency</span>
-              <span class="tool-spec-pill">Logo Upload</span>
+              <span class="tool-spec-pill">Save to Browser</span>
             </div>
           </div>
           <div class="tool-card-action action-secondary">
@@ -431,19 +436,19 @@
           </div>
         </div>
 
-        <!-- Tool 5: Prompt Token Estimator (Roadmap) -->
+        <!-- Tool 5: AI Cost & Token Calculator (Roadmap) -->
         <div class="tool-card" data-category="ai">
           <div>
             <div class="tool-card-top">
               <div class="tool-icon-wrap">🤖</div>
               <span class="tool-badge-soon">In Development</span>
             </div>
-            <h2 class="tool-title">AI Prompt Token &amp; Cost Estimator</h2>
-            <p class="tool-desc">Measure exact token counts, character lengths, and projected API costs for Claude 3.7, GPT-4o, and Gemini before triggering bulk automated pipelines.</p>
+            <h2 class="tool-title">AI Cost &amp; Token Calculator</h2>
+            <p class="tool-desc">Check word and token counts and calculate estimated API costs for Claude, ChatGPT, and Gemini before running prompts or automated workflows.</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Live Tokenizer</span>
-              <span class="tool-spec-pill">Pricing Matrix</span>
-              <span class="tool-spec-pill">JSON Validator</span>
+              <span class="tool-spec-pill">Live Token Counter</span>
+              <span class="tool-spec-pill">Price Calculator</span>
+              <span class="tool-spec-pill">Claude &amp; OpenAI</span>
               <span class="tool-spec-pill">Context Limits</span>
             </div>
           </div>
@@ -459,12 +464,12 @@
               <div class="tool-icon-wrap">⚙️</div>
               <span class="tool-badge-custom">Custom Engineering</span>
             </div>
-            <h2 class="tool-title">Need a Custom Internal Tool?</h2>
-            <p class="tool-desc">Have a specific operational calculation, client-facing quoting widget, or automated data pipeline you want built directly into your website?</p>
+            <h2 class="tool-title">Need a Custom Tool for Your Business?</h2>
+            <p class="tool-desc">Want a custom quoting calculator, customer portal, or automated lead workflow built directly into your website?</p>
             <div class="tool-specs">
-              <span class="tool-spec-pill">Tailored to Your Flow</span>
-              <span class="tool-spec-pill">AI Agent Integration</span>
-              <span class="tool-spec-pill">Zero Maintenance</span>
+              <span class="tool-spec-pill">Built for Your Workflow</span>
+              <span class="tool-spec-pill">Custom AI Features</span>
+              <span class="tool-spec-pill">Zero Monthly Fees</span>
             </div>
           </div>
           <a href="contact.html" class="tool-card-action action-outline">

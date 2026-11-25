@@ -25,9 +25,9 @@
     { href: 'gohighlevel.html', label: 'CRM & Lead Follow-up',     icon: '🚀' },
     { href: 'for-waterproofing.html', label: 'Basement & Waterproofing', icon: '💧' },
     { href: 'tools.html',             label: 'Free Tools Suite',        icon: '🛠️' },
-    { href: 'qr-code-generator.html', label: 'QR Code Studio',          icon: '📱' },
-    { href: 'image-compressor.html',  label: 'WebP Image Compressor',   icon: '🖼️' },
-    { href: 'utm-builder.html',        label: 'UTM Campaign Architect',  icon: '🔗' },
+    { href: 'qr-code-generator.html', label: 'QR Code Generator',       icon: '📱' },
+    { href: 'image-compressor.html',  label: 'Image Compressor',        icon: '🖼️' },
+    { href: 'utm-builder.html',        label: 'Campaign Link Builder',   icon: '🔗' },
   ];
 
   const SOCIALS = [
@@ -57,11 +57,14 @@
   }
 
   function buildNavLinks() {
-    return PAGES.map(p => `
-      <li>
-        <a href="${p.href}" class="${isActive(p.href) ? 'active' : ''}">${p.label}</a>
-      </li>
-    `).join('');
+    return PAGES.map(p => {
+      const badge = p.href === 'tools.html' ? ' <span class="nav-free-badge">FREE</span>' : '';
+      return `
+        <li>
+          <a href="${p.href}" class="${isActive(p.href) ? 'active' : ''}">${p.label}${badge}</a>
+        </li>
+      `;
+    }).join('');
   }
 
   function buildDropdown() {
@@ -115,7 +118,10 @@
       <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <nav class="nav-overlay-links">
           <span class="nav-overlay-section">Pages</span>
-          ${PAGES.map(p => `<a href="${p.href}" class="${isActive(p.href) ? 'active' : ''}">${p.label}</a>`).join('')}
+          ${PAGES.map(p => {
+            const badge = p.href === 'tools.html' ? ' <span class="nav-free-badge">FREE</span>' : '';
+            return `<a href="${p.href}" class="${isActive(p.href) ? 'active' : ''}">${p.label}${badge}</a>`;
+          }).join('')}
           <span class="nav-overlay-section">Services</span>
           ${SERVICES.map(s => `<a href="${s.href}" class="${isActive(s.href) ? 'active' : ''}">${s.label}</a>`).join('')}
         </nav>
