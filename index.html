@@ -28,7 +28,7 @@
   <meta name="twitter:title" content="AI Automation Expert &amp; AI Developer for Hire | Wisdom" />
   <meta name="twitter:description" content="Wisdom builds AI tools, n8n, Make and Zapier automations, GoHighLevel lead follow-up and AI-powered websites that save hours and stop leads going cold." />
   <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
-  <link rel="stylesheet" href="css/style.css?v=63" />
+  <link rel="stylesheet" href="css/style.css?v=65" />
   <script src="js/preloader.js?v=63"></script>
   <script src="js/projects-data.js?v=63" defer></script>
   <script src="js/reviews-data.js?v=63" defer></script>
@@ -95,6 +95,162 @@
   ]
 }
   </script>
+  <style>
+    /* ── Free Tools: Pronounced Pure-Text Cards (Zero Blue Fallback) ── */
+    .home-tool-card,
+    .tool-card,
+    main.panels-split > .home-tools-section .home-tool-card {
+      background: linear-gradient(165deg, rgba(34, 18, 54, 0.94) 0%, rgba(14, 7, 24, 0.98) 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+      border-radius: var(--radius-xl) !important;
+      padding: 34px 28px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+      position: relative !important;
+      text-decoration: none !important;
+      color: inherit !important;
+      box-shadow: 0 0 0 1px rgba(236, 61, 142, 0.2), 0 24px 50px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      backdrop-filter: blur(24px) !important;
+    }
+    .home-tool-card:hover,
+    .tool-card:hover,
+    main.panels-split > .home-tools-section .home-tool-card:hover {
+      transform: translateY(-8px) !important;
+      border-color: rgba(236, 61, 142, 0.95) !important;
+      box-shadow: 0 0 30px rgba(236, 61, 142, 0.5), 0 32px 70px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    }
+    .tool-card-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      margin-bottom: 18px !important;
+    }
+    .tool-category-kicker,
+    .home-tool-card .tool-category-kicker {
+      font-family: var(--font-code) !important;
+      font-size: 0.74rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      color: #FF70B8 !important;
+    }
+    .tool-status-badge,
+    .home-tool-card .tool-status-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      font-family: var(--font-code) !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em !important;
+      padding: 4px 10px !important;
+      border-radius: 999px !important;
+      white-space: nowrap !important;
+    }
+    .status-badge-live,
+    .home-tool-card .status-badge-live {
+      color: #4ADE80 !important;
+      background: rgba(34, 197, 94, 0.16) !important;
+      border: 1px solid rgba(74, 222, 128, 0.45) !important;
+    }
+    .status-badge-live .status-dot,
+    .home-tool-card .status-badge-live .status-dot {
+      width: 6px !important;
+      height: 6px !important;
+      border-radius: 50% !important;
+      background: #4ADE80 !important;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.9) !important;
+      display: inline-block !important;
+    }
+    .tool-card-content {
+      flex-grow: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .tool-card-title,
+    .home-tool-card .tool-card-title {
+      font-family: var(--font-heading) !important;
+      font-size: 1.42rem !important;
+      font-weight: 600 !important;
+      color: #FFFFFF !important;
+      letter-spacing: -0.025em !important;
+      line-height: 1.28 !important;
+      margin: 0 0 12px 0 !important;
+    }
+    .tool-card-desc,
+    .home-tool-card .tool-card-desc {
+      font-family: var(--font-body) !important;
+      font-size: 0.94rem !important;
+      color: rgba(255, 255, 255, 0.84) !important;
+      line-height: 1.65 !important;
+      margin: 0 0 22px 0 !important;
+      flex-grow: 1 !important;
+    }
+    .tool-specs,
+    .home-tool-card .tool-specs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin-bottom: 26px !important;
+    }
+    .tool-spec-pill,
+    .home-tool-card .tool-spec-pill {
+      font-family: var(--font-code) !important;
+      font-size: 0.76rem !important;
+      font-weight: 500 !important;
+      color: #FFFFFF !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      padding: 5px 12px !important;
+      border-radius: 6px !important;
+      letter-spacing: 0.015em !important;
+      white-space: nowrap !important;
+    }
+    .tool-card-footer,
+    .home-tool-card .tool-card-footer {
+      margin-top: auto !important;
+    }
+    .tool-card-btn,
+    .home-tool-card .tool-card-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      width: 100% !important;
+      padding: 13px 20px !important;
+      font-size: 0.92rem !important;
+      font-weight: 600 !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      transition: all 0.25s ease !important;
+      font-family: var(--font-body) !important;
+      border: none !important;
+      cursor: pointer !important;
+    }
+    .btn-tool-primary,
+    .home-tool-card .btn-tool-primary {
+      background: linear-gradient(135deg, #EC3D8E 0%, #D42C7B 100%) !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 8px 24px -6px rgba(236, 61, 142, 0.55) !important;
+    }
+    .btn-tool-primary:hover,
+    .home-tool-card .btn-tool-primary:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 12px 28px -4px rgba(236, 61, 142, 0.75) !important;
+      color: #FFFFFF !important;
+    }
+    .btn-tool-primary .btn-arrow,
+    .home-tool-card .btn-tool-primary .btn-arrow {
+      color: #FFFFFF !important;
+      background: transparent !important;
+      border: none !important;
+    }
+  </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
