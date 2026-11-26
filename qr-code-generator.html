@@ -6,6 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="favicon-qr.svg" />
   <link rel="icon" href="favicon.ico?v=2" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2" />
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=2" />
@@ -251,12 +252,76 @@
       border-radius: 999px;
       margin-top: 14px;
     }
+  
+    .qr-card {
+      background: linear-gradient(165deg, rgba(30, 16, 48, 0.8) 0%, rgba(15, 8, 25, 0.92) 100%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 20px 45px -15px rgba(0,0,0,0.5) !important;
+      color: #FFFFFF !important;
+    }
+    .qr-tabs {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+    }
+    .qr-tab {
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    .qr-tab.active {
+      background: var(--pink) !important;
+      color: #FFFFFF !important;
+      border-color: var(--pink) !important;
+    }
+    .qr-tab:hover {
+      background: rgba(255, 255, 255, 0.12) !important;
+      color: #FFFFFF !important;
+    }
+    .qr-input, .qr-textarea {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      color: #FFFFFF !important;
+    }
+    .qr-input:focus, .qr-textarea:focus {
+      border-color: var(--pink) !important;
+      box-shadow: 0 0 0 3px rgba(236, 61, 142, 0.25) !important;
+    }
+    .qr-label {
+      color: rgba(255, 255, 255, 0.92) !important;
+    }
+    .qr-hint {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+    .qr-btn-secondary {
+      background: rgba(255, 255, 255, 0.08) !important;
+      color: #FFFFFF !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    }
+    .qr-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border-color: var(--pink) !important;
+    }
+    .qr-btn-outline {
+      background: transparent !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: #FFFFFF !important;
+    }
+    .qr-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+    .qr-color-btn {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      color: #FFFFFF !important;
+    }
+
   </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<main id="main">
+<main id="main" class="panels-split">
 
   <div class="page-hero">
     <div class="container">

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#0B0612" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#EC3D8E" stroke-width="2" opacity="0.6" />
+  <!-- Image Frame -->
+  <rect x="10" y="12" width="44" height="32" rx="6" stroke="#FFFFFF" stroke-width="3" fill="none" />
+  <!-- Sun -->
+  <circle cx="21" cy="22" r="4" fill="#EC3D8E" />
+  <!-- Mountain Peaks -->
+  <path d="M12 38L24 24L34 35L41 28L52 38" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Compression Pill -->
+  <rect x="24" y="36" width="30" height="18" rx="9" fill="#EC3D8E" />
+  <path d="M33 45H45M45 45L41 41M45 45L41 49" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

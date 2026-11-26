@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="14" fill="url(#utm-grad)" />
+  <!-- Link chains -->
+  <path d="M19 16H15C12.2386 16 10 18.2386 10 21C10 23.7614 12.2386 26 15 26H19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M29 26H33C35.7614 26 38 23.7614 38 21C38 18.2386 35.7614 16 33 16H29" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M17 21H31" stroke="#EC3D8E" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Analytics tracking bars -->
+  <rect x="13" y="34" width="4" height="6" rx="1" fill="#FFFFFF" opacity="0.6" />
+  <rect x="20" y="31" width="4" height="9" rx="1" fill="#FFFFFF" opacity="0.8" />
+  <rect x="27" y="28" width="4" height="12" rx="1" fill="#EC3D8E" />
+  <circle cx="34" cy="31" r="3.5" fill="#22C55E" />
+  <defs>
+    <linearGradient id="utm-grad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D123D" />
+      <stop offset="1" stop-color="#140921" />
+    </linearGradient>
+  </defs>
+</svg>

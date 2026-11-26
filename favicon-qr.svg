@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#0B0612" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#EC3D8E" stroke-width="2" opacity="0.6" />
+  <!-- Finder Top-Left -->
+  <rect x="10" y="10" width="18" height="18" rx="4" stroke="#FFFFFF" stroke-width="3" fill="none" />
+  <rect x="15" y="15" width="8" height="8" rx="2" fill="#EC3D8E" />
+  <!-- Finder Top-Right -->
+  <rect x="36" y="10" width="18" height="18" rx="4" stroke="#FFFFFF" stroke-width="3" fill="none" />
+  <rect x="41" y="15" width="8" height="8" rx="2" fill="#EC3D8E" />
+  <!-- Finder Bottom-Left -->
+  <rect x="10" y="36" width="18" height="18" rx="4" stroke="#FFFFFF" stroke-width="3" fill="none" />
+  <rect x="15" y="41" width="8" height="8" rx="2" fill="#EC3D8E" />
+  <!-- Data Pixels -->
+  <rect x="36" y="36" width="6" height="6" rx="1.5" fill="#FFFFFF" />
+  <rect x="48" y="36" width="6" height="6" rx="1.5" fill="#EC3D8E" />
+  <rect x="36" y="48" width="6" height="6" rx="1.5" fill="#EC3D8E" />
+  <rect x="48" y="48" width="6" height="6" rx="1.5" fill="#FFFFFF" />
+</svg>

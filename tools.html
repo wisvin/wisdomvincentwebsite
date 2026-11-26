@@ -306,19 +306,19 @@
       gap: 8px;
       font-size: 0.84rem;
       font-weight: 600;
-      color: #0F172A;
-      background: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 999px;
       padding: 8px 16px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
     }
   </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<main id="main">
+<main id="main" class="panels-split">
 
   <!-- -- Page Hero ---------------------------------------- -->
   <div class="page-hero">
@@ -330,8 +330,8 @@
       <div class="trust-strip">
         <div class="trust-item">🛡️ 100% Client-Side Privacy</div>
         <div class="trust-item">⚡ Zero Server Latency</div>
-        <div class="trust-item">🆓 No Credit Card or Sign-Up</div>
-        <div class="trust-item">📦 Open Web Standards</div>
+        <div class="trust-item">🆓 Free Forever &bull; No Sign-Up</div>
+        <div class="trust-item">🔒 Zero Tracking or Cloud Uploads</div>
       </div>
     </div>
   </div>
@@ -356,11 +356,12 @@
         <div class="tool-card" data-category="marketing">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">📱</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-qr.svg" alt="QR Code Icon" width="48" height="48" /></div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
             <h2 class="tool-title">QR Code Generator</h2>
             <p class="tool-desc">Create clean, custom QR codes for your website, WhatsApp, Wi-Fi, or digital business card in seconds. Free forever, no sign-up required.</p>
+            <div class="tool-author-tag"><img src="assets/images/profile-cutout.webp?v=3" alt="Wisdom" class="tool-author-mini-avatar" /> <span>By Wisdom &bull; 100% In-Browser</span></div>
             <div class="tool-specs">
               <span class="tool-spec-pill">PNG &amp; Vector SVG</span>
               <span class="tool-spec-pill">Custom Colors</span>
@@ -377,11 +378,12 @@
         <div class="tool-card" data-category="media">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">🖼️</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-image.svg" alt="Image Compressor Icon" width="48" height="48" /></div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
             <h2 class="tool-title">Image Compressor &amp; Converter</h2>
             <p class="tool-desc">Shrink image file sizes by up to 80% without losing quality. Convert PNG and JPG photos to modern WebP right inside your browser.</p>
+            <div class="tool-author-tag"><img src="assets/images/profile-cutout.webp?v=3" alt="Wisdom" class="tool-author-mini-avatar" /> <span>By Wisdom &bull; 100% In-Browser</span></div>
             <div class="tool-specs">
               <span class="tool-spec-pill">Make Images 80% Lighter</span>
               <span class="tool-spec-pill">Keep Crisp Quality</span>
@@ -398,11 +400,12 @@
         <div class="tool-card" data-category="marketing">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">🔗</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-utm.svg" alt="UTM Campaign Icon" width="48" height="48" /></div>
               <span class="tool-badge-live">Active &bull; Free</span>
             </div>
             <h2 class="tool-title">Ad &amp; Campaign Link Builder</h2>
             <p class="tool-desc">Build clean, trackable links for Facebook, Instagram, Google Ads, TikTok, and email newsletters so you know exactly where your sales come from.</p>
+            <div class="tool-author-tag"><img src="assets/images/profile-cutout.webp?v=3" alt="Wisdom" class="tool-author-mini-avatar" /> <span>By Wisdom &bull; 100% In-Browser</span></div>
             <div class="tool-specs">
               <span class="tool-spec-pill">Meta &amp; Google Ads</span>
               <span class="tool-spec-pill">Email Newsletters</span>
@@ -419,7 +422,7 @@
         <div class="tool-card" data-category="business">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">🧾</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-invoice.svg" alt="Invoice Generator Icon" width="48" height="48" /></div>
               <span class="tool-badge-soon">In Development</span>
             </div>
             <h2 class="tool-title">Free Invoice Generator</h2>
@@ -440,7 +443,7 @@
         <div class="tool-card" data-category="ai">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">🤖</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-ai.svg" alt="AI Cost Estimator Icon" width="48" height="48" /></div>
               <span class="tool-badge-soon">In Development</span>
             </div>
             <h2 class="tool-title">AI Cost &amp; Token Calculator</h2>
@@ -461,7 +464,7 @@
         <div class="tool-card" data-category="business">
           <div>
             <div class="tool-card-top">
-              <div class="tool-icon-wrap">⚙️</div>
+              <div class="tool-icon-wrap"><img src="assets/images/icons/tool-custom.svg" alt="Custom Tool Icon" width="48" height="48" /></div>
               <span class="tool-badge-custom">Custom Engineering</span>
             </div>
             <h2 class="tool-title">Need a Custom Tool for Your Business?</h2>

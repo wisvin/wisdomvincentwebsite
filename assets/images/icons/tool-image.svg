@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="14" fill="url(#img-grad)" />
+  <!-- Image Frame -->
+  <rect x="8" y="9" width="32" height="24" rx="4" stroke="#FFFFFF" stroke-width="2" fill="rgba(255,255,255,0.05)" />
+  <!-- Sun -->
+  <circle cx="16" cy="17" r="3" fill="#EC3D8E" />
+  <!-- Mountains -->
+  <path d="M10 29L19 19L26 27L31 22L38 29" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Compression badge & arrow -->
+  <rect x="18" y="27" width="22" height="13" rx="6.5" fill="#EC3D8E" />
+  <path d="M25 33.5H33M33 33.5L30 30.5M33 33.5L30 36.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  <defs>
+    <linearGradient id="img-grad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D123D" />
+      <stop offset="1" stop-color="#140921" />
+    </linearGradient>
+  </defs>
+</svg>

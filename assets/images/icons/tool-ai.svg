@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="14" fill="url(#ai-grad)" />
+  <rect x="14" y="14" width="20" height="20" rx="5" stroke="#FFFFFF" stroke-width="2.2" fill="rgba(255,255,255,0.05)" />
+  <circle cx="24" cy="24" r="4" fill="#EC3D8E" />
+  <path d="M18 10V14M24 10V14M30 10V14M18 34V38M24 34V38M30 34V38M10 18H14M10 24H14M10 30H14M34 18H38M34 24H38M34 30H38" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+  <defs>
+    <linearGradient id="ai-grad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D123D" />
+      <stop offset="1" stop-color="#140921" />
+    </linearGradient>
+  </defs>
+</svg>
