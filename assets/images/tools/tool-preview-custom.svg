@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-custom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B0C26" />
+      <stop offset="50%" stop-color="#100517" />
+      <stop offset="100%" stop-color="#07020A" />
+    </linearGradient>
+    <radialGradient id="glow-custom" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#EC3D8E" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="480" height="270" fill="url(#bg-custom)" />
+  <circle cx="240" cy="115" r="140" fill="url(#glow-custom)" />
+
+  <!-- Custom Workflow Graph Display -->
+  <g transform="translate(100, 40)">
+    <rect width="280" height="120" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+    
+    <!-- Node 1: Webhook -->
+    <rect x="25" y="45" width="60" height="32" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" />
+    <text x="55" y="65" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">Input</text>
+    
+    <!-- Connection 1 -->
+    <line x1="85" y1="61" x2="115" y2="61" stroke="#EC3D8E" stroke-width="2" stroke-dasharray="3 3" />
+    
+    <!-- Node 2: Custom Engine -->
+    <rect x="115" y="37" width="70" height="48" rx="10" fill="#EC3D8E" />
+    <text x="150" y="60" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">Custom</text>
+    <text x="150" y="73" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">Logic</text>
+    
+    <!-- Connection 2 -->
+    <line x1="185" y1="61" x2="215" y2="61" stroke="#EC3D8E" stroke-width="2" />
+    
+    <!-- Node 3: CRM/Output -->
+    <rect x="215" y="45" width="50" height="32" rx="8" fill="rgba(16,185,129,0.2)" stroke="#10B981" />
+    <text x="240" y="65" fill="#10B981" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" text-anchor="middle">Sync</text>
+
+    <!-- Bottom note -->
+    <text x="140" y="105" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="10" font-weight="500" text-anchor="middle">Engineered for Your Business Operations</text>
+  </g>
+</svg>

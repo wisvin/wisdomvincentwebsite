@@ -2415,3 +2415,90 @@ main.panels-split > .home-tools-section .home-tool-icon img {
   height: 100%;
   object-fit: contain;
 }
+
+
+/* ── Visual Tool Cards with Image Overlay ── */
+.tool-card,
+main.panels-split > .home-tools-section .home-tool-card {
+  background: linear-gradient(165deg, rgba(30, 16, 48, 0.78) 0%, rgba(15, 8, 25, 0.9) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+  position: relative !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 45px -20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.tool-card:hover,
+main.panels-split > .home-tools-section .home-tool-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(236, 61, 142, 0.65) !important;
+  box-shadow: 0 30px 60px -15px rgba(236, 61, 142, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+.tool-cover {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0B0612;
+}
+.tool-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.tool-card:hover .tool-cover-img,
+.home-tool-card:hover .tool-cover-img {
+  transform: scale(1.04);
+}
+.tool-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 6, 18, 0.12) 0%, rgba(11, 6, 18, 0.6) 45%, rgba(11, 6, 18, 0.96) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  pointer-events: none;
+}
+.tool-cover-overlay .tool-badge-live,
+.tool-cover-overlay .tool-badge-soon,
+.tool-cover-overlay .tool-badge-custom,
+.tool-cover-overlay .home-tool-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+.tool-cover-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #FFFFFF !important;
+  margin: 0 0 5px 0;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+.tool-cover-desc {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.85) !important;
+  line-height: 1.42;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.tool-card-body {
+  padding: 18px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
