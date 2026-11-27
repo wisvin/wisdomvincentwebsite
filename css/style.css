@@ -348,9 +348,9 @@ body.nav-open .nav-overlay { display: flex; flex-direction: column; gap: 32px; }
 .footer-bottom a { color: var(--text); font-weight: 500; }
 .footer-bottom a:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (min-width: 768px) {
-  .footer-card { padding: 56px 48px 28px; }
+  .footer-card { padding: 48px 44px 26px; }
   .footer-cta { grid-template-columns: 1.4fr 1fr; align-items: end; }
-  .footer-links { grid-template-columns: 1fr auto 1fr; }
+  .footer-links { grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 32px; justify-self: end; width: 100%; max-width: 440px; }
   .footer-col-services { grid-column: auto; order: 0; }
 }
 @media (min-width: 1024px) {
@@ -1512,11 +1512,12 @@ em { color: var(--pink); }
 .pl-bar i { background: var(--pink); }
 
 /* ── Footer on the dark page ── */
-.footer-card { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--on-dark-3); }
-.footer-cta h2, .footer-email, .footer-col a, .footer-bottom a, .footer-brand .nav-logo { color: var(--on-dark); }
-.footer-cta { border-bottom-color: var(--on-dark-3); }
-.footer-brand p, .footer-bottom, .footer-col h4 { color: var(--on-dark-2); }
-.footer-bottom { border-top-color: var(--on-dark-3); }
+.footer-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.16); }
+.footer-cta h2, .footer-email, .footer-col a, .footer-bottom a, .footer-brand .nav-logo { color: #FFFFFF; }
+.footer-cta { border-bottom-color: rgba(255, 255, 255, 0.14); }
+.footer-brand p, .footer-col h4 { color: rgba(255, 255, 255, 0.78); }
+.footer-bottom, .footer-bottom p { color: rgba(255, 255, 255, 0.78) !important; }
+.footer-bottom { border-top-color: rgba(255, 255, 255, 0.16); }
 .footer-brand .nav-logo { background: transparent; border: 0; padding-left: 0; }
 
 /* ── Intro screen ── */
@@ -1766,12 +1767,82 @@ main.panels-split > .projects-section .feat-videos-grid { align-items: stretch; 
 .lead-pop .form-control:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pink) 25%, transparent); }
 .lead-pop-note, .lead-pop-note a { color: var(--on-dark-2); }
 
-/* ── Home page: only the Expertise proof (certifications) stays in a white box; results, "What I help with" and plans sit straight on the dark page ── */
+/* ── Home page: Expertise proof, results, "What I help with" and plans sit straight on the dark page ── */
 main.panels-split > .creds-strip,
+main.panels-split > .expertise-section,
 main.panels-split > .pillars-section,
 main.panels-split > .pricing-section { background: transparent; }
 main.panels-split > .pillars-section { padding-top: 64px; padding-bottom: 64px; }
 main.panels-split > .pricing-section { padding-top: 64px; padding-bottom: 72px; }
+
+/* ── Expertise Proof: Dark Luxury Glassmorphic Credential Cards ── */
+main.panels-split > .expertise-section { padding: 72px 0; }
+main.panels-split > .expertise-section .section-label { color: #FF70B8 !important; }
+main.panels-split > .expertise-section .section-title { color: #FFFFFF !important; }
+main.panels-split > .expertise-section .section-title em { color: var(--pink); font-style: italic; }
+main.panels-split > .expertise-section .section-sub { color: rgba(255, 255, 255, 0.8) !important; }
+main.panels-split > .expertise-section .expertise-card {
+  background: linear-gradient(165deg, rgba(34, 18, 54, 0.94) 0%, rgba(14, 7, 24, 0.98) 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 30px 26px !important;
+  box-shadow: 0 0 0 1px rgba(236, 61, 142, 0.18), 0 24px 50px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+main.panels-split > .expertise-section .expertise-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(236, 61, 142, 0.95) !important;
+  box-shadow: 0 0 30px rgba(236, 61, 142, 0.45), 0 32px 70px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.48) !important;
+}
+main.panels-split > .expertise-section .expertise-badge {
+  background: rgba(236, 61, 142, 0.16) !important;
+  border: 1.5px solid #FF70B8 !important;
+  color: #FF70B8 !important;
+  box-shadow: 0 0 16px rgba(236, 61, 142, 0.28);
+}
+main.panels-split > .expertise-section .expertise-upwork .expertise-badge {
+  background: rgba(34, 197, 94, 0.16) !important;
+  border: 1.5px solid #4ADE80 !important;
+  color: #4ADE80 !important;
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.35);
+}
+main.panels-split > .expertise-section .expertise-source {
+  color: #FF70B8 !important;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+main.panels-split > .expertise-section .expertise-upwork .expertise-source {
+  color: #4ADE80 !important;
+}
+main.panels-split > .expertise-section .expertise-title {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+main.panels-split > .expertise-section .expertise-detail {
+  color: rgba(255, 255, 255, 0.82) !important;
+  margin-bottom: 14px;
+}
+main.panels-split > .expertise-section .expertise-verify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF !important;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+main.panels-split > .expertise-section .expertise-card:hover .expertise-verify {
+  background: linear-gradient(135deg, #EC3D8E 0%, #D42C7B 100%);
+  border-color: #EC3D8E;
+  box-shadow: 0 8px 20px -6px rgba(236, 61, 142, 0.6);
+}
 
 /* Results */
 main.panels-split > .creds-strip .proof-metric { background: color-mix(in srgb, var(--white) 7%, transparent); border-color: var(--on-dark-3); }

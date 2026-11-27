@@ -154,24 +154,23 @@
               </div>
               <div class="footer-links">
                 <div class="footer-col">
-                  <h4>Pages</h4>
+                  <h4>Explore</h4>
                   <ul>
-                    ${PAGES.map(p => `<li><a href="${p.href}">${p.label}</a></li>`).join('')}
-                  </ul>
-                </div>
-                <div class="footer-col footer-col-services">
-                  <h4>Services</h4>
-                  <ul>
-                    ${SERVICES.map(s => `<li><a href="${s.href}">${s.label}</a></li>`).join('')}
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                   </ul>
                 </div>
                 <div class="footer-col">
-                  <h4>Connect</h4>
+                  <h4>Services &amp; Tools</h4>
                   <ul>
-                    <li><a href="${CALENDLY}" target="_blank" rel="noopener">Book a Call</a></li>
-                    <li><a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></li>
-                    <li><a href="${WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a></li>
-                    <li><a href="${EMAIL}">Email Me</a></li>
+                    <li><a href="tools.html">Free Tools Suite</a></li>
+                    <li><a href="claude-code.html">Custom AI Tools</a></li>
+                    <li><a href="n8n.html">Workflow Automation</a></li>
+                    <li><a href="ai-website.html">AI-Powered Websites</a></li>
+                    <li><a href="${CALENDLY}" target="_blank" rel="noopener">Book a Free Call</a></li>
                   </ul>
                 </div>
               </div>

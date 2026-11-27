@@ -28,12 +28,12 @@
   <meta name="twitter:title" content="AI Automation Expert &amp; AI Developer for Hire | Wisdom" />
   <meta name="twitter:description" content="Wisdom builds AI tools, n8n, Make and Zapier automations, GoHighLevel lead follow-up and AI-powered websites that save hours and stop leads going cold." />
   <meta name="twitter:image" content="https://wisdom-vincent.vercel.app/assets/images/og-card.jpg" />
-  <link rel="stylesheet" href="css/style.css?v=65" />
+  <link rel="stylesheet" href="css/style.css?v=66" />
   <script src="js/preloader.js?v=63"></script>
   <script src="js/projects-data.js?v=63" defer></script>
   <script src="js/reviews-data.js?v=63" defer></script>
   <script src="js/render.js?v=63" defer></script>
-  <script src="js/nav.js?v=63" defer></script>
+  <script src="js/nav.js?v=66" defer></script>
   <script src="js/main.js?v=63" defer></script>
   <script src="js/analytics.js?v=63" defer></script>
   <script type="application/ld+json">
@@ -250,6 +250,78 @@
       background: transparent !important;
       border: none !important;
     }
+
+    /* ── Expertise Proof: Dark Luxury Glassmorphic Credential Cards ── */
+    main.panels-split > .expertise-section {
+      background: transparent !important;
+      padding: 72px 0 !important;
+    }
+    main.panels-split > .expertise-section .section-label { color: #FF70B8 !important; }
+    main.panels-split > .expertise-section .section-title { color: #FFFFFF !important; }
+    main.panels-split > .expertise-section .section-title em { color: var(--pink) !important; font-style: italic; }
+    main.panels-split > .expertise-section .section-sub { color: rgba(255, 255, 255, 0.8) !important; }
+    main.panels-split > .expertise-section .expertise-card {
+      background: linear-gradient(165deg, rgba(34, 18, 54, 0.94) 0%, rgba(14, 7, 24, 0.98) 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+      border-radius: var(--radius-xl) !important;
+      padding: 30px 26px !important;
+      box-shadow: 0 0 0 1px rgba(236, 61, 142, 0.18), 0 24px 50px -18px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      backdrop-filter: blur(24px) !important;
+      transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+    }
+    main.panels-split > .expertise-section .expertise-card:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(236, 61, 142, 0.95) !important;
+      box-shadow: 0 0 30px rgba(236, 61, 142, 0.45), 0 32px 70px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.48) !important;
+    }
+    main.panels-split > .expertise-section .expertise-badge {
+      background: rgba(236, 61, 142, 0.16) !important;
+      border: 1.5px solid #FF70B8 !important;
+      color: #FF70B8 !important;
+      box-shadow: 0 0 16px rgba(236, 61, 142, 0.28) !important;
+    }
+    main.panels-split > .expertise-section .expertise-upwork .expertise-badge {
+      background: rgba(34, 197, 94, 0.16) !important;
+      border: 1.5px solid #4ADE80 !important;
+      color: #4ADE80 !important;
+      box-shadow: 0 0 16px rgba(74, 222, 128, 0.35) !important;
+    }
+    main.panels-split > .expertise-section .expertise-source {
+      color: #FF70B8 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.07em !important;
+    }
+    main.panels-split > .expertise-section .expertise-upwork .expertise-source {
+      color: #4ADE80 !important;
+    }
+    main.panels-split > .expertise-section .expertise-title {
+      color: #FFFFFF !important;
+      font-weight: 600 !important;
+    }
+    main.panels-split > .expertise-section .expertise-detail {
+      color: rgba(255, 255, 255, 0.82) !important;
+      margin-bottom: 14px !important;
+    }
+    main.panels-split > .expertise-section .expertise-verify {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      padding: 10px 14px !important;
+      border-radius: 8px !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      color: #FFFFFF !important;
+      font-weight: 600 !important;
+      text-align: center !important;
+      transition: all 0.25s ease !important;
+    }
+    main.panels-split > .expertise-section .expertise-card:hover .expertise-verify {
+      background: linear-gradient(135deg, #EC3D8E 0%, #D42C7B 100%) !important;
+      border-color: #EC3D8E !important;
+      box-shadow: 0 8px 20px -6px rgba(236, 61, 142, 0.6) !important;
+    }
   </style>
 </head>
 <body>
@@ -332,7 +404,7 @@
     <div class="container">
       <div class="section-header center">
         <span class="section-label">Expertise proof</span>
-        <h2 class="section-title">Don&rsquo;t take my word for it.<br />Check it.</h2>
+        <h2 class="section-title">Don&rsquo;t take my word for it.<br /><em>Check it.</em></h2>
         <p class="section-sub">My Make.com certifications and verified client ratings are independent proof. Every card opens the original or details so you can see it for yourself.</p>
       </div>
       <div class="expertise-grid">
